@@ -19,7 +19,7 @@ export default function Contact() {
               >
                 Kontakt
               </motion.h1>
-              <p className="text-stone-500 italic">Jesteśmy do Twojej dyspozycji w dni robocze od 9:00 do 19:00. Wybierz dogodną formę kontaktu.</p>
+              <p className="text-stone-500 italic">Jesteśmy do Twojej dyspozycji w dni robocze od 7:00 do 19:00. Wybierz dogodną formę kontaktu.</p>
             </div>
 
             <div className="space-y-8">
@@ -60,7 +60,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs font-black uppercase tracking-widest text-stone-400 mb-1">Godziny otwarcia</p>
-                  <p className="text-base font-bold italic">Pn - Pt: 09:00 - 19:00</p>
+                  <p className="text-base font-bold italic">Pn - Pt: 07:00 - 19:00</p>
                   <p className="text-xs text-stone-500 italic">Oddzwonimy w ciągu 15 minut</p>
                 </div>
               </div>
