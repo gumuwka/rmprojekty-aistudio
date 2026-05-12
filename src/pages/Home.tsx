@@ -4,7 +4,8 @@ import { useState } from 'react';
 import * as Icons from 'lucide-react';
 import { services } from '../servicesData';
 import { cn } from '../lib/utils';
-import { ArrowRight, CheckCircle2, Star, Zap, Shield, Clock, Facebook } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Star, Zap, Shield, Clock, Facebook, MapPin, Award } from 'lucide-react';
+import PolandMap from '../components/PolandMap';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -148,8 +149,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* REALIZACJE MAPA */}
+      <section className="py-24 bg-white overflow-hidden relative">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+            {/* Left Column: 2 Benefits */}
+            <div className="w-full lg:w-1/4 flex flex-col gap-8">
+              <motion.div {...fadeInUp} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-orange-500/30 transition-all hover:shadow-xl hover:shadow-orange-500/5">
+                <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 text-orange-600">
+                  <Clock size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-3 italic">Szybka realizacja</h3>
+                <p className="text-stone-600 leading-relaxed text-sm">
+                  Dostarczamy kompletną dokumentację i uzgodnienia w rekordowym czasie, byś mógł działać bez przestojów.
+                </p>
+              </motion.div>
+
+              <motion.div {...fadeInUp} transition={{ ...fadeInUp.transition, delay: 0.1 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-orange-500/30 transition-all hover:shadow-xl hover:shadow-orange-500/5">
+                <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
+                  <Award size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-3 italic">Tysiące realizacji</h3>
+                <p className="text-stone-600 leading-relaxed text-sm">
+                  Zaufanie klientów z całej Polski przekłada się na tysiące opracowanych projektów i uzgodnień technicznych.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Middle: Integrated SVG Map */}
+            <div className="w-full lg:w-1/2 relative min-h-[500px] flex flex-col items-center justify-center">
+              <div className="w-full relative flex-1 flex items-center justify-center">
+                <div className="absolute inset-0 z-0">
+                  <PolandMap />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: 2 Benefits */}
+            <div className="w-full lg:w-1/4 flex flex-col gap-8">
+              <motion.div {...fadeInUp} transition={{ ...fadeInUp.transition, delay: 0.2 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-orange-500/30 transition-all hover:shadow-xl hover:shadow-orange-500/5">
+                <div className="w-14 h-14 bg-stone-100 rounded-2xl flex items-center justify-center mb-6 text-stone-900">
+                  <MapPin size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-3 italic">Zasięg ogólnopolski</h3>
+                <p className="text-stone-600 leading-relaxed text-sm">
+                  Działamy w każdym województwie, dostarczając projekty tam, gdzie ich potrzebujesz.
+                </p>
+              </motion.div>
+
+              <motion.div {...fadeInUp} transition={{ ...fadeInUp.transition, delay: 0.3 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 hover:border-orange-500/30 transition-all hover:shadow-xl hover:shadow-orange-500/5">
+                <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 text-orange-600">
+                  <Zap size={28} />
+                </div>
+                <h3 className="text-xl font-bold mb-3 italic">Kompleksowa usługa</h3>
+                <p className="text-stone-600 leading-relaxed text-sm">
+                  Od koncepcji po końcowe uzgodnienia - bierzemy na siebie cały proces projektowy.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        {/* Background Decorative Blur */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-orange-100/50 rounded-full blur-[120px] z-0 pointer-events-none" />
+      </section>
+
       {/* SEKCYJA USŁUG */}
-      <section className="py-24">
+      <section className="py-24 bg-stone-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
             <div className="max-w-2xl">
@@ -190,50 +255,6 @@ export default function Home() {
                 </motion.div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* DLACZEGO MY */}
-      <section className="py-24 bg-stone-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold mb-6 italic">Dlaczego RAD MAR?</h2>
-            <p className="text-stone-600">
-              Stawiamy na konkrety, szybkość i merytoryczne wsparcie, byś Ty mógł skupić się na sprzedaży i montażu.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div {...fadeInUp} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
-              <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 text-orange-600">
-                <Clock size={28} />
-              </div>
-              <h3 className="text-xl font-bold mb-4 italic">Szybkość realizacji</h3>
-              <p className="text-stone-600 leading-relaxed">
-                Wiemy, że czas to pieniądz. Dokumentację i uzgodnienia dostarczamy często już w 24-48h od przesłania danych.
-              </p>
-            </motion.div>
-
-            <motion.div {...fadeInUp} transition={{ ...fadeInUp.transition, delay: 0.1 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
-              <div className="w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6 text-yellow-600">
-                <Shield size={28} />
-              </div>
-              <h3 className="text-xl font-bold mb-4 italic">Pełna zgodność</h3>
-              <p className="text-stone-600 leading-relaxed">
-                Nasze projekty są uzgadniane z rzeczoznawcami PPOŻ i spełniają rygorystyczne wymogi PSP oraz programów dotacyjnych.
-              </p>
-            </motion.div>
-
-            <motion.div {...fadeInUp} transition={{ ...fadeInUp.transition, delay: 0.2 }} className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100">
-              <div className="w-14 h-14 bg-stone-100 rounded-2xl flex items-center justify-center mb-6 text-stone-900">
-                <CheckCircle2 size={28} />
-              </div>
-              <h3 className="text-xl font-bold mb-4 italic">Kompleksowość</h3>
-              <p className="text-stone-600 leading-relaxed">
-                Od prostego schematu mikroinstalacji, przez analizy nośności dachu, aż po wnioski o dotacje i farmy PV.
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>
