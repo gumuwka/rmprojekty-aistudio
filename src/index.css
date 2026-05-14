@@ -28,3 +28,24 @@ body {
   background-position: center right;
   background-repeat: no-repeat;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.gallery-centering-padding {
+  padding-left: calc(50% - 44vw);
+  padding-right: calc(50% - 44vw);
+}
+
+@media (min-width: 768px) {
+  .gallery-centering-padding {
+    padding-left: calc(50% - 375px);
+    padding-right: calc(50% - 375px);
+  }
+}

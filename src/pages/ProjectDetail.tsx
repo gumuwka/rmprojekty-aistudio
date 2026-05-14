@@ -1,11 +1,13 @@
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { Target, MapPin, Calendar, ArrowLeft, Zap, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Target, MapPin, Calendar, ArrowLeft, Zap, CheckCircle2, ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const { content, loading } = useContent();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   if (loading) return null;
 
@@ -76,26 +78,83 @@ export default function ProjectDetail() {
                     </ul>
                   </div>
 
-                  {project.gallery && project.gallery.length > 0 && (
+                   {project.gallery && project.gallery.length > 0 && (
                     <div className="pt-12 mt-12 border-t border-stone-100">
                       <div className="flex items-center justify-between mb-8">
-                        <h3 className="text-2xl font-bold flex items-center gap-3">
+                        <h3 className="text-2xl font-bold flex items-center gap-3 text-stone-900">
                            Galeria z realizacji
                         </h3>
-                        <div className="flex gap-2">
-                           <button onClick={() => document.getElementById('gallery-scroll')?.scrollBy({ left: -300, behavior: 'smooth' })} className="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors text-stone-500"><ChevronLeft size={20} /></button>
-                           <button onClick={() => document.getElementById('gallery-scroll')?.scrollBy({ left: 300, behavior: 'smooth' })} className="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors text-stone-500"><ChevronRight size={20} /></button>
-                        </div>
+                        <div className="flex gap-3">
+                            <button 
+                              onClick={() => {
+                                const el = document.getElementById('gallery-scroll');
+                                if (el) el.scrollBy({ left: -el.offsetWidth, behavior: 'smooth' });
+                              }} 
+                              className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all text-stone-500 shadow-sm border border-stone-200"
+                            >
+                              <ChevronLeft size={24} />
+                            </button>
+                            <button 
+                              onClick={() => {
+                                const el = document.getElementById('gallery-scroll');
+                                if (el) el.scrollBy({ left: el.offsetWidth, behavior: 'smooth' });
+                              }} 
+                              className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all text-stone-500 shadow-sm border border-stone-200"
+                            >
+                              <ChevronRight size={24} />
+                            </button>
+                         </div>
                       </div>
-                      <div id="gallery-scroll" className="flex overflow-x-auto gap-4 snap-x snap-mandatory pb-8 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                      <div 
+                        id="gallery-scroll" 
+                        className="flex overflow-x-auto snap-x snap-mandatory pb-10 no-scrollbar w-full" 
+                        style={{ scrollSnapType: 'x mandatory' }}
+                      >
                         {project.gallery.map((img: string, i: number) => (
-                          <div key={i} className="snap-center shrink-0 w-[80vw] md:w-[600px] aspect-[4/3] rounded-[2rem] overflow-hidden bg-stone-100">
-                             <img src={img} className="w-full h-full object-cover" alt={`Galeria ${i + 1}`} />
+                          <div 
+                            key={i} 
+                            onClick={() => setSelectedImage(img)}
+                            className="snap-center shrink-0 w-full aspect-video rounded-[2.5rem] overflow-hidden bg-stone-100 border border-stone-200 shadow-xl cursor-zoom-in group relative"
+                          >
+                             <img src={img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={`Galeria ${i + 1}`} />
+                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                <div className="bg-white/90 p-4 rounded-full text-stone-900 shadow-2xl scale-75 group-hover:scale-100 transition-transform">
+                                   <Maximize2 size={24} />
+                                </div>
+                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
                   )}
+
+                  {/* LIGHTBOX MODAL */}
+                  <AnimatePresence>
+                    {selectedImage && (
+                      <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[999] bg-stone-900/95 flex items-center justify-center p-4 md:p-20"
+                        onClick={() => setSelectedImage(null)}
+                      >
+                        <button 
+                          className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
+                          onClick={() => setSelectedImage(null)}
+                        >
+                          <X size={40} />
+                        </button>
+                        <motion.img 
+                          initial={{ scale: 0.9, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.9, opacity: 0 }}
+                          src={selectedImage} 
+                          className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
 
