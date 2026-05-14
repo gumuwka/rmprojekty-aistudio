@@ -16,7 +16,7 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="pt-48 pb-24 text-center">
+      <div className="pt-32 md:pt-48 pb-24 text-center">
         <h1 className="text-2xl font-bold text-stone-900">Realizacja nie została znaleziona.</h1>
         <Link to="/realizacje" className="text-orange-500 mt-4 inline-block font-bold hover:underline">Powrót do portfolio</Link>
       </div>
@@ -24,7 +24,7 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="pt-48 pb-24 min-h-screen bg-white">
+    <div className="pt-32 md:pt-48 pb-24 min-h-screen bg-white">
       {/* Project Hero */}
       <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
         <img 
@@ -56,7 +56,7 @@ export default function ProjectDetail() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
               <div className="lg:col-span-2">
                 <div className="w-20 h-1.5 bg-orange-500 mb-8 rounded-full" />
-                <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-8 text-stone-900 leading-[1.1] uppercase">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-8 text-stone-900 leading-[1.1] uppercase">
                   {project.title}
                 </h1>
                 <p className="text-xl text-stone-500 leading-relaxed mb-12">

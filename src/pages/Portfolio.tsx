@@ -11,13 +11,13 @@ export default function Portfolio() {
   const projects = content?.projects || [];
 
   return (
-    <div className="pt-48 pb-24 bg-stone-50 min-h-screen">
+    <div className="pt-32 md:pt-48 pb-24 bg-stone-50 min-h-screen">
       <section className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-stone-900 uppercase"
+            className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 tracking-tighter text-stone-900 uppercase"
           >
             Nasze Realizacje
           </motion.h1>
@@ -64,7 +64,7 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <div className="mt-24 bg-stone-900 rounded-[3rem] p-12 md:p-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+        <div className="mt-24 bg-stone-900 rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
            <div className="md:w-2/3 relative z-10 text-left">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">Twoja inwestycja może być następna</h2>
               <p className="text-stone-400 text-lg leading-relaxed">

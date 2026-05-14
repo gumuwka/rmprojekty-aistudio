@@ -38,7 +38,7 @@ export default function FAQPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl font-bold mb-8 italic tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 italic tracking-tight"
           >
             Pytania i <span className="text-orange-500 underline decoration-stone-200 underline-offset-8">Odpowiedzi</span>
           </motion.h1>

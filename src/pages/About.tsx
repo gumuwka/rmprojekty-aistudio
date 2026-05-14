@@ -11,7 +11,7 @@ export default function About() {
   const data = content?.about || {};
 
   return (
-    <div className="pt-48 pb-24 bg-white min-h-screen">
+    <div className="pt-32 md:pt-48 pb-24 bg-white min-h-screen">
       {/* Hero Section */}
       <section className="container mx-auto px-4 md:px-6 mb-32">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
@@ -21,20 +21,20 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9] uppercase text-stone-900">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9] uppercase text-stone-900">
                 {data.title || "Liderzy\nEnergii"}
               </h1>
               <p className="text-xl text-stone-500 leading-relaxed mb-12 max-w-xl">
                 {data.description || "RAD MAR to zespół specjalistów, dla których odnawialne źródła energii to nie tylko praca, ale misja wspierania polskiej energetyki."}
               </p>
               
-              <div className="flex flex-wrap gap-12 mb-12">
+              <div className="flex flex-wrap gap-8 md:gap-12 mb-12">
                 <div className="flex flex-col">
-                  <span className="text-5xl font-black text-stone-900 tracking-tighter uppercase">{data.stat1_value || "10+"}</span>
+                  <span className="text-4xl md:text-5xl font-black text-stone-900 tracking-tighter uppercase">{data.stat1_value || "10+"}</span>
                   <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest mt-2">{data.stat1_label || "Lat doświadczenia"}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-5xl font-black text-stone-900 tracking-tighter uppercase">{data.stat2_value || "1000+"}</span>
+                  <span className="text-4xl md:text-5xl font-black text-stone-900 tracking-tighter uppercase">{data.stat2_value || "1000+"}</span>
                   <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest mt-2">{data.stat2_label || "Zrealizowanych projektów"}</span>
                 </div>
               </div>

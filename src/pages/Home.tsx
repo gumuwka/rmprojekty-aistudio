@@ -38,7 +38,7 @@ export default function Home() {
 
 
       {/* HERO SECTION */}
-      <section className="relative min-h-[95vh] flex items-center pt-48 overflow-hidden group/hero">
+      <section className="relative min-h-[95vh] flex items-center pt-32 md:pt-48 overflow-hidden group/hero">
         <div className="absolute inset-0 z-0">
           <img src={data?.hero?.bgImage || "/assets/hero_bg_premium.png"} alt="Zespół Biura Projektowego" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/50 to-transparent z-10" />
@@ -53,7 +53,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tight text-stone-900"
+                className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tight text-stone-900"
               >
                 {getText('hero', 'title', "Rad-mar\nBiuro Projektowe").split('\n').map((line: string, i: number) => (
                   <span key={i}>{line}<br /></span>
@@ -61,7 +61,6 @@ export default function Home() {
               </motion.h1>
 
               <div className="relative group/p">
-
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -306,7 +305,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="bg-orange-500 text-white rounded-[3rem] p-8 md:p-16 flex flex-col lg:flex-row gap-16 items-center shadow-2xl shadow-orange-500/20">
             <div className="lg:w-1/2">
-              <h2 className="text-5xl font-black mb-8">{data?.finalCta?.title || 'Gotowy na współpracę?'}</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-8">{data?.finalCta?.title || 'Gotowy na współpracę?'}</h2>
               <p className="text-orange-100 text-lg mb-8 leading-relaxed">
                 {data?.finalCta?.desc ? (
                   data.finalCta.desc.includes('15 minut') ? 

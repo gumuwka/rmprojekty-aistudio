@@ -55,9 +55,9 @@ export default function ServiceDetail() {
                   <div className="w-16 h-16 bg-orange-100 flex items-center justify-center rounded-2xl text-orange-600 mb-8">
                      <IconComponent size={32} />
                   </div>
-                  <h1 className="text-4xl md:text-6xl font-bold mb-8 italic tracking-tight">{service.title}</h1>
+                  <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-8 italic tracking-tight">{service.title}</h1>
                    {service.subtitle && (
-                     <p className="text-xl md:text-2xl text-orange-600 font-bold mb-8 italic">
+                     <p className="text-lg md:text-2xl text-orange-600 font-bold mb-8 italic">
                         {service.subtitle}
                      </p>
                    )}

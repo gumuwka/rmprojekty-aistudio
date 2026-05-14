@@ -6,13 +6,13 @@ import { ArrowRight, Zap } from 'lucide-react';
 
 export default function Services() {
   return (
-    <div className="pt-48 pb-24">
+    <div className="pt-32 md:pt-48 pb-24">
       <section className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl font-bold mb-8 italic tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 italic tracking-tight"
           >
             Nasza Oferta
           </motion.h1>

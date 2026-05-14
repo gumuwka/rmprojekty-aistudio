@@ -147,9 +147,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Tier 2: Navigation Links */}
+      {/* Tier 2: Navigation Links - Desktop Only */}
       <div className={cn(
-        "w-full transition-all duration-500",
+        "hidden md:block w-full transition-all duration-500",
         scrolled 
           ? "bg-[#ffb100] shadow-lg py-3.5" 
           : "bg-[#ffb100] py-4"

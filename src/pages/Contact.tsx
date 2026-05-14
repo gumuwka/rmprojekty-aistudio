@@ -24,7 +24,7 @@ export default function Contact() {
     }, 1500);
   };
   return (
-    <div className="pt-48 pb-24 bg-white min-h-screen">
+    <div className="pt-32 md:pt-48 pb-24 bg-white min-h-screen">
       <section className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row gap-20">
           {/* Contact Info */}
@@ -33,7 +33,7 @@ export default function Contact() {
               <motion.h1 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-5xl md:text-7xl font-black mb-6 tracking-tight uppercase text-stone-900"
+                className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 tracking-tight uppercase text-stone-900"
               >
                 Kontakt
               </motion.h1>
