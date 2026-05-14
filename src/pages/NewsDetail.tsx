@@ -14,7 +14,7 @@ export default function NewsDetail() {
 
   if (!news) {
     return (
-      <div className="pt-48 pb-24 text-center">
+      <div className="pt-32 md:pt-48 pb-24 text-center">
         <h1 className="text-2xl font-bold text-stone-900">Artykuł nie został znaleziony.</h1>
         <Link to="/aktualnosci" className="text-orange-500 mt-4 inline-block font-bold hover:underline">Powrót do aktualności</Link>
       </div>
@@ -22,7 +22,7 @@ export default function NewsDetail() {
   }
 
   return (
-    <div className="pt-48 pb-24 min-h-screen bg-white">
+    <div className="pt-32 md:pt-48 pb-24 min-h-screen bg-white">
       {/* Hero Header Image */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img 
@@ -52,7 +52,7 @@ export default function NewsDetail() {
               </div>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-black tracking-tighter mb-12 text-stone-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter mb-12 text-stone-900 leading-tight">
               {news.title}
             </h1>
 

@@ -18,10 +18,10 @@ export default function News() {
   };
 
   return (
-    <div className="pt-48 pb-24 min-h-screen bg-stone-50">
+    <div className="pt-32 md:pt-48 pb-24 min-h-screen bg-stone-50">
       <section className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mb-16">
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-stone-900 uppercase">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter mb-6 text-stone-900 uppercase">
             Aktualności
           </h1>
           <p className="text-xl text-stone-500 leading-relaxed">
@@ -76,33 +76,7 @@ export default function News() {
           ))}
         </div>
 
-        <motion.div
-          {...fadeInUp}
-          className="mt-24 bg-stone-900 rounded-[3rem] p-12 md:p-16 text-center relative overflow-hidden"
-        >
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-8">
-              <Newspaper size={32} />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Nie przegap żadnej aktualizacji
-            </h2>
-            <p className="text-stone-400 mb-10 text-lg">
-              Zapisz się do naszego newslettera i otrzymuj najważniejsze informacje ze świata OZE bezpośrednio na swoją skrzynkę.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Twój adres e-mail" 
-                className="flex-grow bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-white placeholder:text-stone-500 focus:outline-none focus:border-orange-500 transition-colors"
-              />
-              <button className="bg-orange-500 text-white px-8 py-4 rounded-2xl font-bold hover:bg-orange-600 transition-colors">
-                Zapisz się
-              </button>
-            </div>
-          </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-500/20 blur-[120px] rounded-full pointer-events-none" />
-        </motion.div>
+
       </section>
     </div>
   );
