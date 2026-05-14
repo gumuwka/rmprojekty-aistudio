@@ -141,6 +141,47 @@ async function startServer() {
     }
   });
 
+  // Newsletter API
+  app.post("/api/newsletter", async (req, res) => {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ success: false, message: "Email jest wymagany." });
+
+    const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
+
+    if (!MAILERLITE_API_KEY) {
+      console.error("[NEWSLETTER] Brak MAILERLITE_API_KEY w .env");
+      return res.status(500).json({ success: false, message: "Błąd konfiguracji serwera." });
+    }
+
+    try {
+      const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${MAILERLITE_API_KEY.trim()}`
+        },
+        body: JSON.stringify({
+          email: email,
+          status: "active"
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log(`[NEWSLETTER] SUKCES: ${email}`);
+        res.json({ success: true });
+      } else {
+        console.error("[NEWSLETTER] Błąd MailerLite:", data);
+        res.status(response.status).json({ success: false, message: data.message || "Błąd MailerLite" });
+      }
+    } catch (err: any) {
+      console.error("[NEWSLETTER] Fetch Error:", err);
+      res.status(500).json({ success: false, message: "Błąd połączenia: " + err.message });
+    }
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
