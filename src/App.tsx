@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -53,6 +54,7 @@ function LayoutWrapper() {
           <Route path="/panel-cms" element={<CMSPanel />} />
         </Routes>
       </main>
+      {!isCMS && <Newsletter />}
       {!isCMS && <Footer />}
       {!isCMS && <FloatingCTA />}
     </div>
