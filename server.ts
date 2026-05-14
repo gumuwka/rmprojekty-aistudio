@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import { createServer as createViteServer } from "vite";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import { createClient } from "@supabase/supabase-js";
 
 dotenv.config();
 
@@ -12,6 +13,10 @@ async function startServer() {
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
   const PORT = 3000;
+
+  const supabaseUrl = process.env.SUPABASE_URL!;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
   // Email Transporter (Lazy loaded or configured from env)
   const getTransporter = () => {
@@ -78,10 +83,16 @@ async function startServer() {
   // CMS API: Get content
   app.get("/api/content", async (req, res) => {
     try {
-      const contentPath = path.join(process.cwd(), 'content.json');
-      const data = await fs.readFile(contentPath, 'utf-8');
-      res.json(JSON.parse(data));
+      const { data, error } = await supabase
+        .from('cms_data')
+        .select('data')
+        .eq('id', 1)
+        .single();
+      
+      if (error) throw error;
+      res.json(data.data);
     } catch (error) {
+      console.error("Fetch error:", error);
       res.status(500).json({ error: "Failed to read content" });
     }
   });
@@ -89,10 +100,14 @@ async function startServer() {
   // CMS API: Save content
   app.post("/api/content", async (req, res) => {
     try {
-      const contentPath = path.join(process.cwd(), 'content.json');
-      await fs.writeFile(contentPath, JSON.stringify(req.body, null, 2), 'utf-8');
+      const { error } = await supabase
+        .from('cms_data')
+        .upsert({ id: 1, data: req.body });
+      
+      if (error) throw error;
       res.json({ success: true });
     } catch (error) {
+      console.error("Save error:", error);
       res.status(500).json({ error: "Failed to save content" });
     }
   });
@@ -104,14 +119,22 @@ async function startServer() {
       const base64Data = data.replace(/^data:image\/\w+;base64,/, "");
       const buffer = Buffer.from(base64Data, 'base64');
       
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-      // Create directory if it doesn't exist
-      await fs.mkdir(uploadDir, { recursive: true });
+      const fileName = `${Date.now()}-${name}`;
       
-      const filePath = path.join(uploadDir, name);
-      await fs.writeFile(filePath, buffer);
+      const { data: uploadData, error } = await supabase.storage
+        .from('media')
+        .upload(fileName, buffer, {
+          contentType: 'image/png', // fallback
+          upsert: true
+        });
+
+      if (error) throw error;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('media')
+        .getPublicUrl(fileName);
       
-      res.json({ url: `/uploads/${name}` });
+      res.json({ url: publicUrl });
     } catch (error) {
       console.error("Upload error:", error);
       res.status(500).json({ error: "Failed to upload image" });
