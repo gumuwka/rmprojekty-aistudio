@@ -255,7 +255,7 @@ export default function Navbar() {
             <div className="p-6 border-t border-stone-100 bg-stone-50">
               <div className="flex items-center justify-center gap-4 text-stone-400">
                 <Clock size={16} />
-                <span className="text-xs font-bold italic">Pn-Pt: 8:00 - 18:00</span>
+                <span className="text-xs font-bold italic">Pn-Pt: 7:00 - 19:00</span>
               </div>
             </div>
           </motion.div>

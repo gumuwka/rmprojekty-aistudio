@@ -20,6 +20,9 @@ export default function Home() {
   const { content, updateContent, loading } = useContent();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [gdprAccepted, setGdprAccepted] = useState(false);
 
 
   if (loading) return <div className="h-screen flex items-center justify-center">Ładowanie bazy danych...</div>;
@@ -29,6 +32,14 @@ export default function Home() {
 
   const getText = (section: string, field: string, fallback: string) => {
     return data[section]?.[field] || fallback;
+  };
+
+  const handleVerify = () => {
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      setIsVerified(true);
+    }, 1500);
   };
 
 
@@ -78,7 +89,7 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <a
-                  href="https://www.facebook.com/rmprojekty" 
+                  href="https://www.facebook.com/profile.php?id=61558031386658" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#1877F2] text-white px-8 py-5 rounded-full text-lg font-bold hover:bg-[#0e5a9a] transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/10 w-fit"
@@ -334,7 +345,7 @@ export default function Home() {
               <div className="mt-12 flex flex-col gap-2">
                 <p className="text-xs uppercase tracking-[0.2em] font-bold text-orange-200">Bezpośredni kontakt</p>
                 <a href="tel:+48793376709" className="text-2xl font-bold hover:text-white transition-colors">+48 793 376 709</a>
-                <a href="mailto:ziezio@gmail.com" className="text-xl font-medium opacity-80 hover:opacity-100 transition-opacity">ziezio2@gmail.com</a>
+                <a href="mailto:ziezio2@gmail.com" className="text-xl font-medium opacity-80 hover:opacity-100 transition-opacity">ziezio2@gmail.com</a>
               </div>
             </div>
 
@@ -348,6 +359,7 @@ export default function Home() {
                     exit={{ opacity: 0, x: -20 }}
                     onSubmit={async (e) => {
                       e.preventDefault();
+                      if (!isVerified || !gdprAccepted) return;
                       const target = e.target as HTMLFormElement;
                       const submitBtn = target.querySelector('button[type="submit"]') as HTMLButtonElement;
                       const originalText = submitBtn.innerHTML;
@@ -407,11 +419,44 @@ export default function Home() {
                       <label className="text-xs font-bold text-stone-500 uppercase tracking-wider">Twoja wiadomość</label>
                       <textarea rows={4} placeholder="Opisz krótko swój projekt..." className="bg-stone-50 border border-stone-200 p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all min-h-[100px]"></textarea>
                     </div>
-                    <button type="submit" className="bg-black text-white py-5 rounded-xl text-lg font-bold hover:bg-orange-600 transition-all flex items-center justify-center gap-3">
+
+                    {/* GDPR Consent */}
+                    <div className="flex gap-3 items-start mt-2">
+                      <div 
+                        onClick={() => setGdprAccepted(!gdprAccepted)}
+                        className={`w-6 h-6 rounded border-2 flex items-center justify-center cursor-pointer shrink-0 transition-all ${gdprAccepted ? 'bg-orange-500 border-orange-500' : 'bg-white border-stone-200 hover:border-orange-200'}`}
+                      >
+                        {gdprAccepted && <CheckCircle2 size={14} className="text-white" />}
+                      </div>
+                      <p className="text-xs text-stone-500 leading-relaxed cursor-pointer select-none" onClick={() => setGdprAccepted(!gdprAccepted)}>
+                        Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. <span className="font-bold text-stone-900">Polityka prywatności</span>.
+                      </p>
+                    </div>
+
+                    {/* CAPTCHA */}
+                    <div 
+                      onClick={!isVerified && !isVerifying ? handleVerify : undefined}
+                      className={`flex items-center justify-between bg-stone-50 border-2 rounded-2xl p-5 transition-all duration-300 cursor-pointer ${isVerified ? 'border-green-500' : 'border-stone-100 hover:border-orange-200'}`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className={`w-8 h-8 rounded-lg border-2 flex items-center justify-center transition-all duration-300 ${isVerified ? 'bg-green-500 border-green-500' : 'bg-white border-stone-200'}`}>
+                          {isVerifying ? <Loader2 size={16} className="animate-spin text-orange-500" /> : isVerified ? <CheckCircle2 size={16} className="text-white" /> : null}
+                        </div>
+                        <span className={`font-bold text-sm ${isVerified ? 'text-green-700' : 'text-stone-600'}`}>
+                          {isVerifying ? 'Weryfikacja...' : isVerified ? 'Zweryfikowano pomyślnie' : 'Nie jestem robotem'}
+                        </span>
+                      </div>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      disabled={!isVerified || !gdprAccepted}
+                      className={`py-5 rounded-xl text-lg font-bold transition-all flex items-center justify-center gap-3 ${(!isVerified || !gdprAccepted) ? 'bg-stone-200 text-stone-400 cursor-not-allowed' : 'bg-black text-white hover:bg-orange-600'}`}
+                    >
                       Poproś o wycenę <ArrowRight size={20} />
                     </button>
                     <p className="text-[10px] text-stone-400 text-center leading-relaxed">
-                      Klikając przycisk wyrażasz zgodę na przetwarzanie danych w celu przygotowania oferty. <br /> Oddzwonimy najszybciej jak to możliwe!
+                       Oddzwonimy najszybciej jak to możliwe!
                     </p>
                   </motion.form>
                 ) : (

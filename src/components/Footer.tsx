@@ -24,7 +24,7 @@ export default function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61558031386658" className="hover:text-orange-500 transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="mailto:ziezio@gmail.com" className="hover:text-orange-500 transition-colors">
+              <a href="mailto:ziezio2@gmail.com" className="hover:text-orange-500 transition-colors">
                 <Mail size={20} />
               </a>
             </div>
@@ -52,7 +52,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={18} className="text-orange-500 shrink-0" />
-                <a href="mailto:ziezio@gmail.com" className="hover:text-white transition-colors">ziezio@gmail.com</a>
+                <a href="mailto:ziezio2@gmail.com" className="hover:text-white transition-colors">ziezio2@gmail.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-orange-500 shrink-0" />

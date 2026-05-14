@@ -74,7 +74,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Social Media</p>
-                  <a href="https://www.facebook.com/profile.php?id=61558031386658" target="_blank" rel="noopener noreferrer" className="text-base font-bold hover:text-orange-500 transition-colors">facebook.com/rmprojekty</a>
+                  <a href="https://www.facebook.com/profile.php?id=61558031386658" target="_blank" rel="noopener noreferrer" className="text-base font-bold hover:text-orange-500 transition-colors">Facebook</a>
                 </div>
               </div>
 
