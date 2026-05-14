@@ -79,10 +79,13 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <a
-                  href="#kontakt-form" 
-                  className="bg-blue-600 text-white px-8 py-5 rounded-full text-lg font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/10 w-fit uppercase"
+                  href="https://www.facebook.com/rmprojekty" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#1877F2] text-white px-8 py-5 rounded-full text-lg font-bold hover:bg-[#0e5a9a] transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/10 w-fit"
                 >
-                  {getText('hero', 'cta', "POROZMAWIAJMY O PROJEKCIE")}
+                  <Facebook size={24} />
+                  {getText('hero', 'cta', "ŚLEDŹ NAS NA FACEBOOKU")}
                 </a>
               </motion.div>
             </div>

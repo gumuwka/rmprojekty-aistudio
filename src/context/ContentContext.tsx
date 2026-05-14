@@ -13,7 +13,7 @@ const defaultHomeContent = {
   hero: {
     title: "Rad-mar\nBiuro Projektowe",
     subtitle: "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.",
-    cta: "POROZMAWIAJMY O PROJEKCIE",
+    cta: "ŚLEDŹ NAS NA FACEBOOKU",
     bgImage: "/assets/hero_bg_premium.png"
   },
   mapSection: {

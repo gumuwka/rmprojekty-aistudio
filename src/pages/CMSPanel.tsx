@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useContent } from '../context/ContentContext';
 import { motion, AnimatePresence } from 'motion/react';
-import { Save, Layout, FileText, Phone, CheckCircle2, ChevronRight, Loader2, Globe, Plus, Trash2, Image as ImageIcon, MapPin, Tag, Eye, Settings, Edit3, X, HelpCircle, Newspaper, Calendar, Zap } from 'lucide-react';
+import { Save, Layout, FileText, Phone, CheckCircle2, ChevronRight, Loader2, Globe, Plus, Trash2, Image as ImageIcon, MapPin, Tag, Eye, Settings, Edit3, X, HelpCircle, Newspaper, Calendar, Zap, Facebook } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { services as defaultServices } from '../servicesData';
 
@@ -407,7 +407,10 @@ function VisualHomePreview({ data, services, onEdit }: any) {
                 <p className="text-lg text-stone-500 mb-6 font-medium">{data?.hero?.subtitle || 'Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.'}</p>
              </EditableWrapper>
              <EditableWrapper onEdit={() => onEdit(['home', 'hero', 'cta'], 'Przycisk CTA', false)}>
-                <button className="bg-blue-600 text-white px-8 py-4 rounded-full font-bold shadow-xl">{data?.hero?.cta || 'POROZMAWIAJMY O PROJEKCIE'}</button>
+                <button className="bg-[#1877F2] text-white px-8 py-4 rounded-full font-bold shadow-xl flex items-center gap-2">
+                   <Facebook size={18} />
+                   {data?.hero?.cta || 'ŚLEDŹ NAS NA FACEBOOKU'}
+                </button>
              </EditableWrapper>
           </div>
        </section>
