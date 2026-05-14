@@ -1,101 +1,130 @@
 import { motion } from 'motion/react';
-import { CheckCircle2, Shield, Users, Target, Phone, Mail, Facebook } from 'lucide-react';
+import { CheckCircle2, Shield, Users, Target, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useContent } from '../context/ContentContext';
 
 export default function About() {
+  const { content, loading } = useContent();
+
+  if (loading) return null;
+
+  const data = content?.about || {};
+
   return (
-    <div className="pt-32 pb-24">
-      {/* Hero */}
-      <section className="container mx-auto px-4 md:px-6 mb-24">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+    <div className="pt-48 pb-24 bg-white min-h-screen">
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 md:px-6 mb-32">
+        <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2">
-            <motion.h1 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-5xl md:text-7xl font-bold mb-8 italic tracking-tight"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Doświadczenie <br /> w służbie <span className="text-orange-500 underline decoration-stone-200 underline-offset-8">ekologii</span>
-            </motion.h1>
-            <p className="text-xl text-stone-600 leading-relaxed italic mb-8">
-              RAD MAR to zespół specjalistów, dla których odnawialne źródła energii to nie tylko praca, ale misja wspierania polskiej energetyki w transformacji na zieloną stronę mocy.
-            </p>
-            <div className="grid grid-cols-2 gap-8 mb-8">
-              <div>
-                <span className="block text-4xl font-bold text-stone-900 mb-1 italic">10+</span>
-                <span className="text-sm font-bold text-stone-500 uppercase tracking-widest">Lat w branży</span>
+              <h1 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9] uppercase text-stone-900">
+                {data.title || "Liderzy\nEnergii"}
+              </h1>
+              <p className="text-xl text-stone-500 leading-relaxed mb-12 max-w-xl">
+                {data.description || "RAD MAR to zespół specjalistów, dla których odnawialne źródła energii to nie tylko praca, ale misja wspierania polskiej energetyki."}
+              </p>
+              
+              <div className="flex flex-wrap gap-12 mb-12">
+                <div className="flex flex-col">
+                  <span className="text-5xl font-black text-stone-900 tracking-tighter uppercase">{data.stat1_value || "10+"}</span>
+                  <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest mt-2">{data.stat1_label || "Lat doświadczenia"}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-5xl font-black text-stone-900 tracking-tighter uppercase">{data.stat2_value || "1000+"}</span>
+                  <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest mt-2">{data.stat2_label || "Zrealizowanych projektów"}</span>
+                </div>
               </div>
-              <div>
-                <span className="block text-4xl font-bold text-stone-900 mb-1 italic">500+</span>
-                <span className="text-sm font-bold text-stone-500 uppercase tracking-widest">Projektów</span>
-              </div>
-            </div>
-            <Link to="/kontakt" className="inline-block bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-orange-500 transition-colors">Skontaktuj się z nami</Link>
+
+              <Link 
+                to="/kontakt" 
+                className="bg-stone-900 text-white px-10 py-5 rounded-2xl font-bold flex items-center gap-3 w-fit hover:bg-orange-600 transition-all shadow-xl shadow-stone-900/10"
+              >
+                Rozpocznij współpracę <ArrowRight size={20} />
+              </Link>
+            </motion.div>
           </div>
           <div className="lg:w-1/2 relative">
-             <div className="aspect-square rounded-[3rem] bg-stone-100 overflow-hidden border border-stone-200">
+             <motion.div 
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 1 }}
+               className="aspect-[4/5] rounded-[3.5rem] bg-stone-100 overflow-hidden shadow-2xl relative"
+             >
                 <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" 
+                  src={data.image || "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop"} 
                   alt="Biuro RAD MAR" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
-             </div>
-             <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-[2rem] shadow-2xl border border-stone-100 hidden md:block max-w-[280px]">
-                <p className="text-sm font-bold italic text-stone-800 leading-relaxed italic">
-                  "Szybkość realizacji to nasz znak rozpoznawczy. Rozumiemy potrzeby dynamicznego rynku fotowoltaiki."
-                </p>
-                <p className="mt-4 text-xs font-bold text-orange-500 uppercase tracking-widest">— Zespół RAD MAR</p>
-             </div>
+                <div className="absolute inset-0 bg-orange-500/10 mix-blend-multiply" />
+             </motion.div>
+             {/* Decorative element */}
+             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-orange-500 rounded-[2rem] -z-10 animate-pulse opacity-20 blur-2xl" />
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="bg-stone-50 py-24 border-y border-stone-200">
+      {/* Stats/Values Bento */}
+      <section className="bg-stone-50 py-32 border-y border-stone-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-bold mb-4 italic">Nasze Wartości</h2>
-            <p className="text-stone-500 italic">To na nich budujemy zaufanie naszych partnerów biznesowych.</p>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Box 1 */}
+            <div className="bg-white p-12 rounded-[3rem] border border-stone-200 shadow-sm flex flex-col gap-8">
+               <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600">
+                  <Shield size={28} />
+               </div>
+               <div>
+                  <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">{data.box1_title || "Bezpieczeństwo"}</h3>
+                  <p className="text-stone-500 leading-relaxed">
+                    {data.box1_desc || data.quality_desc || "Każdy projekt przechodzi rygorystyczną weryfikację pod kątem zgodności z aktualnymi przepisami PPOŻ."}
+                  </p>
+               </div>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="flex flex-col gap-6 items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-orange-500 shadow-sm border border-stone-200">
-                <Shield size={32} />
-              </div>
-              <h3 className="text-2xl font-bold italic">Bezpieczeństwo</h3>
-              <p className="text-stone-600 italic">Każdy projekt przechodzi rygorystyczną weryfikację pod kątem zgodności z aktualnymi przepisami i normami bezpieczeństwa.</p>
+            {/* Box 2 */}
+            <div className="bg-white p-12 rounded-[3rem] border border-stone-200 shadow-sm flex flex-col gap-8 md:translate-y-12">
+               <div className="w-14 h-14 bg-stone-900 rounded-2xl flex items-center justify-center text-white">
+                  <Zap size={28} />
+               </div>
+               <div>
+                  <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">{data.box2_title || "Doświadczenie"}</h3>
+                  <p className="text-stone-500 leading-relaxed">
+                    {data.box2_desc || data.experience_desc || "Tysiące projektów dla największych deweloperów i firm instalacyjnych w całej Polsce."}
+                  </p>
+               </div>
             </div>
-            <div className="flex flex-col gap-6 items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-orange-500 shadow-sm border border-stone-200">
-                <Users size={32} />
-              </div>
-              <h3 className="text-2xl font-bold italic">Partnerstwo</h3>
-              <p className="text-stone-600 italic">Nie jesteśmy tylko podwykonawcą. Jesteśmy merytorycznym wsparciem dla firm instalacyjnych na każdym etapie realizacji.</p>
-            </div>
-            <div className="flex flex-col gap-6 items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-orange-500 shadow-sm border border-stone-200">
-                <Target size={32} />
-              </div>
-              <h3 className="text-2xl font-bold italic">Elastyczność</h3>
-              <p className="text-stone-600 italic">Dostosowujemy się do indywidualnych potrzeb – od prostych domowych instalacji po wielkoskalowe farmy i stacje ładowania.</p>
+
+            {/* Box 3 */}
+            <div className="bg-white p-12 rounded-[3rem] border border-stone-200 shadow-sm flex flex-col gap-8">
+               <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center text-white">
+                  <Users size={28} />
+               </div>
+               <div>
+                  <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">{data.box3_title || "Zaufanie"}</h3>
+                  <p className="text-stone-500 leading-relaxed">
+                    {data.box3_desc || "Budujemy trwałe relacje oparte na merytorycznym wsparciu i rzetelności w dostarczaniu dokumentacji."}
+                  </p>
+               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Team/Mission */}
-      <section className="py-24 container mx-auto px-4 md:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 italic">Misja i Wizja</h2>
-          <div className="space-y-8 text-lg text-stone-600 leading-relaxed italic">
-             <p>
-               Naszą misją jest dostarczanie najwyższej jakości dokumentacji projektowej, która staje się solidnym fundamentem dla ekologicznych inwestycji. Wierzymy, że profesjonalizm na etapie planowania przekłada się na bezpieczeństwo i wydajność instalacji przez dziesięciolecia.
-             </p>
-             <p>
-               Działamy na terenie całego kraju, wspierając lokalne firmy energetyczne w pozyskiwaniu dotacji takich jak Czyste Powietrze czy Mój Prąd, co realnie wpływa na poprawę jakości powietrza w naszych miastach.
-             </p>
-          </div>
-        </div>
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 md:px-6 py-32 text-center">
+         <h2 className="text-4xl md:text-6xl font-black mb-8 uppercase tracking-tighter text-stone-900 max-w-4xl mx-auto leading-tight">
+            Gotowy na profesjonalny projekt?
+         </h2>
+         <Link 
+          to="/kontakt"
+          className="text-2xl font-black text-orange-500 hover:text-stone-900 transition-colors uppercase tracking-widest flex items-center justify-center gap-4 group"
+         >
+           Porozmawiajmy o współpracy
+           <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
+         </Link>
       </section>
     </div>
   );

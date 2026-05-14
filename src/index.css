@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+:root {
+  font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.service-bg-gradient {
+  background: linear-gradient(to right, rgba(255, 248, 245, 1) 0%, rgba(255, 248, 245, 1) 30%, rgba(255, 248, 245, 0.6) 60%, rgba(255, 248, 245, 0) 100%);
+}
+
+.bg-map-image {
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_jsKiAigiyGBENZDSU8N3LB4eEvnWP-F1iuPzuBYe2n-rIVXBWWM_ppHKGFJvE2wUbJzj34gRjzrjDfs3a0JFVtJWyxaLROI14Djvn-X3PyKpoBPII2XRAuPlHnIv-lrFA_IS_75o90dsdFw5YKWLn0IuuNUAszsKeLg5CVHNBn2ywdIHZReYxae-ZYIotKvLVEKLDhoqIhJdPUZF_yHd3BfRo1ShFg37caP1S0Vrkz7QEbR_JC4pIWHMwvyDwF1JY7_WwLM0-As");
+  background-size: contain;
+  background-position: center right;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VoltEngine PV - OZE Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#e2dfde",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-variant": "#f5ded2",
+                        "primary-container": "#ff7f00",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#aac7ff",
+                        "secondary": "#5f5e5e",
+                        "surface-container-highest": "#f5ded2",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#5e2b00",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fff8f5",
+                        "surface-container-low": "#fff1ea",
+                        "tertiary-fixed": "#d7e3ff",
+                        "surface-container-high": "#fbe4d7",
+                        "tertiary-container": "#6ba3ff",
+                        "on-tertiary-container": "#003875",
+                        "error": "#ba1a1a",
+                        "primary": "#974900",
+                        "on-background": "#251912",
+                        "on-surface-variant": "#584235",
+                        "surface-tint": "#974900",
+                        "surface-dim": "#ecd6c9",
+                        "on-primary-fixed": "#311300",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb688",
+                        "primary-fixed-dim": "#ffb688",
+                        "on-surface": "#251912",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#e5e2e1",
+                        "outline": "#8b7263",
+                        "on-tertiary-fixed-variant": "#00458e",
+                        "inverse-on-surface": "#ffede4",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container": "#ffeadf",
+                        "outline-variant": "#dfc0af",
+                        "tertiary": "#005cba",
+                        "surface": "#fff8f5",
+                        "primary-fixed": "#ffdbc7",
+                        "on-secondary-container": "#636262",
+                        "on-tertiary-fixed": "#001b3e",
+                        "on-primary-fixed-variant": "#733600",
+                        "on-secondary-fixed-variant": "#474746",
+                        "background": "#fff8f5",
+                        "inverse-surface": "#3b2e25"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "xl": "40px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>.service-bg-gradient {
+    background: linear-gradient(to right, rgba(255, 248, 245, 1) 0%, rgba(255, 248, 245, 1) 30%, rgba(255, 248, 245, 0.6) 60%, rgba(255, 248, 245, 0) 100%)
+    }
+.bg-map-image {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC_jsKiAigiyGBENZDSU8N3LB4eEvnWP-F1iuPzuBYe2n-rIVXBWWM_ppHKGFJvE2wUbJzj34gRjzrjDfs3a0JFVtJWyxaLROI14Djvn-X3PyKpoBPII2XRAuPlHnIv-lrFA_IS_75o90dsdFw5YKWLn0IuuNUAszsKeLg5CVHNBn2ywdIHZReYxae-ZYIotKvLVEKLDhoqIhJdPUZF_yHd3BfRo1ShFg37caP1S0Vrkz7QEbR_JC4pIWHMwvyDwF1JY7_WwLM0-As);
+    background-size: contain;
+    background-position: center right;
+    background-repeat: no-repeat
+    }</style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant flex justify-between items-center w-full px-lg max-w-container-max mx-auto h-16 sticky top-0 z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-container">
+            VoltEngine PV
+        </div>
+<nav class="hidden md:flex space-x-lg">
+<a class="text-on-surface-variant font-body-md hover:text-primary-container transition-colors" href="#">Projects</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary-container transition-colors opacity-80 transition-all" href="#">Services</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary-container transition-colors" href="#">Technical Documentation</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary-container transition-colors" href="#">OZE Training</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary-container transition-colors" href="#">About Us</a>
+</nav>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:brightness-90 transition-all hidden md:block">
+            Contact Us
+        </button>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow relative">
+<!-- Background Layer with Map -->
+<div class="absolute inset-0 z-0 bg-map-image opacity-70" data-alt="A clean, minimalist geographical map of Poland rendered in an engineering style. The map is set against a very light, airy background with soft grays and whites. Scattered across the map are glowing, vibrant orange data points indicating active PV installations or project sites. The overall aesthetic is corporate, modern, and highly technical, lacking unnecessary clutter. It perfectly complements a bright light-mode interface focused on renewable energy infrastructure." data-location="Poland map with subtle glowing data points" style=""></div>
+<div class="absolute inset-0 z-0 service-bg-gradient"></div>
+<section class="relative z-10 w-full max-w-container-max mx-auto px-lg py-xl md:py-[80px]">
+<div class="max-w-3xl mb-xl">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-md">KOMPLEKSOWE WSPARCIE DLA BRANŻY OZE</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Precision engineering and dedicated consulting services to accelerate your photovoltaic projects from concept to grid connection.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mt-xl">
+<!-- Tile 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0px_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 flex flex-col h-full group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center mb-md group-hover:bg-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined text-primary-container group-hover:text-on-primary transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm border-b border-surface-variant pb-xs">Projektowanie PV</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mt-sm">Meticulous architectural and electrical design for commercial and utility-scale photovoltaic installations, ensuring maximum yield and structural integrity.</p>
+</div>
+<!-- Tile 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0px_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 flex flex-col h-full group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center mb-md group-hover:bg-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined text-primary-container group-hover:text-on-primary transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm border-b border-surface-variant pb-xs">Konsulting Techniczny</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mt-sm">Expert advisory services navigating complex regulatory frameworks, feasibility studies, and grid connection compliance for renewable energy assets.</p>
+</div>
+<!-- Tile 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0px_12px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300 flex flex-col h-full group">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center mb-md group-hover:bg-primary-container transition-colors duration-300">
+<span class="material-symbols-outlined text-primary-container group-hover:text-on-primary transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm border-b border-surface-variant pb-xs">Szkolenia OZE</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mt-sm">Specialized training programs designed to upskill engineering teams and project managers on the latest advancements in photovoltaic technology and standards.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-on-secondary-fixed border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-lg py-md max-w-container-max mx-auto w-full z-10 relative">
+<div class="font-headline-md text-headline-md text-primary mb-sm md:mb-0">
+            VoltEngine PV
+        </div>
+<div class="font-label-md text-label-md text-on-secondary-container mb-sm md:mb-0">
+            © 2024 VoltEngine PV Engineering. All rights reserved.
+        </div>
+<div class="flex space-x-md">
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Technical Standards</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Careers</a>
+</div>
+</footer>
+</body></html>

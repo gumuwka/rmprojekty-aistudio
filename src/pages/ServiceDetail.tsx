@@ -1,14 +1,18 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import * as Icons from 'lucide-react';
-import { services } from '../servicesData';
-import { ArrowLeft, CheckCircle2, ChevronRight, Mail, Phone, Calculator } from 'lucide-react';
+import { services as defaultServices } from '../servicesData';
+import { ArrowLeft, CheckCircle2, ChevronRight, Mail, Phone, Calculator, Loader2 } from 'lucide-react';
 import { useEffect } from 'react';
+import { useContent } from '../context/ContentContext';
 
 export default function ServiceDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const service = services.find(s => s.id === id);
+  const { content, loading } = useContent();
+
+  const displayServices = content?.services || defaultServices;
+  const service = displayServices.find((s: any) => s.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,6 +20,15 @@ export default function ServiceDetail() {
       document.title = `${service.title} - RAD MAR`;
     }
   }, [id, service]);
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-32 text-center flex flex-col items-center justify-center min-h-[50vh]">
+         <Loader2 className="animate-spin text-orange-500 mb-4" size={40} />
+         <p className="text-stone-500 font-medium tracking-widest uppercase text-xs">Ładowanie usługi...</p>
+      </div>
+    );
+  }
 
   if (!service) {
     return (
@@ -255,7 +268,7 @@ export default function ServiceDetail() {
                    <div className="bg-stone-900 text-white p-8 rounded-[2rem]">
                       <h3 className="text-xl font-bold mb-8 italic">Inne usługi projektu:</h3>
                       <div className="flex flex-col gap-2">
-                         {services.filter(s => s.id !== id).slice(0, 5).map(s => (
+                         {displayServices.filter((s: any) => s.id !== id).slice(0, 5).map((s: any) => (
                            <Link 
                              key={s.id} 
                              to={`/oferta/${s.id}`} 

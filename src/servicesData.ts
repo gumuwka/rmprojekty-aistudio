@@ -22,6 +22,7 @@ export interface Service {
   legalSafety?: string[];
   subtitle?: string;
   extraNote?: string;
+  image?: string;
 }
 
 export const services: Service[] = [
@@ -51,7 +52,8 @@ export const services: Service[] = [
       'Instalację PV należy oznaczyć zgodnie z normą PN-EN 60364-7-712.'
     ],
     legalBasis: 'Prawo budowlane art. 29 pkt. 4 ust. 3 lit. c: Nie wymaga decyzji o pozwoleniu na budowę oraz zgłoszenia, o którym mowa w art. 30, wykonywanie robót budowlanych polegających na: instalowaniu pomp ciepła, wolno stojących kolektorów słonecznych, urządzeń fotowoltaicznych o mocy zainstalowanej elektrycznej nie większej niż 50 kW z zastrzeżeniem, że do urządzeń fotowoltaicznych o mocy zainstalowanej elektrycznej większej niż 6,5 kW stosuje się obowiązek uzgodnienia z rzeczoznawcą do spraw zabezpieczeń przeciwpożarowych pod względem zgodności with wymaganiami ochrony przeciwpożarowej, zwany dalej „uzgodnieniem pod względem ochrony przeciwpożarowej”, projektu tych urządzeń oraz zawiadomienia organów Państwowej Straży Pożarnej, o którym mowa w art. 56 ust. 1a.',
-    priceInfo: 'Konkurencyjne ceny ustalane indywidualnie.'
+    priceInfo: 'Konkurencyjne ceny ustalane indywidualnie.',
+    image: '/assets/services/oferta/ppoz.png'
   },
   {
     id: 'projekty-pv-sol',
@@ -73,7 +75,8 @@ export const services: Service[] = [
       'Weryfikacja danych, przygotowanie koncepcji rozłożenia modułów i zwrócenie uwagi na ewentualne straty wynikające z zacienienia',
       'Dobór optymalnych rozwiązań / konsultacje techniczne',
       'Wysyłka gotowego projektu z logo Twojej firmy !'
-    ]
+    ],
+    image: '/assets/services/oferta/pvsol.png'
   },
   {
     id: 'analiza-konstrukcyjna',
@@ -86,7 +89,8 @@ export const services: Service[] = [
       'Analiza stanu konstrukcji dachu',
       'Obliczenia statyczne elementów konstrukcji',
       'Ocena możliwości montażu paneli fotowoltaicznych'
-    ]
+    ],
+    image: '/assets/services/oferta/konstrukcja.png'
   },
   {
     id: 'grant-oze',
@@ -103,7 +107,8 @@ export const services: Service[] = [
     requiredDocuments: [
       'dokumentację projektową instalacji',
       'dokumenty potwierdzające umocowanie osób podpisujących wniosek do reprezentowania inwestora oraz wzór podpisów złożonych na wniosku.'
-    ]
+    ],
+    image: '/assets/services/oferta/bgk.png'
   },
   {
     id: 'farmy-fotowoltaiczne',
@@ -119,7 +124,8 @@ export const services: Service[] = [
       'Wniosek o wypis i wyrys z MPZP, rejestru gruntów',
       'Projekt budowlany do pozwolenia na budowę',
       'Wizualizacje instalacji PV w PV*SOL i AutoCAD'
-    ]
+    ],
+    image: '/assets/services/oferta/farmy.png'
   },
   {
     id: 'czyste-powietrze',
@@ -140,7 +146,8 @@ export const services: Service[] = [
     usefulInfo: [
       'Działamy na terenie całego kraju. Pomagamy pozyskać najbardziej atrakcyjne formy dotacji.',
       'Audyt energetyczny pozwoli Ci uzyskać informacje, jak najskuteczniej ocieplić budynek, wybrać najlepsze źródło ciepła i uzyskać maksymalną dotację, a następnie płacić niższe rachunki za ogrzewanie.'
-    ]
+    ],
+    image: '/assets/services/oferta/czyste_powietrze.png'
   },
   {
     id: 'moje-cieplo',
@@ -159,7 +166,8 @@ export const services: Service[] = [
       'W budynku nie może znajdować się źródło ciepła na paliwo stałe.',
       'Dofinansowanie dotyczy zakupu i montażu nowych pomp ciepła.',
       'Działamy na terenie całego kraju.'
-    ]
+    ],
+    image: '/assets/services/oferta/moje_cieplo.png'
   },
   {
     id: 'moj-prad',
@@ -199,7 +207,8 @@ export const services: Service[] = [
       'Przykład: Dla instalacji PV 8 kW z magazynem energii (16 000 zł) i zasobnikiem CWU (5 000 zł) dotacja wyniesie 28 000 zł.',
       'Program Mój Prąd 6.0 promuje autokonsumpcję energii poprzez magazynowanie.'
     ],
-    closingNote: 'Program Mój Prąd 6.0 oferuje atrakcyjne wsparcie finansowe dla inwestycji w instalacje fotowoltaiczne, dostosowane do zmieniających się wymogów technologicznych i ekologicznych. Więcej informacji znajdziesz na stronie programu Mój Prąd oraz w nadchodzących publikacjach dotyczących szczegółowych warunków naboru.'
+    closingNote: 'Program Mój Prąd 6.0 oferuje atrakcyjne wsparcie finansowe dla inwestycji w instalacje fotowoltaiczne, dostosowane do zmieniających się wymogów technologicznych i ekologicznych. Więcej informacji znajdziesz na stronie programu Mój Prąd oraz w nadchodzących publikacjach dotyczących szczegółowych warunków naboru.',
+    image: '/assets/services/oferta/moj_prad.png'
   },
   {
     id: 'termowizja-dron',
@@ -227,7 +236,8 @@ export const services: Service[] = [
     ],
     usefulInfo: [
       'Cennik usług ustalany jest indywidualnie zależnie od zakresu oraz specyfikacji pomiarów termowizyjnych.'
-    ]
+    ],
+    image: '/assets/services/oferta/termowizja.png'
   },
   {
     id: 'przylaczenie-pv',
@@ -241,7 +251,8 @@ export const services: Service[] = [
       'Przygotowanie schematu elektrycznego',
       'Dołączenie wymaganych załączników',
       'Wysyłka do Zakładu Energetycznego'
-    ]
+    ],
+    image: '/assets/services/oferta/przylaczenie.png'
   },
   {
     id: 'projekt-stacja-ev',
@@ -259,7 +270,8 @@ export const services: Service[] = [
       'Wykonanie punktu ładowania (odpłatnego lub nie) wymaga dokumentacji do UDT i Badania Technicznego Wstępnego.',
       'Każde urządzenie o mocy powyżej 3,7 kW świadczące usługę ładowania musi zostać odebrane przez UDT.',
       'Zadaniem UDT jest sprawdzenie zgodności dokumentacji z wymaganiami technicznymi (Rozporządzenie oraz art. 13 ustawy).'
-    ]
+    ],
+    image: '/assets/services/oferta/stacja_ev.png'
   },
   {
     id: 'ekspertyza-stacja-ev',
@@ -274,7 +286,8 @@ export const services: Service[] = [
       'Rozwiązania budowlane oraz techniczno-instalacyjne',
       'Warunki niezbędne do bezpiecznej eksploatacji',
       'Wymagania w zakresie bezpieczeństwa pożarowego'
-    ]
+    ],
+    image: '/assets/services/oferta/ekspertyza_ev.png'
   },
   {
     id: 'zwiekszenie-mocy',
@@ -292,8 +305,8 @@ export const services: Service[] = [
     extraNote: 'Ważne jest, aby moc zainstalowana instalacji fotowoltaicznej nie przekroczyła mocy przyłączeniowej, ponieważ wiąże się to z odrzuceniem wniosku o przyłączenie mikroinstalacji. Przed montażem instalacji fotowoltaicznej lub jej rozbudową, należy zweryfikować moc przyłączeniową budynku.\n\nZwiększenie mocy przyłączeniowej może wiązać się z modernizacją instalacji elektrycznej. Zakres prac opisany jest w wydanych przez Zakład Energetyczny „Warunkach Przyłączenia”. Na wszystkie zmiany w instalacji elektrycznej wymagany jest projekt, który powinien przygotować uprawniony projektant branży elektrycznej.',
     usefulInfoTitle: 'Ważne informacje:',
     usefulInfo: [
-      'Wielkość mocy przyłączeniowej jest to wielkość mocy na jaką zostało zaprojektowane i wybudowane przyłącze do Twojego obiektu. Jest to maksymalna wartość mocy jaką możesz pobierać z sieci.',
       'Jeżeli będziesz próbować pobierać moc większą niż moc przyłączeniowa, zadziała zabezpieczenie główne (bezpiecznik). Nie będziesz mógł wtedy korzystać z prądu do czasu wymiany lub uruchomienia tego zabezpieczenia.'
-    ]
+    ],
+    image: '/assets/services/oferta/zwiekszenie_mocy.png'
   }
 ];
