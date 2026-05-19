@@ -243,6 +243,22 @@ export default function Home() {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Kropeczki nawigacyjne karuzeli */}
+            <div className="flex gap-2 justify-center mt-6">
+              {[0, 1, 2].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTileIndex(index)}
+                  className={`h-2 transition-all duration-300 rounded-full ${
+                    activeTileIndex === index 
+                      ? 'w-8 bg-orange-500' 
+                      : 'w-2 bg-stone-300 hover:bg-stone-500'
+                  }`}
+                  aria-label={`Przejdź do slajdu ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Right Side: Photo without rounding and animations */}
