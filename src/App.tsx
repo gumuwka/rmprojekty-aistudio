@@ -35,6 +35,19 @@ function ScrollToHash() {
 
 function LayoutWrapper() {
   const location = useLocation();
+  
+  useEffect(() => {
+    let canonical = document.querySelector("link[rel='canonical']");
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    // Remove trailing slash from base and ensure clean path
+    const path = location.pathname === '/' ? '' : location.pathname;
+    canonical.setAttribute("href", `https://rmprojekty.vercel.app${path}`);
+  }, [location.pathname]);
+
   const isCMS = location.pathname === '/panel-cms';
   const showNewsletter = !isCMS && location.pathname !== '/newsletter';
   const showContactForm = !isCMS && location.pathname !== '/' && location.pathname !== '/kontakt' && location.pathname !== '/newsletter';
