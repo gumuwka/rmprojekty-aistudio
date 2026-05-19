@@ -25,17 +25,21 @@
     <meta name="twitter:description" content="Profesjonalne uzgodnienia PPOŻ urządzeń fotowoltaicznych, precyzyjne projekty instalacji PV*SOL, ekspertyzy techniczne oraz kompleksowa pomoc w dotacjach Mój Prąd." />
     <meta name="twitter:image" content="https://rmprojekty.vercel.app/assets/hero_bg_premium.png" />
 
-    <!-- Czcionki Google Fonts -->
+    <!-- Czcionki Google Fonts (Asynchroniczne ładowanie bez blokowania renderowania) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    </noscript>
     
     <!-- Preload krytycznych zasobów -->
     <link rel="preload" as="image" href="/assets/hero_bg_premium.webp" type="image/webp" />
     <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
 
     <!-- Ikona strony (Favicon) -->
-    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <link rel="icon" type="image/webp" href="/assets/logo.webp" />
   </head>
   <body>
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[9999] bg-orange-600 text-white px-4 py-2 rounded-lg font-bold">Przejdź do głównej treści</a>

@@ -198,7 +198,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   useEffect(() => {
-    // fetchContent(); // Tymczasowo odpięte dla testów wydajnościowych (tylko lokalne dane)
+    fetchContent(); // Przywrócono pobieranie danych z Supabase
   }, []);
 
   return (
