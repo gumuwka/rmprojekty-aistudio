@@ -89,7 +89,6 @@ export default function CMSPanel() {
     { id: 'services', title: 'Oferta (Usługi)', icon: Zap },
     { id: 'projects', title: 'Realizacje', icon: Layout },
     { id: 'news', title: 'Aktualności', icon: Newspaper },
-    { id: 'about', title: 'O nas', icon: FileText },
     { id: 'contact', title: 'Kontakt', icon: Phone },
   ];
 
@@ -136,7 +135,6 @@ export default function CMSPanel() {
             <div className="p-10">
                <div className="bg-white rounded-[4rem] shadow-2xl border border-stone-200 overflow-hidden relative min-h-[1000px] max-w-6xl mx-auto ring-1 ring-stone-900/5">
                   {activeSection === 'home' && <VisualHomePreview data={localContent.home} services={localContent.services} onEdit={(path: any, label: string, ml: boolean, isImg: boolean = false) => setEditingField({ path, label, multiline: ml, isImage: isImg })} />}
-                  {activeSection === 'about' && <VisualAboutPreview data={localContent.about} onEdit={(path: any, label: string, ml: boolean, isImg: boolean = false) => setEditingField({ path, label, multiline: ml, isImage: isImg })} />}
                   {activeSection === 'contact' && <VisualContactPreview data={localContent.contact} onEdit={(path: any, label: string, ml: boolean, isImg: boolean = false) => setEditingField({ path, label, multiline: ml, isImage: isImg })} />}
                   {(activeSection === 'projects' || activeSection === 'news' || activeSection === 'services') && (
                     <div className="p-24 text-center">
@@ -183,22 +181,6 @@ export default function CMSPanel() {
                       <Field label="Opis" value={localContent.home?.servicesIntro?.desc} onChange={(v: any) => handleUpdate(['home', 'servicesIntro', 'desc'], v)} multiline />
                     </FormSection>
 
-                    <FormSection title="O Nas (Strona Główna)">
-                      <Field label="Mały Tag" value={localContent.home?.aboutIntro?.label} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'label'], v)} />
-                      <Field label="Nagłówek" value={localContent.home?.aboutIntro?.title} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'title'], v)} multiline />
-                      <Field label="Opis" value={localContent.home?.aboutIntro?.desc} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'desc'], v)} multiline />
-                      <div className="grid grid-cols-2 gap-4">
-                         <Field label="Wartość odznaki (np. 100%)" value={localContent.home?.aboutIntro?.badgeValue} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'badgeValue'], v)} />
-                         <Field label="Podpis odznaki (np. Dokładności)" value={localContent.home?.aboutIntro?.badgeLabel} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'badgeLabel'], v)} />
-                      </div>
-                      <ImageUpload value={localContent.home?.aboutIntro?.image} onChange={(url: string) => handleUpdate(['home', 'aboutIntro', 'image'], url)} />
-                      <div className="grid grid-cols-2 gap-4 mt-6">
-                         <Field label="Tytuł bloku 1" value={localContent.home?.aboutIntro?.expTitle} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'expTitle'], v)} />
-                         <Field label="Opis bloku 1" value={localContent.home?.aboutIntro?.expDesc} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'expDesc'], v)} multiline />
-                         <Field label="Tytuł bloku 2" value={localContent.home?.aboutIntro?.qualTitle} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'qualTitle'], v)} />
-                         <Field label="Opis bloku 2" value={localContent.home?.aboutIntro?.qualDesc} onChange={(v: any) => handleUpdate(['home', 'aboutIntro', 'qualDesc'], v)} multiline />
-                      </div>
-                    </FormSection>
 
                     <div className="space-y-10">
                       <div className="flex items-center justify-between"><h3 className="text-xl font-bold">FAQ (Najczęstsze pytania)</h3><button onClick={() => {
@@ -310,44 +292,7 @@ export default function CMSPanel() {
                     ))}
                   </div>
                )}
-               {activeSection === 'about' && (
-                  <div className="space-y-12">
-                    <FormSection title="Główna sekcja O Nas">
-                      <Field label="Główny Tytuł" value={localContent.about?.title} onChange={(v: any) => handleUpdate(['about', 'title'], v)} multiline />
-                      <Field label="Główny Opis" value={localContent.about?.description} onChange={(v: any) => handleUpdate(['about', 'description'], v)} multiline />
-                      <ImageUpload value={localContent.about?.image} onChange={(url: string) => handleUpdate(['about', 'image'], url)} />
-                    </FormSection>
-                    
-                    <FormSection title="Statystyki">
-                      <div className="grid grid-cols-2 gap-4">
-                        <Field label="Statystyka 1 (np. 10+)" value={localContent.about?.stat1_value} onChange={(v: any) => handleUpdate(['about', 'stat1_value'], v)} />
-                        <Field label="Podpis statystyki 1" value={localContent.about?.stat1_label} onChange={(v: any) => handleUpdate(['about', 'stat1_label'], v)} />
-                        <Field label="Statystyka 2 (np. 1000+)" value={localContent.about?.stat2_value} onChange={(v: any) => handleUpdate(['about', 'stat2_value'], v)} />
-                        <Field label="Podpis statystyki 2" value={localContent.about?.stat2_label} onChange={(v: any) => handleUpdate(['about', 'stat2_label'], v)} />
-                      </div>
-                    </FormSection>
-                    
-                    <FormSection title="Bloki Wartości (Bento)">
-                      <div className="space-y-6">
-                        <div className="p-6 bg-stone-50 border border-stone-100 rounded-2xl space-y-4">
-                          <h4 className="text-xs font-bold text-stone-400 uppercase tracking-widest">Blok 1 (Ikona: Tarcza)</h4>
-                          <Field label="Tytuł" value={localContent.about?.box1_title} onChange={(v: any) => handleUpdate(['about', 'box1_title'], v)} />
-                          <Field label="Opis" value={localContent.about?.box1_desc} onChange={(v: any) => handleUpdate(['about', 'box1_desc'], v)} multiline />
-                        </div>
-                        <div className="p-6 bg-stone-50 border border-stone-100 rounded-2xl space-y-4">
-                          <h4 className="text-xs font-bold text-stone-400 uppercase tracking-widest">Blok 2 (Ikona: Piorun)</h4>
-                          <Field label="Tytuł" value={localContent.about?.box2_title} onChange={(v: any) => handleUpdate(['about', 'box2_title'], v)} />
-                          <Field label="Opis" value={localContent.about?.box2_desc} onChange={(v: any) => handleUpdate(['about', 'box2_desc'], v)} multiline />
-                        </div>
-                        <div className="p-6 bg-stone-50 border border-stone-100 rounded-2xl space-y-4">
-                          <h4 className="text-xs font-bold text-stone-400 uppercase tracking-widest">Blok 3 (Ikona: Zespół)</h4>
-                          <Field label="Tytuł" value={localContent.about?.box3_title} onChange={(v: any) => handleUpdate(['about', 'box3_title'], v)} />
-                          <Field label="Opis" value={localContent.about?.box3_desc} onChange={(v: any) => handleUpdate(['about', 'box3_desc'], v)} multiline />
-                        </div>
-                      </div>
-                    </FormSection>
-                  </div>
-               )}
+
                {activeSection === 'news' && (
                   <div className="space-y-10">
                     <div className="flex items-center justify-between"><h3 className="text-xl font-bold">Aktualności</h3><button onClick={addNews} className="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2"><Plus size={18} /> Nowy wpis</button></div>
@@ -480,48 +425,6 @@ function VisualHomePreview({ data, services, onEdit }: any) {
           </div>
        </section>
 
-       {/* About Intro */}
-       <section className="px-16 py-12 bg-stone-50 border-b border-stone-100">
-          <div className="flex gap-10">
-             <div className="flex-1">
-                <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'label'], 'Etykieta O Nas', false)}>
-                   <span className="text-orange-500 font-bold text-xs uppercase mb-4 block tracking-widest">{data?.aboutIntro?.label || 'Nasza misja'}</span>
-                </EditableWrapper>
-                <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'title'], 'Nagłówek O Nas', true)}>
-                   <h2 className="text-3xl font-bold mb-6">{data?.aboutIntro?.title || 'Tworzymy fundamenty nowoczesnej energetyki'}</h2>
-                </EditableWrapper>
-                <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'desc'], 'Opis O Nas', true)}>
-                   <p className="text-stone-500 mb-8">{data?.aboutIntro?.desc || 'Radmar to zespół inżynierów i rzeczoznawców, których wspólnym celem jest profesjonalne wsparcie branży OZE.'}</p>
-                </EditableWrapper>
-             </div>
-             <div className="flex-1 grid grid-cols-2 gap-4">
-                <div className="bg-white p-6 rounded-2xl border border-stone-100">
-                   <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'expTitle'], 'Tytuł blok 1', false)}><h4 className="font-bold mb-2">{data?.aboutIntro?.expTitle || 'Doświadczenie'}</h4></EditableWrapper>
-                   <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'expDesc'], 'Opis blok 1', true)}><p className="text-xs text-stone-500">{data?.aboutIntro?.expDesc || 'Lata pracy przy najbardziej wymagających projektach przemysłowych.'}</p></EditableWrapper>
-                </div>
-                <div className="bg-white p-6 rounded-2xl border border-stone-100">
-                   <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'qualTitle'], 'Tytuł blok 2', false)}><h4 className="font-bold mb-2">{data?.aboutIntro?.qualTitle || 'Jakość'}</h4></EditableWrapper>
-                   <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'qualDesc'], 'Opis blok 2', true)}><p className="text-xs text-stone-500">{data?.aboutIntro?.qualDesc || 'Każdy projekt przechodzi wieloetapową weryfikację techniczną.'}</p></EditableWrapper>
-                </div>
-             </div>
-
-             <div className="flex-1 relative aspect-[4/3] bg-stone-100 rounded-3xl overflow-hidden border border-stone-200 mt-4 md:mt-0">
-                 <img src={data?.aboutIntro?.image || "/assets/about_us.png"} className="w-full h-full object-cover" />
-                 <div className="absolute top-4 right-4 z-20">
-                    <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'image'], 'Zdjęcie Zespołu', false, true)}><div className="w-6 h-6" /></EditableWrapper>
-                 </div>
-                 <div className="absolute -bottom-4 -right-4 bg-orange-500 text-white p-6 rounded-2xl shadow-xl z-20 text-center scale-75 origin-bottom-right">
-                    <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'badgeValue'], 'Wartość Odznaki', false)}>
-                       <p className="text-3xl font-black mb-1">{data?.aboutIntro?.badgeValue || '100%'}</p>
-                    </EditableWrapper>
-                    <EditableWrapper onEdit={() => onEdit(['home', 'aboutIntro', 'badgeLabel'], 'Podpis Odznaki', false)}>
-                       <p className="text-[8px] uppercase tracking-widest font-bold opacity-80 leading-none">{data?.aboutIntro?.badgeLabel || 'Dokładności'}</p>
-                    </EditableWrapper>
-                 </div>
-             </div>
-          </div>
-       </section>
-
        {/* FAQ */}
        <section className="px-16 py-12 bg-white border-b border-stone-100">
           <h2 className="text-3xl font-bold mb-8 text-center">FAQ</h2>
@@ -554,81 +457,6 @@ function VisualHomePreview({ data, services, onEdit }: any) {
             <EditableWrapper onEdit={() => onEdit(['home', 'finalCta', 'bullet3'], 'Punkt 3', false)}><li><CheckCircle2 size={16} className="inline mr-2 opacity-50"/> {data?.finalCta?.bullet3 || 'Pełna dokumentacja zgodnie z prawem'}</li></EditableWrapper>
           </ul>
        </section>
-    </div>
-  );
-}
-function VisualAboutPreview({ data, onEdit }: any) {
-  return (
-    <div className="p-20 bg-white">
-       <div className="max-w-5xl mx-auto space-y-20">
-          <div className="flex gap-16 items-center">
-             <div className="w-1/2">
-                <EditableWrapper onEdit={() => onEdit(['about', 'title'], 'Główny tytuł', true)}>
-                   <h1 className="text-5xl font-black uppercase tracking-tighter leading-[0.9] text-stone-900">{data?.title || 'Liderzy Energii'}</h1>
-                </EditableWrapper>
-                <div className="mt-8">
-                   <EditableWrapper onEdit={() => onEdit(['about', 'description'], 'Główny opis', true)}>
-                      <p className="text-lg text-stone-500 leading-relaxed">{data?.description || 'Opis...'}</p>
-                   </EditableWrapper>
-                </div>
-                
-                <div className="flex gap-12 mt-12">
-                   <div className="flex flex-col">
-                      <EditableWrapper onEdit={() => onEdit(['about', 'stat1_value'], 'Wartość statystyki 1', false)}>
-                         <span className="text-4xl font-black text-stone-900 tracking-tighter uppercase">{data?.stat1_value || '10+'}</span>
-                      </EditableWrapper>
-                      <EditableWrapper onEdit={() => onEdit(['about', 'stat1_label'], 'Podpis statystyki 1', false)}>
-                         <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest mt-2 block">{data?.stat1_label || 'Lat doświadczenia'}</span>
-                      </EditableWrapper>
-                   </div>
-                   <div className="flex flex-col">
-                      <EditableWrapper onEdit={() => onEdit(['about', 'stat2_value'], 'Wartość statystyki 2', false)}>
-                         <span className="text-4xl font-black text-stone-900 tracking-tighter uppercase">{data?.stat2_value || '1000+'}</span>
-                      </EditableWrapper>
-                      <EditableWrapper onEdit={() => onEdit(['about', 'stat2_label'], 'Podpis statystyki 2', false)}>
-                         <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest mt-2 block">{data?.stat2_label || 'Zrealizowanych projektów'}</span>
-                      </EditableWrapper>
-                   </div>
-                </div>
-             </div>
-             <div className="w-1/2 relative aspect-[4/5] bg-stone-100 rounded-[3rem] overflow-hidden border border-stone-200 shadow-xl">
-                <img src={data?.image || "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop"} className="w-full h-full object-cover grayscale" />
-                <div className="absolute top-4 right-4 z-20">
-                   <EditableWrapper onEdit={() => onEdit(['about', 'image'], 'Zdjęcie Hero', false, true)}><div className="w-8 h-8 bg-white/50 rounded-full" /></EditableWrapper>
-                </div>
-             </div>
-          </div>
-          
-          <div className="grid grid-cols-3 gap-6 bg-stone-50 p-10 rounded-[3rem] border border-stone-100">
-             <div className="bg-white p-8 rounded-[2rem] border border-stone-100 shadow-sm">
-                <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-6">T</div>
-                <EditableWrapper onEdit={() => onEdit(['about', 'box1_title'], 'Tytuł blok 1 (Tarcza)', false)}>
-                   <h3 className="text-xl font-black mb-4 uppercase tracking-tight">{data?.box1_title || 'Bezpieczeństwo'}</h3>
-                </EditableWrapper>
-                <EditableWrapper onEdit={() => onEdit(['about', 'box1_desc'], 'Opis blok 1', true)}>
-                   <p className="text-sm text-stone-500 leading-relaxed">{data?.box1_desc || 'Opis...'}</p>
-                </EditableWrapper>
-             </div>
-             <div className="bg-white p-8 rounded-[2rem] border border-stone-100 shadow-sm translate-y-6">
-                <div className="w-12 h-12 bg-stone-900 text-white rounded-xl flex items-center justify-center mb-6">P</div>
-                <EditableWrapper onEdit={() => onEdit(['about', 'box2_title'], 'Tytuł blok 2 (Piorun)', false)}>
-                   <h3 className="text-xl font-black mb-4 uppercase tracking-tight">{data?.box2_title || 'Doświadczenie'}</h3>
-                </EditableWrapper>
-                <EditableWrapper onEdit={() => onEdit(['about', 'box2_desc'], 'Opis blok 2', true)}>
-                   <p className="text-sm text-stone-500 leading-relaxed">{data?.box2_desc || 'Opis...'}</p>
-                </EditableWrapper>
-             </div>
-             <div className="bg-white p-8 rounded-[2rem] border border-stone-100 shadow-sm">
-                <div className="w-12 h-12 bg-orange-500 text-white rounded-xl flex items-center justify-center mb-6">Z</div>
-                <EditableWrapper onEdit={() => onEdit(['about', 'box3_title'], 'Tytuł blok 3 (Zespół)', false)}>
-                   <h3 className="text-xl font-black mb-4 uppercase tracking-tight">{data?.box3_title || 'Zaufanie'}</h3>
-                </EditableWrapper>
-                <EditableWrapper onEdit={() => onEdit(['about', 'box3_desc'], 'Opis blok 3', true)}>
-                   <p className="text-sm text-stone-500 leading-relaxed">{data?.box3_desc || 'Opis...'}</p>
-                </EditableWrapper>
-             </div>
-          </div>
-       </div>
     </div>
   );
 }

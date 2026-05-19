@@ -40,9 +40,9 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Oferta', path: '/#oferta' },
     { name: 'Realizacje', path: '/realizacje' },
-    { name: 'O nas', path: '/o-nas' },
     { name: 'Aktualności', path: '/aktualnosci' },
     { name: 'Kontakt', path: '/kontakt' },
+    { name: 'Newsletter', path: '/newsletter' },
   ];
 
   const filteredServices = services.filter(service =>

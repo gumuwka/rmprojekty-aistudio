@@ -3,12 +3,69 @@ import { motion } from 'motion/react';
 import * as Icons from 'lucide-react';
 import { services } from '../servicesData';
 import { ArrowRight, Zap } from 'lucide-react';
+import { useState } from 'react';
+
+const serviceCategories: Record<string, string> = {
+  'projekty-pv-sol': 'projekty-i-ekspertyzy',
+  'analiza-konstrukcyjna': 'projekty-i-ekspertyzy',
+  'farmy-fotowoltaiczne': 'projekty-i-ekspertyzy',
+  'termowizja-dron': 'projekty-i-ekspertyzy',
+  'projekt-stacja-ev': 'projekty-i-ekspertyzy',
+  'ekspertyza-stacja-ev': 'projekty-i-ekspertyzy',
+  'uzgodnienia-ppoz': 'opinie-i-uzgodnienia',
+  'przylaczenie-pv': 'opinie-i-uzgodnienia',
+  'zwiekszenie-mocy': 'opinie-i-uzgodnienia',
+  'grant-oze': 'dofinansowania',
+  'czyste-powietrze': 'dofinansowania',
+  'moje-cieplo': 'dofinansowania',
+  'moj-prad': 'dofinansowania'
+};
+
+const categoryDisplayNames: Record<string, string> = {
+  'projekty-i-ekspertyzy': 'Projekty i Ekspertyzy',
+  'opinie-i-uzgodnienia': 'Opinie i Uzgodnienia',
+  'dofinansowania': 'Dofinansowania'
+};
 
 export default function Services() {
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  const categories = [
+    { id: 'all', name: 'Wszystkie' },
+    { id: 'projekty-i-ekspertyzy', name: 'Projekty i Ekspertyzy' },
+    { id: 'opinie-i-uzgodnienia', name: 'Opinie i Uzgodnienia' },
+    { id: 'dofinansowania', name: 'Dofinansowania' }
+  ];
+
+  const groups = [
+    {
+      id: 'projekty-i-ekspertyzy',
+      name: 'Projekty i Ekspertyzy',
+      tagline: 'Dokumentacja techniczna, analizy statyczne oraz projekty wykonawcze',
+      items: services.filter(s => serviceCategories[s.id] === 'projekty-i-ekspertyzy')
+    },
+    {
+      id: 'opinie-i-uzgodnienia',
+      name: 'Opinie i Uzgodnienia',
+      tagline: 'Weryfikacja bezpieczeństwa i formalności instalacyjnych',
+      items: services.filter(s => serviceCategories[s.id] === 'opinie-i-uzgodnienia')
+    },
+    {
+      id: 'dofinansowania',
+      name: 'Dofinansowania',
+      tagline: 'Dotacje, granty rządowe oraz wsparcie w programach ekologicznych',
+      items: services.filter(s => serviceCategories[s.id] === 'dofinansowania')
+    }
+  ];
+
+  const filteredGroups = activeCategory === 'all'
+    ? groups
+    : groups.filter(g => g.id === activeCategory);
+
   return (
     <div className="pt-32 md:pt-48 pb-24">
       <section className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -26,40 +83,77 @@ export default function Services() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-          {services.map((service, index) => {
-            const IconComponent = (Icons as any)[service.icon] || Icons.File;
-            return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-              >
-                <Link
-                  to={`/oferta/${service.id}`}
-                  className="group flex flex-col h-full bg-white p-8 rounded-[2.5rem] border border-stone-200 hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300"
-                >
-                  <div className="w-14 h-14 bg-stone-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 transform group-hover:rotate-6">
-                    <IconComponent size={28} />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 italic leading-tight group-hover:text-orange-600 transition-colors">{service.title}</h3>
-                  <p className="text-stone-500 text-sm leading-relaxed mb-8 flex-grow italic">
-                    {service.shortDescription}
-                  </p>
-                  <div className="flex items-center justify-between pt-6 border-t border-stone-100">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-stone-400 group-hover:text-orange-500 transition-colors">
-                      Szczegóły usługi
-                    </span>
-                    <div className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-white transition-all">
-                      <ArrowRight size={14} />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              className={`px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 ${
+                activeCategory === category.id
+                  ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20 scale-105'
+                  : 'bg-white text-stone-600 hover:text-stone-900 border border-stone-200 hover:border-stone-400 shadow-sm'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Grouped Services Sections */}
+        <div className="space-y-20 mb-24">
+          {filteredGroups.map((group) => (
+            <div key={group.id} className="scroll-mt-32">
+              {/* Category Group Header */}
+              <div className="border-b border-stone-200 pb-6 mb-10">
+                <h2 className="text-3xl font-bold text-stone-900 tracking-tight italic">
+                  {group.name}
+                </h2>
+              </div>
+
+              {/* Grid of cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {group.items.map((service, index) => {
+                  const IconComponent = (Icons as any)[service.icon] || Icons.File;
+                  return (
+                    <motion.div
+                      key={service.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <Link
+                        to={`/oferta/${service.id}`}
+                        className="group flex flex-col h-full bg-white p-8 rounded-[2.5rem] border border-stone-200 hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300"
+                      >
+                        <div className="flex justify-between items-start mb-8">
+                          <div className="w-14 h-14 bg-stone-50 rounded-2xl flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 transform group-hover:rotate-6">
+                            <IconComponent size={28} />
+                          </div>
+                          <span className="text-[10px] font-black uppercase tracking-wider bg-stone-100 text-stone-500 px-3 py-1 rounded-full group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
+                            {categoryDisplayNames[serviceCategories[service.id]]}
+                          </span>
+                        </div>
+                        <h3 className="text-2xl font-bold mb-4 italic leading-tight group-hover:text-orange-600 transition-colors">{service.title}</h3>
+                        <p className="text-stone-500 text-sm leading-relaxed mb-8 flex-grow italic">
+                          {service.shortDescription}
+                        </p>
+                        <div className="flex items-center justify-between pt-6 border-t border-stone-100">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-stone-400 group-hover:text-orange-500 transition-colors">
+                            Szczegóły usługi
+                          </span>
+                          <div className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center group-hover:bg-orange-500 group-hover:border-orange-500 group-hover:text-white transition-all">
+                            <ArrowRight size={14} />
+                          </div>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Support Banner */}

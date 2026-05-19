@@ -37,8 +37,8 @@ export default function Footer() {
               <li><Link to="/" className="hover:text-orange-500 transition-colors">Strona Główna</Link></li>
               <li><Link to="/oferta" className="hover:text-orange-500 transition-colors">Nasza Oferta</Link></li>
               <li><Link to="/realizacje" className="hover:text-orange-500 transition-colors">Realizacje</Link></li>
-              <li><Link to="/o-nas" className="hover:text-orange-500 transition-colors">O nas</Link></li>
               <li><Link to="/faq" className="hover:text-orange-500 transition-colors">Najczęstsze pytania</Link></li>
+              <li><Link to="/newsletter" className="hover:text-orange-500 transition-colors">Newsletter</Link></li>
             </ul>
           </div>
 
