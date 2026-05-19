@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Target, MapPin, Calendar, ArrowLeft, Zap, CheckCircle2, ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
@@ -9,10 +9,16 @@ export default function ProjectDetail() {
   const { content, loading } = useContent();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  if (loading) return null;
-
   const projects = content?.projects || [];
   const project = projects.find((p: any) => p.id === Number(id));
+
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.title} - RAD MAR`;
+    }
+  }, [project]);
+
+  if (loading) return null;
 
   if (!project) {
     return (

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
@@ -7,10 +8,16 @@ export default function NewsDetail() {
   const { id } = useParams();
   const { content, loading } = useContent();
 
-  if (loading) return null;
-
   const newsItems = content?.news || [];
   const news = newsItems.find((item: any) => item.id === Number(id));
+
+  useEffect(() => {
+    if (news) {
+      document.title = `${news.title} - RAD MAR`;
+    }
+  }, [news]);
+
+  if (loading) return null;
 
   if (!news) {
     return (

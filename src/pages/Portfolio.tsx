@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink, Zap, Target, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,10 @@ import { useContent } from '../context/ContentContext';
 
 export default function Portfolio() {
   const { content, loading } = useContent();
+
+  useEffect(() => {
+    document.title = "Nasze Realizacje - RAD MAR";
+  }, []);
 
   if (loading) return null;
 

@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import * as Icons from 'lucide-react';
 import { services } from '../servicesData';
 import { ArrowRight, Zap } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const serviceCategories: Record<string, string> = {
   'projekty-pv-sol': 'projekty-i-ekspertyzy',
@@ -29,6 +29,10 @@ const categoryDisplayNames: Record<string, string> = {
 
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  useEffect(() => {
+    document.title = "Oferta Usług - RAD MAR";
+  }, []);
 
   const categories = [
     { id: 'all', name: 'Wszystkie' },

@@ -12,6 +12,10 @@ export default function Contact() {
   const [isVerified, setIsVerified] = useState(false);
   const [gdprAccepted, setGdprAccepted] = useState(false);
 
+  useEffect(() => {
+    document.title = "Kontakt - RAD MAR Biuro Projektowe";
+  }, []);
+
   if (loading) return null;
 
   const data = content?.contact || {};

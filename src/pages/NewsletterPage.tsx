@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, CheckCircle2, Loader2, X, BookOpen, Bell, ShieldCheck, Mail } from 'lucide-react';
 
@@ -6,6 +6,10 @@ export default function NewsletterPage() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [gdprAccepted, setGdprAccepted] = useState(false);
+
+  useEffect(() => {
+    document.title = "Zapis do Newslettera - RAD MAR";
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

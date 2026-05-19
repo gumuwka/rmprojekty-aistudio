@@ -1,8 +1,12 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function FAQPage() {
+  useEffect(() => {
+    document.title = "Często Zadawane Pytania (FAQ) - RAD MAR";
+  }, []);
   const faqs = [
     {
       category: 'Projekty i Uzgodnienia',

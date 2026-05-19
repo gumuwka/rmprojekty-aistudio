@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Calendar, ArrowRight, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,10 @@ import { useContent } from '../context/ContentContext';
 
 export default function News() {
   const { content, loading } = useContent();
+
+  useEffect(() => {
+    document.title = "Aktualności i Poradnik OZE - RAD MAR";
+  }, []);
 
   if (loading) return null;
 

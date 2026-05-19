@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Zablokuj indeksowanie panelu administratora CMS
+Disallow: /panel-cms
+Disallow: /api/
+
+# Lokalizacja mapy witryny
+Sitemap: https://rmprojekty.vercel.app/sitemap.xml

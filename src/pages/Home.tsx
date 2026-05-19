@@ -50,6 +50,10 @@ export default function Home() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
+    document.title = "Rad-mar Biuro Projektowe | Projekty PV, PPOŻ, Dotacje";
+  }, []);
+
+  useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setActiveTileIndex((prev) => (prev + 1) % 3);
