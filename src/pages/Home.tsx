@@ -47,13 +47,7 @@ export default function Home() {
   const [isVerified, setIsVerified] = useState(false);
   const [gdprAccepted, setGdprAccepted] = useState(false);
   const [activeTileIndex, setActiveTileIndex] = useState(0);
-  const [activeTileIndex2, setActiveTileIndex2] = useState(0);
-  const [activeTileIndex3, setActiveTileIndex3] = useState(0);
-  const [activeTileIndex4, setActiveTileIndex4] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [activeHeroIndex, setActiveHeroIndex] = useState(0);
-  const [isHeroAutoPlaying, setIsHeroAutoPlaying] = useState(true);
-  const [manualHeroIndex, setManualHeroIndex] = useState(0);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -63,13 +57,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
-  useEffect(() => {
-    if (!isHeroAutoPlaying) return;
-    const interval = setInterval(() => {
-      setActiveHeroIndex((prev) => (prev + 1) % 4);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [isHeroAutoPlaying]);
 
   if (loading) return <div className="h-screen flex items-center justify-center">Ładowanie bazy danych...</div>;
 
@@ -108,75 +95,6 @@ export default function Home() {
     ? groups
     : groups.filter(g => g.id === activeCategory);
 
-  const heroSlides = [
-    {
-      title: "Rad-mar\nBiuro Projektowe (Automatyczna)",
-      subtitle: "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.",
-      bgImage: "/assets/hero_bg_premium.png",
-      link: "https://www.facebook.com/profile.php?id=61558031386658",
-      cta: "ŚLEDŹ NAS NA FACEBOOKU",
-      isExternal: true
-    },
-    {
-      title: "Uzgodnienia\nPPOŻ (Automatyczna)",
-      subtitle: "Profesjonalne uzgodnienia przeciwpożarowe dla instalacji fotowoltaicznych powyżej 6.5 kW. Pełna dokumentacja i zawiadomienie PSP w cenie.",
-      bgImage: "/assets/services/oferta/ppoz.png",
-      link: "/oferta/uzgodnienia-ppoz",
-      cta: "ZOBACZ USŁUGĘ",
-      isExternal: false
-    },
-    {
-      title: "Wizualizacje\nPV*SOL (Automatyczna)",
-      subtitle: "Zaawansowane projekty 3D, symulacje zacienienia oraz szczegółowe schematy elektryczne instalacji fotowoltaicznych w PV*SOL Premium.",
-      bgImage: "/assets/services/oferta/pvsol.png",
-      link: "/oferta/projekty-pv-sol",
-      cta: "ZOBACZ USŁUGĘ",
-      isExternal: false
-    },
-    {
-      title: "Dotacje i\nDofinansowania (Automatyczna)",
-      subtitle: "Kompleksowa pomoc i składanie wniosków w programach Mój Prąd 6.0, Czyste Powietrze oraz Moje Ciepło. Pozyskaj maksymalne dotacje.",
-      bgImage: "/assets/services/oferta/moj_prad.png",
-      link: "/oferta/moj-prad",
-      cta: "ZOBACZ USŁUGĘ",
-      isExternal: false
-    }
-  ];
-
-  const heroManualSlides = [
-    {
-      title: "Rad-mar\nBiuro Projektowe (Manualna)",
-      subtitle: "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.",
-      bgImage: "/assets/hero_bg_premium.png",
-      link: "https://www.facebook.com/profile.php?id=61558031386658",
-      cta: "ŚLEDŹ NAS NA FACEBOOKU",
-      isExternal: true
-    },
-    {
-      title: "Uzgodnienia\nPPOŻ (Manualna)",
-      subtitle: "Profesjonalne uzgodnienia przeciwpożarowe dla instalacji fotowoltaicznych powyżej 6.5 kW. Pełna dokumentacja i zawiadomienie PSP w cenie.",
-      bgImage: "/assets/services/oferta/ppoz.png",
-      link: "/oferta/uzgodnienia-ppoz",
-      cta: "ZOBACZ USŁUGĘ",
-      isExternal: false
-    },
-    {
-      title: "Wizualizacje\nPV*SOL (Manualna)",
-      subtitle: "Zaawansowane projekty 3D, symulacje zacienienia oraz szczegółowe schematy elektryczne instalacji fotowoltaicznych w PV*SOL Premium.",
-      bgImage: "/assets/services/oferta/pvsol.png",
-      link: "/oferta/projekty-pv-sol",
-      cta: "ZOBACZ USŁUGĘ",
-      isExternal: false
-    },
-    {
-      title: "Dotacje i\nDofinansowania (Manualna)",
-      subtitle: "Kompleksowa pomoc i składanie wniosków w programach Mój Prąd 6.0, Czyste Powietrze oraz Moje Ciepło. Pozyskaj maksymalne dotacje.",
-      bgImage: "/assets/services/oferta/moj_prad.png",
-      link: "/oferta/moj-prad",
-      cta: "ZOBACZ USŁUGĘ",
-      isExternal: false
-    }
-  ];
 
   const getText = (section: string, field: string, fallback: string) => {
     return data[section]?.[field] || fallback;
@@ -250,210 +168,21 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* HERO CAROUSEL SECTION */}
-      <section 
-        className="relative min-h-[95vh] flex items-center pt-32 md:pt-48 overflow-hidden group/hero"
-      >
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.img 
-              key={activeHeroIndex}
-              src={heroSlides[activeHeroIndex].bgImage} 
-              alt={heroSlides[activeHeroIndex].title} 
-              className="w-full h-full object-cover absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent z-10" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-20">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-[65%] relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeHeroIndex}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tight text-stone-900">
-                    {heroSlides[activeHeroIndex].title.split('\n').map((line, i) => (
-                      <span key={i}>{line}<br /></span>
-                    ))}
-                  </h1>
-
-                  <p className="text-xl text-stone-600 leading-relaxed max-w-2xl mb-12 font-medium">
-                    {heroSlides[activeHeroIndex].subtitle}
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row gap-4 mb-16">
-                    {heroSlides[activeHeroIndex].isExternal ? (
-                      <a
-                        href={heroSlides[activeHeroIndex].link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-[#1877F2] hover:bg-[#0e5a9a] text-white px-8 py-5 rounded-full text-lg font-bold transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/10 w-fit"
-                      >
-                        <Facebook size={24} />
-                        {heroSlides[activeHeroIndex].cta}
-                      </a>
-                    ) : (
-                      <Link
-                        to={heroSlides[activeHeroIndex].link}
-                        className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-5 rounded-full text-lg font-bold transition-all flex items-center justify-center gap-3 shadow-xl shadow-orange-500/10 w-fit"
-                      >
-                        {heroSlides[activeHeroIndex].cta}
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Carousel Indicators */}
-              <div className="absolute bottom-[-20px] left-0 flex gap-3 z-30">
-                {[0, 1, 2, 3].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => {
-                      setActiveHeroIndex(idx);
-                    }}
-                    className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${activeHeroIndex === idx ? 'bg-orange-500 scale-125' : 'bg-stone-300 hover:bg-orange-400'}`}
-                    aria-label={`Przejdź do slajdu ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HERO CAROUSEL MANUAL SECTION */}
-      <section 
-        className="relative min-h-[95vh] flex items-center pt-32 md:pt-48 overflow-hidden group/hero bg-stone-50"
-      >
-        {/* Navigation Arrows */}
-        <button
-          onClick={() => setManualHeroIndex((prev) => (prev - 1 + 4) % 4)}
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/80 hover:bg-white border border-stone-200 shadow-md flex items-center justify-center text-stone-700 hover:text-orange-500 transition-all hover:scale-110"
-          aria-label="Poprzedni slajd"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        <button
-          onClick={() => setManualHeroIndex((prev) => (prev + 1) % 4)}
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/80 hover:bg-white border border-stone-200 shadow-md flex items-center justify-center text-stone-700 hover:text-orange-500 transition-all hover:scale-110"
-          aria-label="Następny slajd"
-        >
-          <ChevronRight size={24} />
-        </button>
-
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            <motion.img 
-              key={manualHeroIndex}
-              src={heroManualSlides[manualHeroIndex].bgImage} 
-              alt={heroManualSlides[manualHeroIndex].title} 
-              className="w-full h-full object-cover absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent z-10" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-20">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-[65%] relative px-8 md:px-0">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={manualHeroIndex}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tight text-stone-900">
-                    {heroManualSlides[manualHeroIndex].title.split('\n').map((line, i) => (
-                      <span key={i}>{line}<br /></span>
-                    ))}
-                  </h1>
-
-                  <p className="text-xl text-stone-600 leading-relaxed max-w-2xl mb-12 font-medium">
-                    {heroManualSlides[manualHeroIndex].subtitle}
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row gap-4 mb-16">
-                    {heroManualSlides[manualHeroIndex].isExternal ? (
-                      <a
-                        href={heroManualSlides[manualHeroIndex].link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-[#1877F2] hover:bg-[#0e5a9a] text-white px-8 py-5 rounded-full text-lg font-bold transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/10 w-fit"
-                      >
-                        <Facebook size={24} />
-                        {heroManualSlides[manualHeroIndex].cta}
-                      </a>
-                    ) : (
-                      <Link
-                        to={heroManualSlides[manualHeroIndex].link}
-                        className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-5 rounded-full text-lg font-bold transition-all flex items-center justify-center gap-3 shadow-xl shadow-orange-500/10 w-fit"
-                      >
-                        {heroManualSlides[manualHeroIndex].cta}
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Carousel Indicators */}
-              <div className="absolute bottom-[-20px] left-0 flex gap-3 z-30 px-8 md:px-0">
-                {[0, 1, 2, 3].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => {
-                      setManualHeroIndex(idx);
-                    }}
-                    className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${manualHeroIndex === idx ? 'bg-orange-500 scale-125' : 'bg-stone-300 hover:bg-orange-400'}`}
-                    aria-label={`Przejdź do slajdu ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5]">
-        {/* Background Layer with Map on the right */}
-        <div 
-          className="absolute right-0 top-0 w-full md:w-[50%] h-full z-0 bg-map-image opacity-80 blur-[1px] bg-no-repeat bg-contain bg-center" 
-          style={data?.mapSection?.bgImage ? { backgroundImage: `url(${data.mapSection.bgImage})` } : {}} 
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#fff8f5] via-[#fff8f5]/90 to-[#fff8f5]/10 md:to-transparent" />
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col md:flex-row items-center">
+      <section className="relative py-12 md:py-20 overflow-hidden bg-[#fff8f5]">
+        <div className="container mx-auto px-4 md:px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side: Content */}
-          <div className="w-full md:w-[60%] lg:w-[50%] flex flex-col">
+          <div className="w-full flex flex-col">
             <div className="mb-8 text-left">
               <motion.h2 
                 {...fadeInUp}
                 className="text-3xl md:text-4xl font-black text-stone-900 mb-4 leading-tight uppercase tracking-tighter"
               >
-                Kompleksowa obsługa Twoich projektów (Automatyczna)
+                Kompleksowa obsługa Twoich projektów
               </motion.h2>
             </div>
 
             <div 
-              className="relative bg-white/90 backdrop-blur-md border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.08)] min-h-[250px] flex items-center w-full"
+              className="relative bg-white border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.04)] min-h-[250px] flex items-center w-full"
               onMouseEnter={() => setIsAutoPlaying(false)}
               onMouseLeave={() => setIsAutoPlaying(true)}
             >
@@ -513,315 +242,21 @@ export default function Home() {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Carousel Controls */}
-              <div className="absolute bottom-6 right-8 flex gap-2">
-                {[0, 1, 2].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => {
-                      setActiveTileIndex(idx);
-                      setIsAutoPlaying(false);
-                    }}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${activeTileIndex === idx ? 'bg-orange-600 scale-125' : 'bg-stone-300 hover:bg-orange-400'}`}
-                    aria-label={`Przejdź do kafelka ${idx + 1}`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* DUPLICATED MAP SECTION FOR COMPARISON */}
-      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5]">
-        {/* Background Layer with Photo on the right */}
-        <div 
-          className="absolute right-0 top-0 w-full md:w-[50%] h-full z-0 opacity-85 bg-no-repeat bg-cover bg-center" 
-          style={{ backgroundImage: `url('/assets/realizations_full_bg.jpg')` }} 
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#fff8f5] via-[#fff8f5]/90 to-[#fff8f5]/10 md:to-transparent" />
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col md:flex-row items-center">
-          {/* Left Side: Content */}
-          <div className="w-full md:w-[60%] lg:w-[50%] flex flex-col">
-            <div className="mb-8 text-left">
-              <motion.h2 
-                {...fadeInUp}
-                className="text-3xl md:text-4xl font-black text-stone-900 mb-4 leading-tight uppercase tracking-tighter"
-              >
-                Kompleksowa obsługa Twoich projektów (Wersja ze zdjęciem - Manualna)
-              </motion.h2>
-            </div>
-
-            <div 
-              className="relative bg-white/90 backdrop-blur-md border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.08)] min-h-[250px] flex items-center w-full"
-            >
-              <AnimatePresence mode="wait">
-                {activeTileIndex2 === 0 && (
-                  <motion.div 
-                    key="tile0_alt"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <PencilRuler className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile1?.title || 'Projektowanie PV'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile1?.desc || 'Precyzyjne projekty architektoniczne i elektryczne dla instalacji komercyjnych i przemysłowych, gwarantujące maksymalne uzyski i trwałość konstrukcji.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex2 === 1 && (
-                  <motion.div 
-                    key="tile1_alt"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <Headset className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile2?.title || 'Konsulting Techniczny'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile2?.desc || 'Eksperckie doradztwo w zakresie złożonych przepisów, studiów wykonalności oraz procesów przyłączenia do sieci dla aktywów OZE.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex2 === 2 && (
-                  <motion.div 
-                    key="tile2_alt"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <GraduationCap className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile3?.title || 'Szkolenia OZE'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile3?.desc || 'Specjalistyczne programy szkoleniowe zaprojektowane w celu podnoszenia kwalifikacji zespołów inżynieryjnych i menedżerów projektów.'}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-  
-              {/* Carousel Controls */}
-              <div className="absolute bottom-6 right-8 flex gap-2">
-                {[0, 1, 2].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveTileIndex2(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${activeTileIndex2 === idx ? 'bg-orange-600 scale-125' : 'bg-stone-300 hover:bg-orange-400'}`}
-                    aria-label={`Przejdź do kafelka ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* THIRD DUPLICATED SECTION FOR COMPARISON - FULL BACKGROUND IMAGE */}
-      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5]">
-        {/* Background Layer with Full-width Uploaded Image */}
-        <div 
-          className="absolute inset-0 z-0 opacity-70 bg-no-repeat bg-cover bg-center" 
-          style={{ backgroundImage: `url('/assets/realizations_full_bg.jpg')` }} 
-        />
-        <div className="absolute inset-0 z-0 bg-[#fff8f5]/40" />
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col md:flex-row items-center">
-          {/* Left Side: Content */}
-          <div className="w-full md:w-[60%] lg:w-[50%] flex flex-col">
-            <div className="mb-8 text-left">
-              <motion.h2 
-                {...fadeInUp}
-                className="text-3xl md:text-4xl font-black text-stone-900 mb-4 leading-tight uppercase tracking-tighter"
-              >
-                Kompleksowa obsługa Twoich projektów (Pełne tło - Manualna)
-              </motion.h2>
-            </div>
-
-            <div 
-              className="relative bg-white/90 backdrop-blur-md border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.08)] min-h-[250px] flex items-center w-full"
-            >
-              <AnimatePresence mode="wait">
-                {activeTileIndex3 === 0 && (
-                  <motion.div 
-                    key="tile0_full"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <PencilRuler className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile1?.title || 'Projektowanie PV'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile1?.desc || 'Precyzyjne projekty architektoniczne i elektryczne dla instalacji komercyjnych i przemysłowych, gwarantujące maksymalne uzyski i trwałość konstrukcji.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex3 === 1 && (
-                  <motion.div 
-                    key="tile1_full"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <Headset className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile2?.title || 'Konsulting Techniczny'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile2?.desc || 'Eksperckie doradztwo w zakresie złożonych przepisów, studiów wykonalności oraz procesów przyłączenia do sieci dla aktywów OZE.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex3 === 2 && (
-                  <motion.div 
-                    key="tile2_full"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <GraduationCap className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile3?.title || 'Szkolenia OZE'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile3?.desc || 'Specjalistyczne programy szkoleniowe zaprojektowane w celu podnoszenia kwalifikacji zespołów inżynieryjnych i menedżerów projektów.'}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-  
-              {/* Carousel Controls */}
-              <div className="absolute bottom-6 right-8 flex gap-2">
-                {[0, 1, 2].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveTileIndex3(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${activeTileIndex3 === idx ? 'bg-orange-600 scale-125' : 'bg-stone-300 hover:bg-orange-400'}`}
-                    aria-label={`Przejdź do kafelka ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FOURTH DUPLICATED SECTION FOR COMPARISON - FULL SHARP BACKGROUND WITH LEFT GRADIENT FADE */}
-      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5]">
-        {/* Background Layer with Full-width Sharp Uploaded Image */}
-        <div 
-          className="absolute inset-0 z-0 bg-no-repeat bg-cover bg-center" 
-          style={{ backgroundImage: `url('/assets/realizations_full_bg.jpg')` }} 
-        />
-        {/* White glow/gradient entering from the left to ensure text readability */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#fff8f5] via-[#fff8f5]/95 via-[#fff8f5]/85 via-[#fff8f5]/40 to-transparent" />
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col md:flex-row items-center">
-          {/* Left Side: Content */}
-          <div className="w-full md:w-[60%] lg:w-[50%] flex flex-col">
-            <div className="mb-8 text-left">
-              <motion.h2 
-                {...fadeInUp}
-                className="text-3xl md:text-4xl font-black text-stone-900 mb-4 leading-tight uppercase tracking-tighter"
-              >
-                Kompleksowa obsługa Twoich projektów (Pełne tło + gradient z lewej - Manualna)
-              </motion.h2>
-            </div>
-
-            <div 
-              className="relative bg-white/90 backdrop-blur-md border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.08)] min-h-[250px] flex items-center w-full"
-            >
-              <AnimatePresence mode="wait">
-                {activeTileIndex4 === 0 && (
-                  <motion.div 
-                    key="tile0_grad"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <PencilRuler className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile1?.title || 'Projektowanie PV'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile1?.desc || 'Precyzyjne projekty architektoniczne i elektryczne dla instalacji komercyjnych i przemysłowych, gwarantujące maksymalne uzyski i trwałość konstrukcji.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex4 === 1 && (
-                  <motion.div 
-                    key="tile1_grad"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <Headset className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile2?.title || 'Konsulting Techniczny'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile2?.desc || 'Eksperckie doradztwo w zakresie złożonych przepisów, studiów wykonalności oraz procesów przyłączenia do sieci dla aktywów OZE.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex4 === 2 && (
-                  <motion.div 
-                    key="tile2_grad"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <GraduationCap className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile3?.title || 'Szkolenia OZE'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile3?.desc || 'Specjalistyczne programy szkoleniowe zaprojektowane w celu podnoszenia kwalifikacji zespołów inżynieryjnych i menedżerów projektów.'}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-  
-              {/* Carousel Controls */}
-              <div className="absolute bottom-6 right-8 flex gap-2">
-                {[0, 1, 2].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveTileIndex4(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${activeTileIndex4 === idx ? 'bg-orange-600 scale-125' : 'bg-stone-300 hover:bg-orange-400'}`}
-                    aria-label={`Przejdź do kafelka ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          {/* Right Side: Photo without rounding and animations */}
+          <motion.div 
+            {...fadeInUp}
+            className="relative w-full h-[320px] md:h-[400px] overflow-hidden shadow-2xl border border-stone-200/50 bg-white"
+          >
+            <img 
+              src="/assets/realizations_full_bg.jpg" 
+              alt="Kompleksowa obsługa projektów" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/10 to-transparent pointer-events-none" />
+          </motion.div>
         </div>
       </section>
 
@@ -924,16 +359,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEKCJA O NAS — WARIANT 1 (DOSTOSOWANA) */}
-      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5] border-t border-stone-200">
+      {/* SEKCJA O NAS */}
+      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5] border-t border-b border-stone-200">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mb-12">
-            <motion.span 
-              {...fadeInUp}
-              className="text-xs font-black uppercase tracking-widest text-orange-500 mb-3 block"
-            >
-              Wariant 1
-            </motion.span>
             <motion.h2 
               {...fadeInUp}
               className="text-3xl md:text-4xl font-black text-stone-900 mb-6 uppercase tracking-tighter"
@@ -977,107 +406,6 @@ export default function Home() {
                 <p className="text-stone-600 text-sm leading-relaxed">{adv.desc}</p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEKCJA O NAS — WARIANT 2 (3 KAFELKI) */}
-      <section className="relative py-12 md:py-16 overflow-hidden bg-white border-t border-stone-200">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            {/* Left side: short description */}
-            <div className="lg:w-[45%]">
-              <motion.span 
-                {...fadeInUp}
-                className="text-xs font-black uppercase tracking-widest text-orange-500 mb-3 block"
-              >
-                Wariant 2
-              </motion.span>
-              <motion.h2 
-                {...fadeInUp}
-                className="text-3xl md:text-4xl font-black text-stone-900 mb-6 uppercase tracking-tighter"
-              >
-                O nas — Radmar
-              </motion.h2>
-              <motion.p 
-                {...fadeInUp}
-                className="text-stone-600 text-base leading-relaxed font-medium"
-              >
-                Jako specjaliści OZE dostarczamy bezpieczne projekty PV, profesjonalne uzgodnienia PPOŻ oraz pełne doradztwo techniczne i dotacyjne. Stawiamy na rzetelność i bezproblemowe przejście przez procesy formalne.
-              </motion.p>
-            </div>
-
-            {/* Right side: 3 tiles arranged nicely */}
-            <div className="lg:w-[55%] grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-              {[
-                {
-                  title: "Projekty PV",
-                  desc: "Optymalne projekty techniczne dostosowane do warunków dachu."
-                },
-                {
-                  title: "Uzgodnienia PPOŻ",
-                  desc: "Rzetelne i szybkie zatwierdzenia przez rzeczoznawcę."
-                },
-                {
-                  title: "Obsługa Dotacji",
-                  desc: "Kompleksowa pomoc w programach Czyste Powietrze i Mój Prąd."
-                }
-              ].map((adv, idx) => (
-                <motion.div
-                  key={idx}
-                  {...fadeInUp}
-                  transition={{ ...fadeInUp.transition, delay: idx * 0.05 }}
-                  className="bg-stone-50 border border-stone-200 rounded-3xl p-5 hover:border-orange-500 transition-colors shadow-sm flex flex-col justify-between min-h-[160px]"
-                >
-                  <h3 className="text-base font-bold text-stone-900 mb-2 uppercase tracking-tight leading-tight">{adv.title}</h3>
-                  <p className="text-stone-500 text-xs leading-relaxed">{adv.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEKCJA O NAS — WARIANT 3 (STATYSTYKI) */}
-      <section className="relative py-12 md:py-16 overflow-hidden bg-[#fff8f5] border-t border-b border-stone-200">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-1">
-              <motion.span 
-                {...fadeInUp}
-                className="text-xs font-black uppercase tracking-widest text-orange-500 mb-3 block"
-              >
-                Wariant 3
-              </motion.span>
-              <motion.h2 
-                {...fadeInUp}
-                className="text-3xl md:text-4xl font-black text-stone-900 mb-4 uppercase tracking-tighter"
-              >
-                Dlaczego Radmar?
-              </motion.h2>
-              <p className="text-stone-500 text-sm leading-relaxed font-medium">
-                Łączymy wiedzę inżynieryjną z praktycznym podejściem, dostarczając rozwiązania o najwyższej jakości i najwyższym standardzie bezpieczeństwa.
-              </p>
-            </div>
-            
-            <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
-              {[
-                { number: "100%", label: "Zgodność z przepisami" },
-                { number: "500+", label: "Zrobionych projektów" },
-                { number: "48h", label: "Czas uzgodnień PPOŻ" },
-                { number: "10+", label: "Lat doświadczenia" }
-              ].map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  {...fadeInUp}
-                  transition={{ ...fadeInUp.transition, delay: idx * 0.05 }}
-                  className="bg-white border border-stone-200 rounded-3xl p-6 text-center shadow-sm hover:scale-[1.03] transition-transform"
-                >
-                  <div className="text-3xl md:text-4xl font-black text-orange-500 mb-2 tracking-tighter">{stat.number}</div>
-                  <div className="text-stone-700 text-xs font-bold uppercase tracking-tight leading-tight">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
