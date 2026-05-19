@@ -58,71 +58,7 @@ export default function Home() {
   }, [isAutoPlaying]);
 
 
-  if (loading) {
-    return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-stone-950 text-white overflow-hidden">
-        {/* Glowing gradient backdrops */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ffb100]/10 rounded-full blur-[100px] pointer-events-none" />
-        
-        <div className="relative z-10 flex flex-col items-center max-w-sm px-6 text-center">
-          {/* Logo container with a subtle glow */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ 
-              opacity: [0.4, 1, 0.4], 
-              scale: [0.98, 1.02, 0.98] 
-            }}
-            transition={{ 
-              duration: 2.5, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="mb-8 p-6 bg-white/5 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
-          >
-            <img 
-              src="/assets/logo.png" 
-              alt="RAD MAR" 
-              className="h-16 md:h-20 w-auto object-contain brightness-100"
-            />
-          </motion.div>
-
-          {/* Elegant Loading Text */}
-          <motion.h3
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-white font-bold text-lg tracking-tight uppercase"
-          >
-            Radmar Biuro Projektowe
-          </motion.h3>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            transition={{ delay: 0.4 }}
-            className="text-stone-400 text-[10px] font-semibold tracking-[0.2em] uppercase mt-2 mb-8"
-          >
-            Inżynieria OZE • PPOŻ • PV*SOL
-          </motion.p>
-
-          {/* Premium custom loading progress line */}
-          <div className="w-40 h-1 bg-white/10 rounded-full overflow-hidden relative border border-white/5">
-            <motion.div 
-              className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-[#ffb100] to-orange-500 rounded-full"
-              initial={{ left: "-100%", width: "100%" }}
-              animate={{ left: "100%" }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
+  if (loading) return null;
 
   const data = content?.home || {};
   const displayServices = content?.services || defaultServices;
