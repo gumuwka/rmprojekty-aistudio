@@ -2,10 +2,61 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 
-import * as Icons from 'lucide-react';
 import { services as defaultServices } from '../servicesData';
 import { cn } from '../lib/utils';
-import { ArrowRight, CheckCircle2, Star, Zap, Shield, Clock, Facebook, MapPin, Award, Edit3, Save, X, Loader2, PencilRuler, Headset, GraduationCap, ChevronLeft, ChevronRight, Send, Phone, Mail } from 'lucide-react';
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  Star, 
+  Zap, 
+  Shield, 
+  Clock, 
+  Facebook, 
+  MapPin, 
+  Award, 
+  Edit3, 
+  Save, 
+  X, 
+  Loader2, 
+  PencilRuler, 
+  Headset, 
+  GraduationCap, 
+  ChevronLeft, 
+  ChevronRight, 
+  Send, 
+  Phone, 
+  Mail,
+  ShieldCheck,
+  Layout,
+  Construction,
+  FileText,
+  Home as HomeIcon,
+  Thermometer,
+  Sun,
+  Plane,
+  Link as LinkIcon,
+  BatteryCharging,
+  ClipboardCheck,
+  TrendingUp,
+  File
+} from 'lucide-react';
+
+const IconsMap: Record<string, any> = {
+  ShieldCheck,
+  Layout,
+  Construction,
+  FileText,
+  Zap,
+  Home: HomeIcon,
+  Thermometer,
+  Sun,
+  Plane,
+  Link: LinkIcon,
+  BatteryCharging,
+  ClipboardCheck,
+  TrendingUp,
+  File
+};
 
 import { useContent } from '../context/ContentContext';
 
@@ -329,7 +380,7 @@ export default function Home() {
                 {/* Grid of cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {group.items.map((service: any, index: number) => {
-                    const IconComponent = (Icons as any)[service.icon] || Icons.File;
+                    const IconComponent = IconsMap[service.icon] || File;
                     return (
                       <motion.div
                         key={service.id}

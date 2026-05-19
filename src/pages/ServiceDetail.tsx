@@ -1,9 +1,52 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import * as Icons from 'lucide-react';
 import { services as defaultServices } from '../servicesData';
-import { ArrowLeft, CheckCircle2, ChevronRight, Mail, Phone, Calculator, Loader2 } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  CheckCircle2, 
+  ChevronRight, 
+  Mail, 
+  Phone, 
+  Calculator, 
+  Loader2,
+  Check,
+  MapPin,
+  ShieldCheck,
+  AlertTriangle,
+  FileCheck,
+  Gavel,
+  Layout, 
+  Construction, 
+  FileText, 
+  Zap, 
+  Home, 
+  Thermometer, 
+  Sun, 
+  Plane, 
+  Link as LinkIcon, 
+  BatteryCharging, 
+  ClipboardCheck, 
+  TrendingUp, 
+  File
+} from 'lucide-react';
 import { useEffect } from 'react';
+
+const IconsMap: Record<string, any> = {
+  ShieldCheck,
+  Layout,
+  Construction,
+  FileText,
+  Zap,
+  Home,
+  Thermometer,
+  Sun,
+  Plane,
+  Link: LinkIcon,
+  BatteryCharging,
+  ClipboardCheck,
+  TrendingUp,
+  File
+};
 import { useContent } from '../context/ContentContext';
 
 export default function ServiceDetail() {
@@ -39,7 +82,7 @@ export default function ServiceDetail() {
     );
   }
 
-  const IconComponent = (Icons as any)[service.icon] || Icons.File;
+  const IconComponent = IconsMap[service.icon] || File;
 
   return (
     <div className="pt-24 pb-32">
@@ -128,7 +171,7 @@ export default function ServiceDetail() {
                                {service.features.map((feature, i) => (
                                  <div key={i} className="flex gap-4 p-6 bg-white border border-stone-100 shadow-sm rounded-2xl items-start">
                                     <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center shrink-0 mt-1">
-                                       <Icons.Check size={14} className="text-white" />
+                                       <Check size={14} className="text-white" />
                                     </div>
                                     <span className="font-semibold text-stone-800 italic whitespace-pre-line">{feature}</span>
                                  </div>
@@ -143,7 +186,7 @@ export default function ServiceDetail() {
                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               {service.serviceArea.map((area, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-stone-50 border border-stone-200 rounded-2xl items-start shadow-sm">
-                                   <Icons.MapPin className="text-orange-500 shrink-0 mt-0.5" size={20} />
+                                   <MapPin className="text-orange-500 shrink-0 mt-0.5" size={20} />
                                    <p className="text-stone-700 font-medium italic leading-relaxed">{area}</p>
                                 </div>
                               ))}
@@ -157,7 +200,7 @@ export default function ServiceDetail() {
                            <div className="grid grid-cols-1 gap-4">
                               {service.legalSafety.map((item, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-blue-50 border border-blue-100 rounded-2xl items-start shadow-sm">
-                                   <Icons.ShieldCheck className="text-blue-600 shrink-0 mt-0.5" size={20} />
+                                   <ShieldCheck className="text-blue-600 shrink-0 mt-0.5" size={20} />
                                    <p className="text-stone-700 font-medium italic leading-relaxed">{item}</p>
                                 </div>
                               ))}
@@ -195,7 +238,7 @@ export default function ServiceDetail() {
                       {service.extraNote && (
                         <div className="mb-16 p-8 bg-yellow-50 border border-yellow-200 rounded-3xl">
                            <div className="flex gap-4 items-start">
-                              <Icons.AlertTriangle className="text-yellow-600 shrink-0 mt-1" size={24} />
+                              <AlertTriangle className="text-yellow-600 shrink-0 mt-1" size={24} />
                               <p className="text-stone-700 italic leading-relaxed font-medium whitespace-pre-line">
                                  {service.extraNote}
                               </p>
@@ -223,7 +266,7 @@ export default function ServiceDetail() {
                            <div className="grid grid-cols-1 gap-4">
                               {service.requiredDocuments.map((doc, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-orange-50 border border-orange-100 rounded-2xl items-start shadow-sm">
-                                   <Icons.FileCheck className="text-orange-500 shrink-0 mt-1" size={20} />
+                                   <FileCheck className="text-orange-500 shrink-0 mt-1" size={20} />
                                    <p className="text-stone-700 font-medium italic leading-relaxed">{doc}</p>
                                 </div>
                               ))}
@@ -235,7 +278,7 @@ export default function ServiceDetail() {
                         <div className="mb-16">
                            <h3 className="text-2xl font-bold mb-8 italic">Podstawa prawna:</h3>
                            <div className="bg-stone-900 text-stone-300 p-10 rounded-[2.5rem] relative overflow-hidden">
-                              <Icons.Gavel className="absolute -top-4 -right-4 w-32 h-32 text-white/5" />
+                              <Gavel className="absolute -top-4 -right-4 w-32 h-32 text-white/5" />
                               <p className="relative z-10 text-sm leading-loose italic tracking-wide">
                                 {service.legalBasis}
                               </p>

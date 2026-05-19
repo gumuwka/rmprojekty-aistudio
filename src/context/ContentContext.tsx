@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { services as defaultServices } from '../servicesData';
 
 interface ContentContextType {
   content: any;
@@ -135,8 +136,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       
       // Inject default services if missing
       if (!data.services) {
-        const { services } = await import('../servicesData');
-        data.services = services;
+        data.services = defaultServices;
         needsSave = true;
       }
 

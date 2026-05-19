@@ -21,10 +21,20 @@ export default function Footer() {
               Eksperckie projekty OZE i kompleksowe doradztwo dla firm instalacyjnych oraz inwestorów indywidualnych w całej Polsce.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://www.facebook.com/profile.php?id=61558031386658" className="hover:text-orange-500 transition-colors">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61558031386658" 
+                className="hover:text-orange-500 transition-colors"
+                aria-label="Profil Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="mailto:ziezio2@gmail.com" className="hover:text-orange-500 transition-colors">
+              <a 
+                href="mailto:ziezio2@gmail.com" 
+                className="hover:text-orange-500 transition-colors"
+                aria-label="Wyślij e-mail"
+              >
                 <Mail size={20} />
               </a>
             </div>

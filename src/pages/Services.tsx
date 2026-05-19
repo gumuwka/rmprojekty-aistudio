@@ -1,9 +1,41 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import * as Icons from 'lucide-react';
 import { services } from '../servicesData';
-import { ArrowRight, Zap } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Zap, 
+  ShieldCheck, 
+  Layout, 
+  Construction, 
+  FileText, 
+  Home, 
+  Thermometer, 
+  Sun, 
+  Plane, 
+  Link as LinkIcon, 
+  BatteryCharging, 
+  ClipboardCheck, 
+  TrendingUp, 
+  File 
+} from 'lucide-react';
 import { useState, useEffect } from 'react';
+
+const IconsMap: Record<string, any> = {
+  ShieldCheck,
+  Layout,
+  Construction,
+  FileText,
+  Zap,
+  Home,
+  Thermometer,
+  Sun,
+  Plane,
+  Link: LinkIcon,
+  BatteryCharging,
+  ClipboardCheck,
+  TrendingUp,
+  File
+};
 
 const serviceCategories: Record<string, string> = {
   'projekty-pv-sol': 'projekty-i-ekspertyzy',
@@ -118,7 +150,7 @@ export default function Services() {
               {/* Grid of cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {group.items.map((service, index) => {
-                  const IconComponent = (Icons as any)[service.icon] || Icons.File;
+                  const IconComponent = IconsMap[service.icon] || File;
                   return (
                     <motion.div
                       key={service.id}
