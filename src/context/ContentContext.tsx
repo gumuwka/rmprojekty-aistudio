@@ -198,7 +198,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   useEffect(() => {
-    fetchContent();
+    // fetchContent(); // Tymczasowo odpięte dla testów wydajnościowych (tylko lokalne dane)
   }, []);
 
   return (
