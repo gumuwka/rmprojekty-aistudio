@@ -7,7 +7,8 @@ import FloatingCTA from './components/FloatingCTA';
 import { useEffect, lazy, Suspense } from 'react';
 import { Loader2 } from 'lucide-react';
 
-const Home = lazy(() => import('./pages/Home'));
+import Home from './pages/Home';
+// const Home = lazy(() => import('./pages/Home'));
 const Contact = lazy(() => import('./pages/Contact'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
