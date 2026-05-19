@@ -140,6 +140,7 @@ export default function Navbar() {
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 bg-stone-50 rounded-lg text-stone-900 border border-stone-200"
+              aria-label={isOpen ? "Zamknij menu" : "Otwórz menu"}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -186,7 +187,11 @@ export default function Navbar() {
           >
             <div className="p-6 border-b border-stone-100 flex items-center justify-between">
               <img src="/assets/logo.png" alt="Logo" className="h-10 w-auto" />
-              <button onClick={() => setIsOpen(false)} className="p-2 bg-stone-50 rounded-xl">
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="p-2 bg-stone-50 rounded-xl"
+                aria-label="Zamknij menu"
+              >
                 <X size={24} />
               </button>
             </div>

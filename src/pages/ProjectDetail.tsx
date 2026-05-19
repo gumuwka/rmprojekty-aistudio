@@ -97,6 +97,7 @@ export default function ProjectDetail() {
                                 if (el) el.scrollBy({ left: -el.offsetWidth, behavior: 'smooth' });
                               }} 
                               className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all text-stone-500 shadow-sm border border-stone-200"
+                              aria-label="Poprzednie zdjęcie"
                             >
                               <ChevronLeft size={24} />
                             </button>
@@ -106,6 +107,7 @@ export default function ProjectDetail() {
                                 if (el) el.scrollBy({ left: el.offsetWidth, behavior: 'smooth' });
                               }} 
                               className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all text-stone-500 shadow-sm border border-stone-200"
+                              aria-label="Następne zdjęcie"
                             >
                               <ChevronRight size={24} />
                             </button>
@@ -147,6 +149,7 @@ export default function ProjectDetail() {
                         <button 
                           className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
                           onClick={() => setSelectedImage(null)}
+                          aria-label="Zamknij podgląd"
                         >
                           <X size={40} />
                         </button>
