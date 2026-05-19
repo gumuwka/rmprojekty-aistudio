@@ -26,20 +26,20 @@ export default function ContactFormSection() {
   return (
     <section className="py-16 relative overflow-hidden bg-white border-t border-stone-100" id="kontakt-form">
       <div className="max-w-5xl mx-auto px-4 md:px-6 relative z-10">
-        <div className="bg-orange-500 text-white rounded-[2.5rem] p-6 md:p-10 flex flex-col lg:flex-row gap-8 items-center shadow-2xl shadow-orange-500/20">
+        <div className="bg-stone-900 text-white rounded-[2.5rem] p-6 md:p-10 flex flex-col lg:flex-row gap-8 items-center shadow-2xl shadow-stone-900/20">
           
           {/* Left Side: Contact Information */}
           <div className="lg:w-1/2">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6">
               {data?.finalCta?.title || 'Gotowy na współpracę?'}
             </h2>
-            <p className="text-orange-100 text-sm mb-8 leading-relaxed">
+            <p className="text-stone-400 text-sm mb-8 leading-relaxed">
               Wypełnij formularz obok. Skontaktujemy się z Tobą w celu przygotowania wyceny lub omówienia szczegółów współpracy.
             </p>
 
             <div className="space-y-5">
               <div className="flex gap-4 items-start group">
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300">
+                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-stone-900 transition-all duration-300">
                   <Phone size={18} />
                 </div>
                 <div>

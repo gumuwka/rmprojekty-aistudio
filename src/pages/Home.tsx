@@ -188,32 +188,23 @@ export default function Home() {
             <div className="lg:w-[65%] relative">
 
               
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+              <h1
                 className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tight text-stone-900"
               >
                 {getText('hero', 'title', "Rad-mar\nBiuro Projektowe").split('\n').map((line: string, i: number) => (
                   <span key={i}>{line}<br /></span>
                 ))}
-              </motion.h1>
+              </h1>
 
               <div className="relative group/p">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                <p
                   className="text-xl text-stone-600 leading-relaxed max-w-2xl mb-12 font-medium"
                 >
                   {getText('hero', 'subtitle', "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.")}
-                </motion.p>
+                </p>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+              <div
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <a
@@ -225,7 +216,7 @@ export default function Home() {
                   <Facebook size={24} />
                   {getText('hero', 'cta', "ŚLEDŹ NAS NA FACEBOOKU")}
                 </a>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -497,10 +488,10 @@ export default function Home() {
       {/* FINAL CTA WITH FORM */}
       <section className="py-16 relative overflow-hidden" id="kontakt-form">
         <div className="max-w-5xl mx-auto px-4 md:px-6 relative z-10">
-          <div className="bg-orange-500 text-white rounded-[2.5rem] p-6 md:p-10 flex flex-col lg:flex-row gap-8 items-center shadow-2xl shadow-orange-500/20">
+          <div className="bg-stone-900 text-white rounded-[2.5rem] p-6 md:p-10 flex flex-col lg:flex-row gap-8 items-center shadow-2xl shadow-stone-900/20">
             <div className="lg:w-1/2">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6">{data?.finalCta?.title || 'Gotowy na współpracę?'}</h2>
-              <p className="text-orange-100 text-sm mb-8 leading-relaxed">
+              <p className="text-stone-400 text-sm mb-8 leading-relaxed">
                 Wypełnij formularz obok. Skontaktujemy się z Tobą w celu przygotowania wyceny lub omówienia szczegółów współpracy.
               </p>
 
