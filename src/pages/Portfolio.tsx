@@ -42,7 +42,7 @@ export default function Portfolio() {
                className="group relative rounded-[2.5rem] overflow-hidden aspect-square shadow-xl shadow-stone-200/50"
             >
                <Link to={`/realizacje/${project.id}`}>
-                <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={project.image} alt={project.title} width={640} height={360} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                 
                 <div className="absolute bottom-0 left-0 p-8 transform translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 w-full">
@@ -79,7 +79,7 @@ export default function Portfolio() {
            <div className="md:w-1/3 flex justify-center relative z-10">
               <motion.div 
                  animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 0.95, 1] }} 
-                 transition={{ repeat: Infinity, duration: 5 }}
+                 transition={{ repeat: 0, duration: 5 }}
                  className="w-40 h-40 bg-orange-500 rounded-[2.5rem] flex items-center justify-center text-white shadow-3xl shadow-orange-500/40"
               >
                  <Zap size={64} />

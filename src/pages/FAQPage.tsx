@@ -59,7 +59,7 @@ export default function FAQPage() {
                 {cat.items.map((item, i) => (
                   <details key={i} className="group bg-white rounded-3xl p-8 shadow-sm border border-stone-200 cursor-pointer overflow-hidden transition-all hover:border-orange-200">
                     <summary className="flex items-center justify-between list-none">
-                      <h4 className="text-lg font-bold italic pr-12 group-open:text-orange-600 transition-colors">{item.q}</h4>
+                      <h3 className="text-lg font-bold italic pr-12 group-open:text-orange-600 transition-colors">{item.q}</h3>
                       <ChevronDown className="group-open:rotate-180 transition-transform text-stone-300 group-hover:text-orange-500" />
                     </summary>
                     <div className="mt-6 text-stone-600 leading-relaxed italic border-t border-stone-50 pt-6 animate-in slide-in-from-top-4 duration-300">

@@ -46,6 +46,9 @@ export default function News() {
                 <img 
                   src={news.image} 
                   alt={news.title}
+                  width={640}
+                  height={360}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-6 left-6">

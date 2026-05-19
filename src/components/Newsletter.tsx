@@ -52,9 +52,9 @@ export default function Newsletter() {
               
               <div className="flex items-center gap-6">
                 <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
+                  {['R', 'M', 'P', 'K'].map((initial, i) => (
                     <div key={i} className="w-10 h-10 rounded-full border-2 border-stone-900 bg-stone-800 flex items-center justify-center overflow-hidden">
-                      <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" className="w-full h-full object-cover opacity-80" />
+                      <span className="text-white font-bold text-sm">{initial}</span>
                     </div>
                   ))}
                   <div className="w-10 h-10 rounded-full border-2 border-stone-900 bg-orange-500 flex items-center justify-center text-[10px] font-bold text-white">
@@ -100,9 +100,10 @@ export default function Newsletter() {
                       className="flex flex-col gap-6"
                     >
                       <div className="flex flex-col gap-3">
-                        <label className="text-xs font-bold text-stone-400 uppercase tracking-widest ml-1">Twój adres e-mail</label>
+                        <label htmlFor="newsletter-email" className="text-xs font-bold text-stone-400 uppercase tracking-widest ml-1">Twój adres e-mail</label>
                         <div className="relative">
                           <input
+                            id="newsletter-email"
                             type="email"
                             required
                             value={email}
@@ -130,16 +131,22 @@ export default function Newsletter() {
                         </div>
                       </div>
 
-                      <div className="flex gap-4 items-start group cursor-pointer" onClick={() => setGdprAccepted(!gdprAccepted)}>
-                        <div className={`w-6 h-6 rounded border-2 flex items-center justify-center shrink-0 transition-all mt-1 ${
+                      <label className="flex gap-4 items-start group cursor-pointer mt-1">
+                        <input
+                          type="checkbox"
+                          checked={gdprAccepted}
+                          onChange={() => setGdprAccepted(!gdprAccepted)}
+                          className="sr-only"
+                        />
+                        <div className={`w-6 h-6 rounded border-2 flex items-center justify-center shrink-0 transition-all ${
                           gdprAccepted ? 'bg-orange-500 border-orange-500' : 'bg-transparent border-white/10 group-hover:border-orange-500/50'
-                        }`}>
+                        }`} aria-hidden="true">
                           {gdprAccepted && <CheckCircle2 size={14} className="text-white" />}
                         </div>
-                        <p className="text-[11px] text-stone-400 leading-relaxed select-none">
+                        <span className="text-[11px] text-stone-400 leading-relaxed select-none block">
                           Wyrażam zgodę na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną od RAD MAR. Możesz wypisać się w każdej chwili. <span className="text-white font-bold underline cursor-pointer">Polityka prywatności</span>.
-                        </p>
-                      </div>
+                        </span>
+                      </label>
 
                       {status === 'error' && (
                         <motion.div 

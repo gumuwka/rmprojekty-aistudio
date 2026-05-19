@@ -35,6 +35,8 @@ export default function NewsDetail() {
         <img 
           src={news.image} 
           alt={news.title}
+          width={1200}
+          height={600}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
@@ -102,7 +104,7 @@ export default function NewsDetail() {
                   className="group block"
                 >
                   <div className="aspect-video rounded-3xl overflow-hidden mb-4 shadow-lg border border-stone-100">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={item.image} alt={item.title} width={640} height={360} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <h4 className="font-bold text-lg group-hover:text-orange-500 transition-colors">{item.title}</h4>
                 </Link>

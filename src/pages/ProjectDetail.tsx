@@ -36,6 +36,8 @@ export default function ProjectDetail() {
         <img 
           src={project.image} 
           alt={project.title}
+          width={1200}
+          height={600}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
@@ -71,9 +73,9 @@ export default function ProjectDetail() {
 
                 <div className="space-y-10">
                   <div>
-                    <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
                       <Zap size={24} className="text-orange-500" /> Zakres prac
-                    </h3>
+                    </h2>
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {(project.scope || []).map((item: string, i: number) => (
                         <li key={i} className="flex items-center gap-3 text-stone-600 bg-stone-50 p-4 rounded-2xl border border-stone-100">
@@ -87,9 +89,9 @@ export default function ProjectDetail() {
                    {project.gallery && project.gallery.length > 0 && (
                     <div className="pt-12 mt-12 border-t border-stone-100">
                       <div className="flex items-center justify-between mb-8">
-                        <h3 className="text-2xl font-bold flex items-center gap-3 text-stone-900">
+                        <h2 className="text-2xl font-bold flex items-center gap-3 text-stone-900">
                            Galeria z realizacji
-                        </h3>
+                        </h2>
                         <div className="flex gap-3">
                             <button 
                               onClick={() => {
@@ -124,7 +126,7 @@ export default function ProjectDetail() {
                             onClick={() => setSelectedImage(img)}
                             className="snap-center shrink-0 w-full aspect-video rounded-[2.5rem] overflow-hidden bg-stone-100 border border-stone-200 shadow-xl cursor-zoom-in group relative"
                           >
-                             <img src={img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={`Galeria ${i + 1}`} />
+                             <img src={img} width={400} height={400} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={`Galeria ${i + 1}`} />
                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                                 <div className="bg-white/90 p-4 rounded-full text-stone-900 shadow-2xl scale-75 group-hover:scale-100 transition-transform">
                                    <Maximize2 size={24} />
@@ -158,6 +160,7 @@ export default function ProjectDetail() {
                           animate={{ scale: 1, opacity: 1 }}
                           exit={{ scale: 0.9, opacity: 0 }}
                           src={selectedImage} 
+                          alt="Powiększony widok zdjęcia"
                           className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
                           onClick={(e) => e.stopPropagation()}
                         />

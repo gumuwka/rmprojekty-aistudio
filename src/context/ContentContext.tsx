@@ -139,30 +139,22 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     try {
       const res = await fetch('/api/content');
       let data = await res.json();
-      let needsSave = false;
       
-      // Inject default services if missing
+      // Uzupełnienie brakujących danych domyślnymi wartościami (tylko lokalnie, bez zapisu do API)
       if (!data.services) {
         data.services = defaultServices;
-        needsSave = true;
       }
 
-      // Inject default projects if missing
       if (!data.projects || data.projects.length === 0) {
         data.projects = defaultProjects;
-        needsSave = true;
       }
       
-      // Inject default about if missing
       if (!data.about) {
         data.about = defaultAboutContent;
-        needsSave = true;
       } else {
-        // Merge missing keys in about
         for (const key in defaultAboutContent) {
           if (!data.about[key]) {
             data.about[key] = (defaultAboutContent as any)[key];
-            needsSave = true;
           }
         }
       }
@@ -172,26 +164,14 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       for (const sec of sections) {
         if (!data.home[sec]) {
           data.home[sec] = (defaultHomeContent as any)[sec];
-          needsSave = true;
         } else if (typeof data.home[sec] === 'object' && !Array.isArray(data.home[sec])) {
-          // Merge properties if section exists but might be missing new fields
           const defaultSec = (defaultHomeContent as any)[sec];
           for (const key in defaultSec) {
             if (!data.home[sec][key]) {
               data.home[sec][key] = defaultSec[key];
-              needsSave = true;
             }
           }
         }
-      }
-
-      if (needsSave) {
-        // Optionally save back to the API so it persists
-        await fetch('/api/content', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
       }
       
       setContent(data);

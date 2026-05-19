@@ -14,6 +14,9 @@ export default function Footer() {
               <img 
                 src="/assets/logo.png" 
                 alt="RAD MAR Logo" 
+                width={120}
+                height={48}
+                loading="lazy"
                 className="h-10 w-auto object-contain brightness-0 invert"
               />
             </Link>
@@ -91,8 +94,8 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-stone-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p>© {currentYear} RAD MAR. Wszystkie prawa zastrzeżone.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Polityka prywatności</a>
-            <a href="#" className="hover:text-white transition-colors">Regulamin</a>
+            <span className="hover:text-white transition-colors">Polityka prywatności</span>
+            <span className="hover:text-white transition-colors">Regulamin</span>
           </div>
         </div>
       </div>

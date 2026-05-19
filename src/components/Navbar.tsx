@@ -73,8 +73,10 @@ export default function Navbar() {
           {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-grow max-w-lg relative" ref={searchRef}>
             <div className="relative w-full group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 group-focus-within:text-orange-500 transition-colors" size={16} />
+              <label htmlFor="desktop-search" className="sr-only">Wyszukaj usługę</label>
+              <Search aria-hidden="true" className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 group-focus-within:text-orange-500 transition-colors" size={16} />
               <input
+                id="desktop-search"
                 type="text"
                 placeholder="Wyszukaj usługę..."
                 className="w-full bg-stone-50 border border-stone-200 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
@@ -199,8 +201,10 @@ export default function Navbar() {
             <div className="flex-grow overflow-y-auto p-6 space-y-8">
               {/* Search in Mobile */}
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" size={18} />
+                <label htmlFor="mobile-search" className="sr-only">Wyszukaj usługę</label>
+                <Search aria-hidden="true" className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" size={18} />
                 <input
+                  id="mobile-search"
                   type="text"
                   placeholder="Wyszukaj usługę..."
                   className="w-full bg-stone-50 border border-stone-200 rounded-2xl py-4 pl-12 pr-4 text-base focus:outline-none focus:border-orange-500 italic"

@@ -5,6 +5,7 @@ import { createServer as createViteServer } from "vite";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { createClient } from "@supabase/supabase-js";
+import sharp from "sharp";
 
 dotenv.config();
 
@@ -112,19 +113,32 @@ async function startServer() {
     }
   });
 
-  // CMS API: Upload image
+  // CMS API: Upload image (konwersja do WebP przez sharp)
   app.post("/api/upload", async (req, res) => {
     try {
       const { name, data } = req.body;
+
+      // Wykrycie oryginalnego typu MIME z nagłówka base64
+      const mimeMatch = data.match(/^data:(image\/\w+);base64,/);
+      const detectedType = mimeMatch ? mimeMatch[1] : 'image/png';
+
+      // Usunięcie nagłówka base64
       const base64Data = data.replace(/^data:image\/\w+;base64,/, "");
-      const buffer = Buffer.from(base64Data, 'base64');
-      
-      const fileName = `${Date.now()}-${name}`;
-      
+      const rawBuffer = Buffer.from(base64Data, 'base64');
+
+      // Konwersja do WebP z optymalizacją rozmiaru
+      const webpBuffer = await sharp(rawBuffer)
+        .resize(1920, 1920, { fit: 'inside', withoutEnlargement: true })
+        .webp({ quality: 82 })
+        .toBuffer();
+
+      // Nazwa pliku zawsze z rozszerzeniem .webp
+      const fileName = `${Date.now()}-${name.replace(/\.[^.]+$/, '')}.webp`;
+
       const { data: uploadData, error } = await supabase.storage
         .from('media')
-        .upload(fileName, buffer, {
-          contentType: 'image/png', // fallback
+        .upload(fileName, webpBuffer, {
+          contentType: 'image/webp',
           upsert: true
         });
 

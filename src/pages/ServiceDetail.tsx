@@ -331,6 +331,9 @@ export default function ServiceDetail() {
                       <img 
                         src={`https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1000&auto=format&fit=crop`} 
                         alt="Fotowoltaika"
+                        width={800}
+                        height={500}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
