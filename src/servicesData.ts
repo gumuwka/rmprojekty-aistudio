@@ -53,7 +53,7 @@ export const services: Service[] = [
     ],
     legalBasis: 'Prawo budowlane art. 29 pkt. 4 ust. 3 lit. c: Nie wymaga decyzji o pozwoleniu na budowę oraz zgłoszenia, o którym mowa w art. 30, wykonywanie robót budowlanych polegających na: instalowaniu pomp ciepła, wolno stojących kolektorów słonecznych, urządzeń fotowoltaicznych o mocy zainstalowanej elektrycznej nie większej niż 50 kW z zastrzeżeniem, że do urządzeń fotowoltaicznych o mocy zainstalowanej elektrycznej większej niż 6,5 kW stosuje się obowiązek uzgodnienia z rzeczoznawcą do spraw zabezpieczeń przeciwpożarowych pod względem zgodności with wymaganiami ochrony przeciwpożarowej, zwany dalej „uzgodnieniem pod względem ochrony przeciwpożarowej”, projektu tych urządzeń oraz zawiadomienia organów Państwowej Straży Pożarnej, o którym mowa w art. 56 ust. 1a.',
     priceInfo: 'Konkurencyjne ceny ustalane indywidualnie.',
-    image: '/assets/services/oferta/ppoz.png'
+    image: '/assets/services/oferta/ppoz.webp'
   },
   {
     id: 'projekty-pv-sol',
@@ -76,7 +76,7 @@ export const services: Service[] = [
       'Dobór optymalnych rozwiązań / konsultacje techniczne',
       'Wysyłka gotowego projektu z logo Twojej firmy !'
     ],
-    image: '/assets/services/oferta/pvsol.png'
+    image: '/assets/services/oferta/pvsol.webp'
   },
   {
     id: 'analiza-konstrukcyjna',
@@ -90,7 +90,7 @@ export const services: Service[] = [
       'Obliczenia statyczne elementów konstrukcji',
       'Ocena możliwości montażu paneli fotowoltaicznych'
     ],
-    image: '/assets/services/oferta/konstrukcja.png'
+    image: '/assets/services/oferta/konstrukcja.webp'
   },
   {
     id: 'grant-oze',
@@ -108,7 +108,7 @@ export const services: Service[] = [
       'dokumentację projektową instalacji',
       'dokumenty potwierdzające umocowanie osób podpisujących wniosek do reprezentowania inwestora oraz wzór podpisów złożonych na wniosku.'
     ],
-    image: '/assets/services/oferta/bgk.png'
+    image: '/assets/services/oferta/bgk.webp'
   },
   {
     id: 'farmy-fotowoltaiczne',
@@ -125,7 +125,7 @@ export const services: Service[] = [
       'Projekt budowlany do pozwolenia na budowę',
       'Wizualizacje instalacji PV w PV*SOL i AutoCAD'
     ],
-    image: '/assets/services/oferta/farmy.png'
+    image: '/assets/services/oferta/farmy.webp'
   },
   {
     id: 'czyste-powietrze',
@@ -147,7 +147,7 @@ export const services: Service[] = [
       'Działamy na terenie całego kraju. Pomagamy pozyskać najbardziej atrakcyjne formy dotacji.',
       'Audyt energetyczny pozwoli Ci uzyskać informacje, jak najskuteczniej ocieplić budynek, wybrać najlepsze źródło ciepła i uzyskać maksymalną dotację, a następnie płacić niższe rachunki za ogrzewanie.'
     ],
-    image: '/assets/services/oferta/czyste_powietrze.png'
+    image: '/assets/services/oferta/czyste_powietrze.webp'
   },
   {
     id: 'moje-cieplo',
@@ -167,7 +167,7 @@ export const services: Service[] = [
       'Dofinansowanie dotyczy zakupu i montażu nowych pomp ciepła.',
       'Działamy na terenie całego kraju.'
     ],
-    image: '/assets/services/oferta/moje_cieplo.png'
+    image: '/assets/services/oferta/moje_cieplo.webp'
   },
   {
     id: 'moj-prad',
@@ -208,7 +208,7 @@ export const services: Service[] = [
       'Program Mój Prąd 6.0 promuje autokonsumpcję energii poprzez magazynowanie.'
     ],
     closingNote: 'Program Mój Prąd 6.0 oferuje atrakcyjne wsparcie finansowe dla inwestycji w instalacje fotowoltaiczne, dostosowane do zmieniających się wymogów technologicznych i ekologicznych. Więcej informacji znajdziesz na stronie programu Mój Prąd oraz w nadchodzących publikacjach dotyczących szczegółowych warunków naboru.',
-    image: '/assets/services/oferta/moj_prad.png'
+    image: '/assets/services/oferta/moj_prad.webp'
   },
   {
     id: 'termowizja-dron',
@@ -237,7 +237,7 @@ export const services: Service[] = [
     usefulInfo: [
       'Cennik usług ustalany jest indywidualnie zależnie od zakresu oraz specyfikacji pomiarów termowizyjnych.'
     ],
-    image: '/assets/services/oferta/termowizja.png'
+    image: '/assets/services/oferta/termowizja.webp'
   },
   {
     id: 'przylaczenie-pv',
@@ -252,7 +252,7 @@ export const services: Service[] = [
       'Dołączenie wymaganych załączników',
       'Wysyłka do Zakładu Energetycznego'
     ],
-    image: '/assets/services/oferta/przylaczenie.png'
+    image: '/assets/services/oferta/przylaczenie.webp'
   },
   {
     id: 'projekt-stacja-ev',
@@ -271,7 +271,7 @@ export const services: Service[] = [
       'Każde urządzenie o mocy powyżej 3,7 kW świadczące usługę ładowania musi zostać odebrane przez UDT.',
       'Zadaniem UDT jest sprawdzenie zgodności dokumentacji z wymaganiami technicznymi (Rozporządzenie oraz art. 13 ustawy).'
     ],
-    image: '/assets/services/oferta/stacja_ev.png'
+    image: '/assets/services/oferta/stacja_ev.webp'
   },
   {
     id: 'ekspertyza-stacja-ev',
@@ -287,7 +287,7 @@ export const services: Service[] = [
       'Warunki niezbędne do bezpiecznej eksploatacji',
       'Wymagania w zakresie bezpieczeństwa pożarowego'
     ],
-    image: '/assets/services/oferta/ekspertyza_ev.png'
+    image: '/assets/services/oferta/ekspertyza_ev.webp'
   },
   {
     id: 'zwiekszenie-mocy',
@@ -307,6 +307,6 @@ export const services: Service[] = [
     usefulInfo: [
       'Jeżeli będziesz próbować pobierać moc większą niż moc przyłączeniowa, zadziała zabezpieczenie główne (bezpiecznik). Nie będziesz mógł wtedy korzystać z prądu do czasu wymiany lub uruchomienia tego zabezpieczenia.'
     ],
-    image: '/assets/services/oferta/zwiekszenie_mocy.png'
+    image: '/assets/services/oferta/zwiekszenie_mocy.webp'
   }
 ];

@@ -15,7 +15,7 @@ const defaultHomeContent = {
     title: "Rad-mar\nBiuro Projektowe",
     subtitle: "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.",
     cta: "ŚLEDŹ NAS NA FACEBOOKU",
-    bgImage: "/assets/hero_bg_premium.png"
+    bgImage: "/assets/hero_bg_premium.webp"
   },
   mapSection: {
     title: "Kompleksowe wsparcie dla branży OZE",
@@ -124,9 +124,16 @@ const defaultProjects = [
 ];
 
 export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [content, setContent] = useState<any>(null);
+  // Initialize with default content so the page renders immediately without API round-trip
+  const initialContent = {
+    home: defaultHomeContent,
+    about: defaultAboutContent,
+    services: defaultServices,
+    projects: defaultProjects,
+  };
 
-  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState<any>(initialContent);
+  const [loading, setLoading] = useState(false);
 
   const fetchContent = async () => {
     try {

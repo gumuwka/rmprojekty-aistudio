@@ -23,7 +23,7 @@ body {
 }
 
 .bg-map-image {
-  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_jsKiAigiyGBENZDSU8N3LB4eEvnWP-F1iuPzuBYe2n-rIVXBWWM_ppHKGFJvE2wUbJzj34gRjzrjDfs3a0JFVtJWyxaLROI14Djvn-X3PyKpoBPII2XRAuPlHnIv-lrFA_IS_75o90dsdFw5YKWLn0IuuNUAszsKeLg5CVHNBn2ywdIHZReYxae-ZYIotKvLVEKLDhoqIhJdPUZF_yHd3BfRo1ShFg37caP1S0Vrkz7QEbR_JC4pIWHMwvyDwF1JY7_WwLM0-As");
+  background-image: url("/assets/poland-map.webp");
   background-size: contain;
   background-position: center right;
   background-repeat: no-repeat;

@@ -173,7 +173,7 @@ export default function Home() {
       <section className="relative min-h-[95vh] flex items-center pt-32 md:pt-48 overflow-hidden group/hero">
         <div className="absolute inset-0 z-0">
           <img 
-            src={data?.hero?.bgImage || "/assets/hero_bg_premium.png"} 
+            src={data?.hero?.bgImage || "/assets/hero_bg_premium.webp"} 
             alt="Zespół Biura Projektowego" 
             className="w-full h-full object-cover" 
             fetchPriority="high"
@@ -327,7 +327,7 @@ export default function Home() {
             className="relative w-full h-[320px] md:h-[400px] overflow-hidden shadow-2xl border border-stone-200/50 bg-white"
           >
             <img 
-              src="/assets/realizations_full_bg.jpg" 
+              src="/assets/realizations_full_bg.webp" 
               alt="Kompleksowa obsługa projektów" 
               className="w-full h-full object-cover"
               loading="lazy"

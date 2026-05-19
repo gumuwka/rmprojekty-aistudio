@@ -340,7 +340,7 @@ function VisualHomePreview({ data, services, onEdit }: any) {
     <div className="w-full space-y-4 pb-20 bg-stone-50 rounded-[4rem]">
        {/* Hero */}
        <section className="relative h-[400px] flex items-center px-16 bg-white rounded-t-[4rem] overflow-hidden border-b border-stone-100">
-          <img src={data?.hero?.bgImage || "/assets/hero_bg_premium.png"} className="absolute inset-0 w-full h-full object-cover opacity-10" />
+          <img src={data?.hero?.bgImage || "/assets/hero_bg_premium.webp"} className="absolute inset-0 w-full h-full object-cover opacity-10" />
           <div className="absolute top-4 right-4 z-20">
              <EditableWrapper onEdit={() => onEdit(['home', 'hero', 'bgImage'], 'Zdjęcie w Tle (Hero)', false, true)}><div className="w-4 h-4" /></EditableWrapper>
           </div>
