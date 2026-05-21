@@ -222,9 +222,46 @@ export default function Home() {
         </div>
       </section>
       <section className="relative py-12 md:py-20 overflow-hidden bg-[#fff8f5]">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Ambient background white glow from left */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 0.7, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="absolute top-[-20%] left-[-10%] w-[65%] h-[140%] rounded-full bg-white blur-[120px] pointer-events-none z-[1]"
+        />
+
+        {/* Shimmer white sweep effect moving from left to right */}
+        <motion.div
+          initial={{ x: '-150%' }}
+          whileInView={{ x: '150%' }}
+          viewport={{ once: true }}
+          transition={{ duration: 2.2, ease: "easeInOut", delay: 0.2 }}
+          className="absolute top-0 bottom-0 w-[65%] bg-gradient-to-r from-transparent via-white/30 to-transparent blur-3xl skew-x-12 pointer-events-none z-[1]"
+        />
+
+        {/* Bottom white glow spanning from bottom-left to bottom-right across the entire section background */}
+        <div className="absolute bottom-[-15%] left-0 right-0 h-[40%] bg-gradient-to-r from-white via-white/80 to-white/20 blur-[100px] pointer-events-none z-[1]" />
+
+        {/* Photo in the background (desktop only, stretches to the right edge of the screen) */}
+        <div className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-[2] overflow-hidden pointer-events-none bg-white">
+          <img 
+            src="/assets/realizations_full_bg.webp" 
+            alt="Kompleksowa obsługa projektów" 
+            className="w-full h-full object-cover"
+            loading="lazy"
+            width={1920}
+            height={400}
+          />
+          {/* Gentle white wash/overlay */}
+          <div className="absolute inset-0 bg-white/30 pointer-events-none" />
+          {/* Left fade blending the photo into the background */}
+          <div className="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-[#fff8f5] via-[#fff8f5]/40 to-transparent pointer-events-none" />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center z-[10]">
           {/* Left Side: Content */}
-          <div className="w-full flex flex-col">
+          <div className="w-full flex flex-col relative z-[20]">
             <div className="mb-8 text-left">
               <motion.h2 
                 {...fadeInUp}
@@ -235,66 +272,60 @@ export default function Home() {
             </div>
 
             <div 
-              className="relative bg-white border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.04)] min-h-[250px] flex items-center w-full"
+              className="relative bg-white border border-stone-200 rounded-3xl p-6 md:p-8 shadow-[0px_12px_24px_rgba(0,0,0,0.04)] grid grid-cols-1 items-start w-full overflow-hidden min-h-[290px] sm:min-h-[240px] md:min-h-[220px] lg:min-h-[210px]"
               onMouseEnter={() => setIsAutoPlaying(false)}
               onMouseLeave={() => setIsAutoPlaying(true)}
             >
-              <AnimatePresence mode="wait">
-                {activeTileIndex === 0 && (
-                  <motion.div 
-                    key="tile0"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <PencilRuler className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile1?.title || 'Projektowanie PV'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile1?.desc || 'Precyzyjne projekty architektoniczne i elektryczne dla instalacji komercyjnych i przemysłowych, gwarantujące maksymalne uzyski i trwałość konstrukcji.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex === 1 && (
-                  <motion.div 
-                    key="tile1"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <Headset className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile2?.title || 'Konsulting Techniczny'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile2?.desc || 'Eksperckie doradztwo w zakresie złożonych przepisów, studiów wykonalności oraz procesów przyłączenia do sieci dla aktywów OZE.'}
-                    </p>
-                  </motion.div>
-                )}
-                {activeTileIndex === 2 && (
-                  <motion.div 
-                    key="tile2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
-                      <GraduationCap className="text-orange-600" size={24} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile3?.title || 'Szkolenia OZE'}</h3>
-                    <p className="text-stone-600 leading-relaxed text-base">
-                      {data?.mapSection?.tile3?.desc || 'Specjalistyczne programy szkoleniowe zaprojektowane w celu podnoszenia kwalifikacji zespołów inżynieryjnych i menedżerów projektów.'}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Tile 1 */}
+              <div 
+                className={`col-start-1 row-start-1 w-full flex flex-col transition-all duration-500 ease-out ${
+                  activeTileIndex === 0 
+                    ? 'opacity-100 translate-x-0 pointer-events-auto z-10' 
+                    : 'opacity-0 translate-x-8 pointer-events-none z-0'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
+                  <PencilRuler className="text-orange-600" size={24} />
+                </div>
+                <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile1?.title || 'Projektowanie PV'}</h3>
+                <p className="text-stone-600 leading-relaxed text-base">
+                  {data?.mapSection?.tile1?.desc || 'Precyzyjne projekty architektoniczne i elektryczne dla instalacji komercyjnych i przemysłowych, gwarantujące maksymalne uzyski i trwałość konstrukcji.'}
+                </p>
+              </div>
+
+              {/* Tile 2 */}
+              <div 
+                className={`col-start-1 row-start-1 w-full flex flex-col transition-all duration-500 ease-out ${
+                  activeTileIndex === 1 
+                    ? 'opacity-100 translate-x-0 pointer-events-auto z-10' 
+                    : 'opacity-0 translate-x-8 pointer-events-none z-0'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
+                  <Headset className="text-orange-600" size={24} />
+                </div>
+                <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile2?.title || 'Konsulting Techniczny'}</h3>
+                <p className="text-stone-600 leading-relaxed text-base">
+                  {data?.mapSection?.tile2?.desc || 'Eksperckie doradztwo w zakresie złożonych przepisów, studiów wykonalności oraz procesów przyłączenia do sieci dla aktywów OZE.'}
+                </p>
+              </div>
+
+              {/* Tile 3 */}
+              <div 
+                className={`col-start-1 row-start-1 w-full flex flex-col transition-all duration-500 ease-out ${
+                  activeTileIndex === 2 
+                    ? 'opacity-100 translate-x-0 pointer-events-auto z-10' 
+                    : 'opacity-0 translate-x-8 pointer-events-none z-0'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center mb-4">
+                  <GraduationCap className="text-orange-600" size={24} />
+                </div>
+                <h3 className="text-2xl font-bold text-stone-900 mb-3 border-b border-stone-100 pb-3 uppercase tracking-tighter">{data?.mapSection?.tile3?.title || 'Szkolenia OZE'}</h3>
+                <p className="text-stone-600 leading-relaxed text-base">
+                  {data?.mapSection?.tile3?.desc || 'Specjalistyczne programy szkoleniowe zaprojektowane w celu podnoszenia kwalifikacji zespołów inżynieryjnych i menedżerów projektów.'}
+                </p>
+              </div>
             </div>
 
             {/* Kropeczki nawigacyjne karuzeli */}
@@ -314,21 +345,23 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Side: Photo without rounding and animations */}
-          <motion.div 
-            {...fadeInUp}
-            className="relative w-full h-[320px] md:h-[400px] overflow-hidden shadow-2xl border border-stone-200/50 bg-white"
-          >
-            <img 
-              src="/assets/realizations_full_bg.webp" 
-              alt="Kompleksowa obsługa projektów" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-              width={1920}
-              height={400}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/10 to-transparent pointer-events-none" />
-          </motion.div>
+          {/* Right Side: Photo card on mobile, empty spacer on desktop */}
+          <div className="w-full lg:h-[400px]">
+            {/* Mobile-only Photo Card */}
+            <div className="block lg:hidden relative w-full h-[320px] md:h-[400px] overflow-hidden rounded-[2rem] shadow-2xl border border-stone-200/50 bg-white">
+              <img 
+                src="/assets/realizations_full_bg.webp" 
+                alt="Kompleksowa obsługa projektów" 
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={1920}
+                height={400}
+              />
+              <div className="absolute inset-0 bg-white/30 pointer-events-none" />
+            </div>
+            {/* Desktop empty spacer to keep the grid layout */}
+            <div className="hidden lg:block w-full h-full pointer-events-none" />
+          </div>
         </div>
       </section>
 

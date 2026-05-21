@@ -49,20 +49,6 @@ export default function Newsletter() {
               <p className="text-stone-400 text-lg leading-relaxed mb-8 italic">
                 Zapisz się do naszego newslettera i otrzymuj informacje o nowych dotacjach, zmianach w prawie oraz najnowszych realizacjach RAD MAR.
               </p>
-              
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-3">
-                  {['R', 'M', 'P', 'K'].map((initial, i) => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-stone-900 bg-stone-800 flex items-center justify-center overflow-hidden">
-                      <span className="text-white font-bold text-sm">{initial}</span>
-                    </div>
-                  ))}
-                  <div className="w-10 h-10 rounded-full border-2 border-stone-900 bg-orange-500 flex items-center justify-center text-[10px] font-bold text-white">
-                    +500
-                  </div>
-                </div>
-                <p className="text-xs text-stone-500 font-medium uppercase tracking-wider">Dołącz do ponad 500 subskrybentów</p>
-              </div>
             </div>
 
             <div className="lg:w-1/2 w-full">
@@ -101,34 +87,15 @@ export default function Newsletter() {
                     >
                       <div className="flex flex-col gap-3">
                         <label htmlFor="newsletter-email" className="text-xs font-bold text-stone-400 uppercase tracking-widest ml-1">Twój adres e-mail</label>
-                        <div className="relative">
-                          <input
-                            id="newsletter-email"
-                            type="email"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="przyklad@poczta.pl"
-                            className="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder:text-stone-600"
-                          />
-                          <button
-                            type="submit"
-                            disabled={status === 'loading' || !gdprAccepted}
-                            className={`absolute right-2 top-2 bottom-2 px-6 rounded-xl font-bold transition-all flex items-center gap-2 ${
-                              !gdprAccepted || status === 'loading' 
-                              ? 'bg-stone-800 text-stone-600 cursor-not-allowed' 
-                              : 'bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/20'
-                            }`}
-                          >
-                            {status === 'loading' ? (
-                              <Loader2 size={18} className="animate-spin" />
-                            ) : (
-                              <>
-                                Zapisz się <Send size={18} />
-                              </>
-                            )}
-                          </button>
-                        </div>
+                        <input
+                          id="newsletter-email"
+                          type="email"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="przyklad@poczta.pl"
+                          className="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all placeholder:text-stone-600 text-base"
+                        />
                       </div>
 
                       <label className="flex gap-4 items-start group cursor-pointer mt-1">
@@ -147,6 +114,24 @@ export default function Newsletter() {
                           Wyrażam zgodę na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną od RAD MAR. Możesz wypisać się w każdej chwili. <span className="text-white font-bold underline cursor-pointer">Polityka prywatności</span>.
                         </span>
                       </label>
+
+                      <button
+                        type="submit"
+                        disabled={status === 'loading' || !gdprAccepted}
+                        className={`w-full py-5 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 text-base shadow-xl active:scale-[0.98] ${
+                          !gdprAccepted || status === 'loading' 
+                          ? 'bg-stone-800 text-stone-600 cursor-not-allowed' 
+                          : 'bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/20'
+                        }`}
+                      >
+                        {status === 'loading' ? (
+                          <Loader2 size={18} className="animate-spin" />
+                        ) : (
+                          <>
+                            Zapisz się <Send size={18} />
+                          </>
+                        )}
+                      </button>
 
                       {status === 'error' && (
                         <motion.div 
