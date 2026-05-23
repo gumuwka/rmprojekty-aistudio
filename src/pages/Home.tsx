@@ -616,7 +616,7 @@ export default function Home() {
                 </div>
 
                 {/* Right column: Image container */}
-                <div className="lg:col-span-5 relative">
+                <div className="lg:col-span-5">
                   <div className="relative rounded-[2.5rem] overflow-hidden border border-stone-200/60 shadow-2xl aspect-[4/5] lg:aspect-square bg-stone-100">
                     <img 
                       src="/assets/about_us.webp" 
@@ -625,17 +625,6 @@ export default function Home() {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                  
-                  {/* Floating glass card */}
-                  <div className="absolute -bottom-6 -left-6 bg-white/80 backdrop-blur-md p-5 rounded-3xl border border-stone-200/80 shadow-xl max-w-[240px] hidden sm:flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center text-white shrink-0 shadow-lg shadow-orange-500/20">
-                      <Star size={24} className="fill-white" />
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-black uppercase tracking-widest text-stone-500 mb-0.5">ZAUFANIE</p>
-                      <h4 className="text-sm font-bold text-stone-900 leading-tight">100% zadowolonych inwestorów</h4>
-                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -719,8 +708,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Right column: Image & Floating Stats */}
-                <div className="lg:col-span-5 relative">
+                {/* Right column: Image */}
+                <div className="lg:col-span-5">
                   <div className="relative rounded-[2.5rem] overflow-hidden border border-stone-200/60 shadow-2xl aspect-[4/5] lg:aspect-square bg-stone-100">
                     <img 
                       src="/assets/engineering_background.webp" 
@@ -729,18 +718,6 @@ export default function Home() {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent pointer-events-none" />
-                    
-                    {/* Floating statistics on top of the image */}
-                    <div className="absolute bottom-6 left-6 right-6 grid grid-cols-2 gap-4">
-                      <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-lg text-center">
-                        <span className="block text-2xl font-black text-orange-600 leading-none mb-1">500+</span>
-                        <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Realizacji</span>
-                      </div>
-                      <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-lg text-center">
-                        <span className="block text-2xl font-black text-orange-600 leading-none mb-1">8+</span>
-                        <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Lat na rynku</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </motion.div>
