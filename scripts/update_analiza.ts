@@ -26,14 +26,11 @@ async function run() {
 
   // Update the service
   if (cmsData.services && Array.isArray(cmsData.services)) {
-    const serviceIndex = cmsData.services.findIndex((s: any) => s.id === 'projekty-pv-sol');
+    const serviceIndex = cmsData.services.findIndex((s: any) => s.id === 'analiza-konstrukcyjna');
     if (serviceIndex !== -1) {
-      cmsData.services[serviceIndex].gallery = [
-        "/assets/services/oferta/pvsol.webp",
-        "/assets/services/oferta/farmy.webp",
-        "/assets/services/oferta/konstrukcja.webp",
-        "/assets/services/oferta/przylaczenie.webp"
-      ];
+      cmsData.services[serviceIndex].fullContent = 'Wykonujemy specjalistyczne ekspertyzy techniczne nośności konstrukcji dachowych przeznaczonych pod montaż instalacji fotowoltaicznych. Celem opracowania jest szczegółowa ocena stanu technicznego dachu oraz określenie jego zdolności do bezpiecznego przenoszenia dodatkowych obciążeń wynikających z montażu modułów fotowoltaicznych, konstrukcji wsporczych oraz oddziaływań środowiskowych, takich jak śnieg i wiatr.\n\nNa podstawie przeprowadzonych obliczeń statyczno-wytrzymałościowych analizujemy parametry konstrukcyjne obiektu, weryfikujemy nośność poszczególnych elementów oraz określamy dopuszczalne obciążenia użytkowe. Ekspertyza pozwala jednoznacznie ocenić możliwość instalacji systemu fotowoltaicznego oraz wskazać ewentualne wymagania dotyczące wzmocnienia konstrukcji.';
+      delete cmsData.services[serviceIndex].features;
+      delete cmsData.services[serviceIndex].featuresTitle;
       
       console.log("Updating Supabase...");
       const { error: updateError } = await supabase
@@ -44,7 +41,7 @@ async function run() {
       if (updateError) {
         console.error("Error updating:", updateError);
       } else {
-        console.log("Successfully updated the service gallery in Supabase!");
+        console.log("Successfully updated the service in Supabase!");
       }
     } else {
       console.log("Service not found in Supabase data.");

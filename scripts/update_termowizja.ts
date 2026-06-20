@@ -26,13 +26,13 @@ async function run() {
 
   // Update the service
   if (cmsData.services && Array.isArray(cmsData.services)) {
-    const serviceIndex = cmsData.services.findIndex((s: any) => s.id === 'projekty-pv-sol');
+    const serviceIndex = cmsData.services.findIndex((s: any) => s.id === 'termowizja-dron');
     if (serviceIndex !== -1) {
       cmsData.services[serviceIndex].gallery = [
-        "/assets/services/oferta/pvsol.webp",
-        "/assets/services/oferta/farmy.webp",
-        "/assets/services/oferta/konstrukcja.webp",
-        "/assets/services/oferta/przylaczenie.webp"
+        "/assets/services/oferta/termowizja.webp",
+        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1000&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1579824208460-6b6f0e5b7b95?q=80&w=1000&auto=format&fit=crop"
       ];
       
       console.log("Updating Supabase...");

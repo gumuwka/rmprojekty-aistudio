@@ -1,10 +1,11 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { services as defaultServices } from '../servicesData';
 import { 
   ArrowLeft, 
   CheckCircle2, 
   ChevronRight, 
+  ChevronLeft,
   Mail, 
   Phone, 
   Calculator, 
@@ -27,9 +28,10 @@ import {
   BatteryCharging, 
   ClipboardCheck, 
   TrendingUp, 
-  File
+  File,
+  X
 } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const IconsMap: Record<string, any> = {
   ShieldCheck,
@@ -56,6 +58,54 @@ export default function ServiceDetail() {
 
   const displayServices = content?.services || defaultServices;
   const service = displayServices.find((s: any) => s.id === id);
+
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = () => {
+    if (carouselRef.current && service?.gallery) {
+      const container = carouselRef.current;
+      const scrollPosition = container.scrollLeft;
+      const itemWidth = container.scrollWidth / service.gallery.length;
+      const newIndex = Math.round(scrollPosition / itemWidth);
+      setActiveIndex(newIndex);
+    }
+  };
+
+  const scrollPrev = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -carouselRef.current.clientWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: carouselRef.current.clientWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToDot = (index: number) => {
+    if (carouselRef.current && service?.gallery) {
+      const itemWidth = carouselRef.current.scrollWidth / service.gallery.length;
+      carouselRef.current.scrollTo({ left: itemWidth * index, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    if (!service?.gallery || service.gallery.length === 0) return;
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carouselRef.current.scrollBy({ left: clientWidth, behavior: 'smooth' });
+        }
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [service?.gallery]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -136,10 +186,64 @@ export default function ServiceDetail() {
              <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
                 <div className="lg:col-span-8">
                    <div className="prose prose-lg max-w-none prose-stone">
-                      <h2 className="text-3xl font-bold mb-8 italic">O usłudze</h2>
-                      <p className="text-xl text-stone-600 leading-relaxed italic mb-12">
+                      <h2 className="text-3xl font-bold mb-8">O usłudze</h2>
+                      <p className="text-xl text-stone-600 leading-relaxed mb-12 whitespace-pre-line">
                          {service.fullContent}
                       </p>
+
+                      {service.gallery && service.gallery.length > 0 && (
+                        <div className="mb-16">
+                           <div className="flex items-center justify-between mb-8">
+                             <h3 className="text-2xl font-bold">Przykładowe realizacje</h3>
+                             <div className="flex gap-2">
+                               <button 
+                                 onClick={scrollPrev}
+                                 className="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors"
+                               >
+                                 <ChevronLeft size={20} />
+                               </button>
+                               <button 
+                                 onClick={scrollNext}
+                                 className="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors"
+                               >
+                                 <ChevronRight size={20} />
+                               </button>
+                             </div>
+                           </div>
+                           <div className="max-w-3xl mx-auto">
+                             <div 
+                               ref={carouselRef}
+                               onScroll={handleScroll}
+                               className="flex overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar relative"
+                               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                             >
+                               {service.gallery.map((imgUrl: string, idx: number) => (
+                                 <div 
+                                   key={idx} 
+                                   className="w-full aspect-video shrink-0 snap-center rounded-[2rem] overflow-hidden cursor-pointer shadow-md hover:shadow-lg transition-shadow relative group"
+                                   onClick={() => setLightboxImage(imgUrl)}
+                                 >
+                                   <img src={imgUrl} alt={`Realizacja ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                 </div>
+                               ))}
+                             </div>
+                           </div>
+                           
+                           {/* Dots indicator */}
+                           <div className="flex justify-center gap-2 mt-6">
+                             {service.gallery.map((_, idx: number) => (
+                               <button
+                                 key={idx}
+                                 onClick={() => scrollToDot(idx)}
+                                 className={`h-2 rounded-full transition-all duration-300 ${
+                                   idx === activeIndex ? 'w-8 bg-orange-500' : 'w-2 bg-stone-300 hover:bg-stone-400'
+                                 }`}
+                                 aria-label={`Przejdź do zdjęcia ${idx + 1}`}
+                               />
+                             ))}
+                           </div>
+                        </div>
+                      )}
 
                       {service.requirementsGroups && (
                         <div className="mb-16">
@@ -347,6 +451,38 @@ export default function ServiceDetail() {
              </div>
           </div>
        </section>
+
+     {/* Lightbox */}
+     <AnimatePresence>
+       {lightboxImage && (
+         <motion.div 
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           exit={{ opacity: 0 }}
+           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8"
+           onClick={() => setLightboxImage(null)}
+         >
+           <button 
+             className="absolute top-6 right-6 text-white/70 hover:text-white p-2 bg-black/50 rounded-full transition-colors"
+             onClick={(e) => {
+               e.stopPropagation();
+               setLightboxImage(null);
+             }}
+           >
+             <X size={32} />
+           </button>
+           <motion.img 
+             initial={{ scale: 0.95 }}
+             animate={{ scale: 1 }}
+             exit={{ scale: 0.95 }}
+             src={lightboxImage} 
+             alt="Powiększone zdjęcie" 
+             className="max-w-full max-h-full rounded-2xl object-contain shadow-2xl"
+             onClick={(e) => e.stopPropagation()}
+           />
+         </motion.div>
+       )}
+     </AnimatePresence>
     </div>
   );
 }

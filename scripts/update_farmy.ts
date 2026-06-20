@@ -26,14 +26,17 @@ async function run() {
 
   // Update the service
   if (cmsData.services && Array.isArray(cmsData.services)) {
-    const serviceIndex = cmsData.services.findIndex((s: any) => s.id === 'projekty-pv-sol');
+    const serviceIndex = cmsData.services.findIndex((s: any) => s.id === 'farmy-fotowoltaiczne');
     if (serviceIndex !== -1) {
-      cmsData.services[serviceIndex].gallery = [
-        "/assets/services/oferta/pvsol.webp",
-        "/assets/services/oferta/farmy.webp",
-        "/assets/services/oferta/konstrukcja.webp",
-        "/assets/services/oferta/przylaczenie.webp"
+      cmsData.services[serviceIndex].fullContent = 'Oferujemy kompleksowe opracowanie dokumentacji technicznej i formalnej niezbędnej do realizacji farm fotowoltaicznych. Wspieramy inwestorów na każdym etapie procesu inwestycyjnego – od koncepcji i analiz wstępnych, poprzez przygotowanie dokumentacji projektowej, aż po uzyskanie wymaganych uzgodnień i pozwoleń.';
+      cmsData.services[serviceIndex].features = [
+        'Przygotowanie koncepcji projektowych',
+        'Wnioski o warunki przyłączenia do sieci elektroenergetycznej',
+        'Decyzja o warunkach zabudowy',
+        'Projekt budowlany',
+        'Wizualizacje farm fotowoltaicznych w programie PV*SOL/CAD'
       ];
+      cmsData.services[serviceIndex].featuresTitle = 'W zakres naszych usług wchodzi:';
       
       console.log("Updating Supabase...");
       const { error: updateError } = await supabase
@@ -44,7 +47,7 @@ async function run() {
       if (updateError) {
         console.error("Error updating:", updateError);
       } else {
-        console.log("Successfully updated the service gallery in Supabase!");
+        console.log("Successfully updated the service in Supabase!");
       }
     } else {
       console.log("Service not found in Supabase data.");

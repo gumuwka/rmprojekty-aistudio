@@ -23,6 +23,7 @@ export interface Service {
   subtitle?: string;
   extraNote?: string;
   image?: string;
+  gallery?: string[];
 }
 
 export const services: Service[] = [
@@ -67,6 +68,12 @@ export const services: Service[] = [
       'Dobór optymalnych rozwiązań / konsultacje techniczne',
       'Wysyłka gotowego projektu z logo Twojej firmy !'
     ],
+    gallery: [
+      '/assets/services/oferta/pvsol.webp',
+      '/assets/services/oferta/farmy.webp',
+      '/assets/services/oferta/konstrukcja.webp',
+      '/assets/services/oferta/przylaczenie.webp'
+    ],
     image: '/assets/services/oferta/pvsol.webp'
   },
   {
@@ -74,13 +81,7 @@ export const services: Service[] = [
     title: 'Analiza konstrukcyjna',
     shortDescription: 'Ekspertyzy techniczne nośności dachu pod instalację PV.',
     icon: 'Construction',
-    fullContent: 'Oferujemy wykonanie ekspertyz technicznych nośności dachu pod instalację fotowoltaiczną. W tym celu wykonujemy obliczenia, które mają na celu wskazanie wytrzymałości konstrukcji dachu oraz jego dopuszczalnego obciążenia.',
-    featuresTitle: 'Zakres opracowania ekspertyzy zawiera:',
-    features: [
-      'Analiza stanu konstrukcji dachu',
-      'Obliczenia statyczne elementów konstrukcji',
-      'Ocena możliwości montażu paneli fotowoltaicznych'
-    ],
+    fullContent: 'Wykonujemy specjalistyczne ekspertyzy techniczne nośności konstrukcji dachowych przeznaczonych pod montaż instalacji fotowoltaicznych. Celem opracowania jest szczegółowa ocena stanu technicznego dachu oraz określenie jego zdolności do bezpiecznego przenoszenia dodatkowych obciążeń wynikających z montażu modułów fotowoltaicznych, konstrukcji wsporczych oraz oddziaływań środowiskowych, takich jak śnieg i wiatr.\n\nNa podstawie przeprowadzonych obliczeń statyczno-wytrzymałościowych analizujemy parametry konstrukcyjne obiektu, weryfikujemy nośność poszczególnych elementów oraz określamy dopuszczalne obciążenia użytkowe. Ekspertyza pozwala jednoznacznie ocenić możliwość instalacji systemu fotowoltaicznego oraz wskazać ewentualne wymagania dotyczące wzmocnienia konstrukcji.',
     image: '/assets/services/oferta/konstrukcja.webp'
   },
   {
@@ -106,15 +107,14 @@ export const services: Service[] = [
     title: 'Farmy fotowoltaiczne',
     shortDescription: 'Dokumentacja dla farm PV, magazynów energii i obiektów przemysłowych.',
     icon: 'Zap',
-    fullContent: 'Oferujemy przygotowanie dokumentacji projektowej dla farm fotowoltaicznych oraz dużych instalacji przemysłowych.',
+    fullContent: 'Oferujemy kompleksowe opracowanie dokumentacji technicznej i formalnej niezbędnej do realizacji farm fotowoltaicznych. Wspieramy inwestorów na każdym etapie procesu inwestycyjnego – od koncepcji i analiz wstępnych, poprzez przygotowanie dokumentacji projektowej, aż po uzyskanie wymaganych uzgodnień i pozwoleń.',
     featuresTitle: 'W zakres naszych usług wchodzi:',
     features: [
-      'Przygotowanie wniosku wraz z niezbędnymi załącznikami o warunki przyłączenia do sieci elektroenergetycznej dla:\n\na) źródeł OZE\nb) magazynów energii\nc) obiektów przemysłowych\nd) osiedli mieszkaniowych\ne) placów budowy',
-      'Projekt koncepcyjny / technologiczny instalacji fotowoltaicznej',
-      'Decyzja o Warunkach Zabudowy (WZ)',
-      'Wniosek o wypis i wyrys z MPZP, rejestru gruntów',
-      'Projekt budowlany do pozwolenia na budowę',
-      'Wizualizacje instalacji PV w PV*SOL i AutoCAD'
+      'Przygotowanie koncepcji projektowych',
+      'Wnioski o warunki przyłączenia do sieci elektroenergetycznej',
+      'Decyzja o warunkach zabudowy',
+      'Projekt budowlany',
+      'Wizualizacje farm fotowoltaicznych w programie PV*SOL/CAD'
     ],
     image: '/assets/services/oferta/farmy.webp'
   },
@@ -228,6 +228,12 @@ export const services: Service[] = [
     usefulInfo: [
       'Cennik usług ustalany jest indywidualnie zależnie od zakresu oraz specyfikacji pomiarów termowizyjnych.'
     ],
+    gallery: [
+      '/assets/services/oferta/termowizja.webp',
+      'https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1579824208460-6b6f0e5b7b95?q=80&w=1000&auto=format&fit=crop'
+    ],
     image: '/assets/services/oferta/termowizja.webp'
   },
   {
@@ -250,13 +256,7 @@ export const services: Service[] = [
     title: 'Projekt - Stacja ładowania',
     shortDescription: 'Projekt zasilania stacji ładowania pojazdów elektrycznych.',
     icon: 'BatteryCharging',
-    fullContent: 'Oferujemy usługę wykonania projektu zasilania stacji ładowania pojazdów elektrycznych. Wraz z projektem technicznym, sporządzimy schemat elektryczny zasilania stacji wraz ze wskazaniem wyposażenia punktu ładowania, doborem przewodów i zabezpieczeń elektrycznych. Projekt stanowi podstawę wiedzy technicznej, dotyczącej zakresu prac montażowych oraz wyceny materiałów.',
-    features: [
-      'Schemat elektryczny zasilania stacji',
-      'Wskazanie wyposażenia punktu ładowania',
-      'Dobór przewodów i zabezpieczeń elektrycznych',
-      'Podstawa do prac montażowych i wyceny materiałów'
-    ],
+    fullContent: 'Oferujemy kompleksowe opracowanie projektów stacji ładowania pojazdów elektrycznych (EV), obejmujące zarówno rozwiązania dla klientów indywidualnych, jak i inwestycji komercyjnych oraz publicznych. Projektujemy nowoczesne i bezpieczne instalacje dostosowane do aktualnych wymagań technicznych, przepisów prawa oraz standardów operatorów sieci elektroenergetycznych.\n\nKażdy projekt przygotowywany jest indywidualnie, z uwzględnieniem warunków przyłączeniowych, lokalizacji oraz charakteru obiektu. Zapewniamy rozwiązania zgodne z obowiązującymi normami, gwarantujące bezpieczną i niezawodną eksploatację stacji ładowania.\n\nIstotnym elementem projektu jest spełnienie wymagań formalnych i technicznych związanych z dopuszczeniem stacji ładowania do użytkowania, w tym wytycznych Urzędu Dozoru Technicznego (UDT). W zależności od typu urządzenia i sposobu jego użytkowania, przygotowujemy dokumentację niezbędną do procesu odbioru, zgłoszeń oraz uzyskania wymaganych dopuszczeń eksploatacyjnych.',
     usefulInfo: [
       'Wykonanie punktu ładowania (odpłatnego lub nie) wymaga dokumentacji do UDT i Badania Technicznego Wstępnego.',
       'Każde urządzenie o mocy powyżej 3,7 kW świadczące usługę ładowania musi zostać odebrane przez UDT.',
@@ -269,15 +269,7 @@ export const services: Service[] = [
     title: 'Ekspertyza - Stacja ładowania',
     shortDescription: 'Ekspertyza określająca możliwość instalacji punktu ładowania pojazdów elektrycznych',
     icon: 'ClipboardCheck',
-    fullContent: 'Oferujemy przygotowanie ekspertyzy dopuszczalności instalacji punktów ładowania samochodów elektrycznych do 11 kW w garażu podziemnym. Ekspertyza określa czy dany budynek jest przystosowany do instalacji prywatnych punktów lub wskazuje, jakie zmiany należy poczynić, aby instalacja punktu ładowania była możliwa. Wykonujemy ekspertyzy zgodnie z ustawą o elektromobilności i paliwach alternatywnych.',
-    featuresTitle: 'Ekspertyza określa w szczególności:',
-    features: [
-      'Moc przyłączeniową budynku możliwą do wykorzystania',
-      'Punkty w instalacji elektrycznej dopuszczalne do przyłączenia',
-      'Rozwiązania budowlane oraz techniczno-instalacyjne',
-      'Warunki niezbędne do bezpiecznej eksploatacji',
-      'Wymagania w zakresie bezpieczeństwa pożarowego'
-    ],
+    fullContent: 'Oferujemy wykonywanie specjalistycznych ekspertyz technicznych stacji ładowania pojazdów elektrycznych (EV), obejmujących ocenę stanu technicznego instalacji, analizę bezpieczeństwa użytkowania oraz weryfikację zgodności z obowiązującymi normami i przepisami.\n\nW ramach opracowania przeprowadzamy szczegółową analizę układów zasilania, zabezpieczeń elektrycznych, parametrów pracy urządzeń oraz poprawności wykonania instalacji. Oceniamy również warunki przyłączeniowe, jakość wykonania połączeń, dobór elementów systemu oraz ich zgodność z dokumentacją projektową i wymaganiami producentów.\n\nIstotnym elementem ekspertyzy jest ocena bezpieczeństwa eksploatacji w kontekście wymagań Urzędu Dozoru Technicznego (UDT) oraz innych przepisów regulujących użytkowanie infrastruktury ładowania. W razie potrzeby wskazujemy nieprawidłowości, potencjalne zagrożenia oraz rekomendacje dotyczące modernizacji lub dostosowania instalacji do obowiązujących wymagań.\n\nEkspertyza dopuszczalności instalacji prywatnego punktu ładowania do 11 kW wykonywana jest przez uprawnionego projektanta instalacji elektrycznych. Na podstawie dostarczonej dokumentacji, wizji lokalnej oraz wywiadu z zarządcą budynku zostają ocenione możliwości techniczne budynku w związku z montażem prywatnego punktu ładowania.',
     image: '/assets/services/oferta/ekspertyza_ev.webp'
   },
   {
