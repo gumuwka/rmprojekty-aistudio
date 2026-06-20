@@ -13,7 +13,7 @@ const ContentContext = createContext<ContentContextType | undefined>(undefined);
 const defaultHomeContent = {
   hero: {
     title: "Rad-mar\nBiuro Projektowe",
-    subtitle: "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.",
+    subtitle: "Projekty instalacji elektrycznych i fotowoltaicznych, ekspertyzy techniczne, opinie pożarowe oraz wsparcie w dotacjach – kompleksowe wsparcie dla firm i klientów indywidualnych",
     cta: "ŚLEDŹ NAS NA FACEBOOKU",
     bgImage: "/assets/hero_bg_premium.webp"
   },

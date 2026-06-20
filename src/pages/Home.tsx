@@ -204,7 +204,7 @@ export default function Home() {
                 <p
                   className="text-xl text-stone-600 leading-relaxed max-w-2xl mb-12 font-medium"
                 >
-                  {getText('hero', 'subtitle', "Eksperckie uzgodnienia PPOŻ, zaawansowane projekty PV*SOL i profesjonalne wsparcie w dotacjach.")}
+                  {getText('hero', 'subtitle', "Projekty instalacji elektrycznych i fotowoltaicznych, ekspertyzy techniczne, opinie pożarowe oraz wsparcie w dotacjach – kompleksowe wsparcie dla firm i klientów indywidualnych")}
                 </p>
               </div>
 

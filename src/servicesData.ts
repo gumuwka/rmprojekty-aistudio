@@ -60,16 +60,7 @@ export const services: Service[] = [
     title: 'Projekty PV*SOL',
     shortDescription: 'Zaawansowane projekty i wizualizacje w PV*SOL Premium oraz SolarEdge Designer.',
     icon: 'Layout',
-    fullContent: 'Oferujemy przygotowanie wizualizacji /projektu w programie PV*SOL Premium lub SolarEdge Designer. Projekt zawiera szczegółowe informacje techniczne niezbędne do prawidłowej realizacji inwestycji.',
-    features: [
-      'Rozkład modułów na dachu lub gruncie z uwzględnieniem zacienienia',
-      'Energia wyprodukowana przez system PV',
-      'Spec. uzysk roczny',
-      'Stosunek wydajności (PR)',
-      'Emisja CO2, której dało się uniknąć',
-      'Schemat elektryczny',
-      'Lista części'
-    ],
+    fullContent: 'Specjalizujemy się w projektowaniu nowoczesnych instalacji fotowoltaicznych z wykorzystaniem profesjonalnego oprogramowania PV*SOL. Narzędzie to umożliwia tworzenie szczegółowych modeli 3D oraz przeprowadzanie zaawansowanych analiz technicznych, dzięki którym już na etapie projektowym można precyzyjnie określić parametry pracy przyszłej instalacji.\n\nW ramach realizowanych opracowań wykonujemy kompleksowe wizualizacje rozmieszczenia modułów fotowoltaicznych, analizę zacienienia oraz optymalizację konfiguracji systemu pod kątem maksymalnej produkcji energii. Każdy projekt uwzględnia indywidualne warunki lokalizacji, orientację budynku, kąt nachylenia dachu oraz rzeczywiste warunki nasłonecznienia.',
     steps: [
       'Zebranie niezbędnych informacji (arkusz udostępniamy mailowo biuro.projektpv@gmail.com)',
       'Weryfikacja danych, przygotowanie koncepcji rozłożenia modułów i zwrócenie uwagi na ewentualne straty wynikające z zacienienia',
