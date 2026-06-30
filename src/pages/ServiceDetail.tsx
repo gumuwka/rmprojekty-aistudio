@@ -154,7 +154,7 @@ export default function ServiceDetail() {
                         {service.subtitle}
                      </p>
                    )}
-                  <p className="text-xl text-stone-600 leading-relaxed max-w-3xl">
+                  <p className="text-xl text-stone-600 leading-relaxed max-w-3xl text-justify">
                      {service.shortDescription}
                   </p>
                </div>
@@ -187,7 +187,7 @@ export default function ServiceDetail() {
                 <div className="lg:col-span-8">
                    <div className="prose prose-lg max-w-none prose-stone">
                       <h2 className="text-3xl font-bold mb-8">O usłudze</h2>
-                      <p className="text-xl text-stone-600 leading-relaxed mb-12 whitespace-pre-line">
+                      <p className="text-xl text-stone-600 leading-relaxed mb-12 whitespace-pre-line text-justify">
                          {service.fullContent}
                       </p>
 

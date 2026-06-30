@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, CheckCircle2, Loader2, X, BookOpen, Bell, ShieldCheck, Mail } from 'lucide-react';
+import { Send, CheckCircle2, Loader2, X, BookOpen, Bell, Mail } from 'lucide-react';
 
 export default function NewsletterPage() {
   const [email, setEmail] = useState('');
@@ -46,11 +46,6 @@ export default function NewsletterPage() {
       icon: <Bell className="text-orange-500" size={24} />,
       title: 'Informacje o dofinansowaniach',
       desc: 'Nie przegap naborów do programów Mój Prąd 6.0, Grant OZE BGK czy Czyste Powietrze.'
-    },
-    {
-      icon: <ShieldCheck className="text-orange-500" size={24} />,
-      title: 'Bezpieczeństwo i diagnostyka',
-      desc: 'Wskazówki techniczne dotyczące termowizji dronem, ochrony instalacji i wydajności paneli.'
     }
   ];
 
