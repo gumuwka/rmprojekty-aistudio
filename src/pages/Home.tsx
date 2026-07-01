@@ -101,8 +101,6 @@ export default function Home() {
   const [gdprAccepted, setGdprAccepted] = useState(false);
   const [activeTileIndex, setActiveTileIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [aboutUsVariant, setAboutUsVariant] = useState<number>(1);
-  const [activeAccordion, setActiveAccordion] = useState<number>(0);
 
   useEffect(() => {
     document.title = "Rad-mar Biuro Projektowe | Projekty PV, PPOŻ, Dotacje";
@@ -184,7 +182,7 @@ export default function Home() {
             width={1920}
             height={1080}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/80 md:bg-gradient-to-r md:from-white/95 md:via-white/50 md:to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/50 md:bg-gradient-to-r md:from-white/95 md:from-20% md:via-white/80 md:via-45% md:to-transparent z-10" />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-20">
@@ -202,7 +200,7 @@ export default function Home() {
 
               <div className="relative group/p">
                 <p
-                  className="text-xl text-stone-600 leading-relaxed max-w-2xl mb-12 font-medium"
+                  className="text-lg sm:text-xl text-stone-900 leading-relaxed max-w-2xl mb-12 font-extrabold drop-shadow-sm"
                 >
                   {getText('hero', 'subtitle', "Projekty instalacji elektrycznych i fotowoltaicznych, ekspertyzy techniczne, opinie pożarowe oraz wsparcie w dotacjach – kompleksowe wsparcie dla firm i klientów indywidualnych")}
                 </p>
@@ -376,7 +374,7 @@ export default function Home() {
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">{data?.servicesIntro?.title || 'W czym możemy Ci pomóc?'}</h2>
               <p className="text-stone-600 text-lg">
-                {data?.servicesIntro?.desc || 'Skorzystaj z naszej wiedzy i doświadczenia. Wybierz usługę, aby dowiedzieć się więcej o procesie współpracy.'}
+                {data?.servicesIntro?.desc || 'Skorzystaj z naszej wiedzy i doświadczenia. Wybierz usługę, aby dowiedzieć się więcej.'}
               </p>
             </div>
           </div>
@@ -478,251 +476,63 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-orange-50/40 rounded-full blur-[150px] pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          
-          {/* O NAS VARIANT SWITCHER PANEL */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 pb-6 border-b border-stone-200/60">
-            <div className="flex items-center gap-3">
-              <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-              </span>
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-orange-600 block">Prezentacja Układów</span>
-                <h4 className="text-sm font-bold text-stone-800">Wybierz wariant sekcji O nas dla swoich klientów:</h4>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+          >
+            {/* Left column: Text Content */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-6 uppercase tracking-tighter leading-tight">
+                Profesjonalizm i kompleksowe wykonanie
+              </h2>
+              <p className="text-stone-600 text-lg leading-relaxed font-medium mb-6">
+                Jesteśmy zespołem doświadczonych projektantów i doradców technicznych specjalizujących się w branży odnawialnych źródeł energii. Naszą misją jest wspieranie inwestorów na każdym etapie realizacji projektów PV i systemów energetycznych.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Dedykowane projekty PV",
+                    desc: "Wykonywane przez inżynierów w profesjonalnych środowiskach symulacyjnych (m.in. PV*SOL)."
+                  },
+                  {
+                    title: "Rzeczoznawstwo i Uzgodnienia PPOŻ",
+                    desc: "Gwarancja pełnego bezpieczeństwa pożarowego instalacji powyżej 6.5 kW oraz formalny odbiór."
+                  },
+                  {
+                    title: "Dotacje bez formalności",
+                    desc: "Od A do Z załatwiamy wszelkie wnioski w programach Mój Prąd, Czyste Powietrze i programach unijnych."
+                  }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 items-start bg-white/60 p-4 rounded-2xl border border-stone-200/50 shadow-sm hover:bg-white transition-colors">
+                    <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+                      <CheckCircle2 size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-base mb-1">{item.title}</h4>
+                      <p className="text-stone-600 text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            
-            <div className="flex bg-stone-100/80 backdrop-blur-sm p-1.5 rounded-2xl border border-stone-200/60 shadow-inner overflow-x-auto max-w-full">
-              {[
-                { id: 1, name: "1. Klasyczny" },
-                { id: 2, name: "2. Nowoczesny z grafiką" },
-                { id: 3, name: "3. Premium z akordeonem" }
-              ].map((v) => (
-                <button
-                  key={v.id}
-                  onClick={() => setAboutUsVariant(v.id)}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 whitespace-nowrap ${
-                    aboutUsVariant === v.id
-                      ? 'bg-white text-orange-600 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] scale-105 border border-stone-200/30'
-                      : 'text-stone-600 hover:text-stone-900 hover:bg-white/40'
-                  }`}
-                >
-                  {v.name}
-                </button>
-              ))}
+
+            {/* Right column: Image container */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-[2.5rem] overflow-hidden border border-stone-200/60 shadow-2xl aspect-[4/5] lg:aspect-square bg-stone-100">
+                <img 
+                  src="/assets/about/photo.jpg" 
+                  alt="Zespół Radmar przy pracy" 
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
+              </div>
             </div>
-          </div>
-
-          <AnimatePresence mode="wait">
-            {aboutUsVariant === 1 && (
-              <motion.div
-                key="about-v1"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-                className="w-full"
-              >
-                <div className="max-w-3xl mb-12">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-500 bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100/50 w-fit mb-4 block">
-                    KIM JESTEŚMY
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-6 uppercase tracking-tighter leading-tight">
-                    O nas — Radmar Biuro Projektowe
-                  </h2>
-                  <p className="text-stone-600 text-lg leading-relaxed font-medium">
-                    Jesteśmy zespołem doświadczonych projektantów i doradców technicznych specjalizujących się w branży odnawialnych źródeł energii. Zajmujemy się kompleksowym projektowaniem instalacji fotowoltaicznych, audytami efektywności, uzgodnieniami przeciwpożarowymi oraz pozyskiwaniem dotacji państwowych. Naszym celem jest upraszczanie procedur i gwarantowanie pełnego bezpieczeństwa realizowanych inwestycji.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[
-                    {
-                      title: "Doświadczenie i Ekspertyza",
-                      desc: "Setki zrealizowanych projektów i uzgodnień dla instalacji domowych oraz komercyjnych w całej Polsce."
-                    },
-                    {
-                      title: "Terminowość",
-                      desc: "Szanujemy czas naszych partnerów. Projekty i uzgodnienia realizujemy zawsze w uzgodnionym terminie."
-                    },
-                    {
-                      title: "Wsparcie w Finansowaniu",
-                      desc: "Kompleksowo przeprowadzamy proces pozyskiwania dotacji rządowych, takich jak Mój Prąd czy Czyste Powietrze."
-                    },
-                    {
-                      title: "Bezpieczeństwo i Normy",
-                      desc: "Każdy projekt przechodzi szczegółową weryfikację pod kątem obowiązujących przepisów budowlanych i PPOŻ."
-                    }
-                  ].map((adv, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white border border-stone-200 rounded-3xl p-6 shadow-[0px_4px_12px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-300 hover:border-orange-200"
-                    >
-                      <h3 className="text-lg font-bold text-stone-900 mb-3 uppercase tracking-tight">{adv.title}</h3>
-                      <p className="text-stone-600 text-sm leading-relaxed">{adv.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
-            {aboutUsVariant === 2 && (
-              <motion.div
-                key="about-v2"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
-              >
-                {/* Left column: Text Content */}
-                <div className="lg:col-span-7 flex flex-col justify-center">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-500 bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100/50 w-fit mb-4">
-                    PROJEKTOWANIE, DORADZTWO, UZGODNIENIA
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-6 uppercase tracking-tighter leading-tight">
-                    Profesjonalizm i kompleksowe wykonanie
-                  </h2>
-                  <p className="text-stone-600 text-lg leading-relaxed font-medium mb-6">
-                    Jesteśmy zespołem doświadczonych projektantów i doradców technicznych specjalizujących się w branży odnawialnych źródeł energii. Naszą misją jest wspieranie inwestorów na każdym etapie realizacji projektów PV i systemów energetycznych.
-                  </p>
-                  
-                  <div className="space-y-4">
-                    {[
-                      {
-                        title: "Dedykowane projekty PV",
-                        desc: "Wykonywane przez inżynierów w profesjonalnych środowiskach symulacyjnych (m.in. PV*SOL)."
-                      },
-                      {
-                        title: "Rzeczoznawstwo i Uzgodnienia PPOŻ",
-                        desc: "Gwarancja pełnego bezpieczeństwa pożarowego instalacji powyżej 6.5 kW oraz formalny odbiór."
-                      },
-                      {
-                        title: "Dotacje bez formalności",
-                        desc: "Od A do Z załatwiamy wszelkie wnioski w programach Mój Prąd, Czyste Powietrze i programach unijnych."
-                      }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex gap-4 items-start bg-white/60 p-4 rounded-2xl border border-stone-200/50 shadow-sm hover:bg-white transition-colors">
-                        <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 shrink-0">
-                          <CheckCircle2 size={20} />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-stone-900 text-base mb-1">{item.title}</h4>
-                          <p className="text-stone-600 text-sm leading-relaxed">{item.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right column: Image container */}
-                <div className="lg:col-span-5">
-                  <div className="relative rounded-[2.5rem] overflow-hidden border border-stone-200/60 shadow-2xl aspect-[4/5] lg:aspect-square bg-stone-100">
-                    <img 
-                      src="/assets/about_us.webp" 
-                      alt="Zespół Radmar przy pracy" 
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {aboutUsVariant === 3 && (
-              <motion.div
-                key="about-v3"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
-              >
-                {/* Left column: Interactive Accordion */}
-                <div className="lg:col-span-7 flex flex-col justify-center">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-500 bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100/50 w-fit mb-4">
-                    NASZE ELEMENTY SUKCESU
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-6 uppercase tracking-tighter leading-tight">
-                    Bezpiecznie i na czas
-                  </h2>
-                  <p className="text-stone-600 text-lg leading-relaxed font-medium mb-8">
-                    Poznaj fundamenty, na których budujemy naszą markę oraz zaufanie setek klientów i firm wykonawczych w całej Polsce.
-                  </p>
-
-                  <div className="space-y-3">
-                    {[
-                      {
-                        title: "01. Doświadczenie i Ekspertyza",
-                        desc: "Setki zrealizowanych projektów, kompleksowe analizy konstrukcyjne oraz uzgodnienia instalacji domowych i komercyjnych w całym kraju."
-                      },
-                      {
-                        title: "02. Terminowość i Elastyczność",
-                        desc: "Czas to pieniądz. Działamy sprawnie, dbając o to, by cała dokumentacja techniczna była gotowa zgodnie z Twoim harmonogramem."
-                      },
-                      {
-                        title: "03. Pozyskiwanie Dofinansowań",
-                        desc: "Oferujemy bezstresowe przejście przez wnioski dotacyjne w programach Mój Prąd, Czyste Powietrze czy Grant OZE - skutecznie i bez odrzuceń."
-                      },
-                      {
-                        title: "04. Zgodność z Normami i PPOŻ",
-                        desc: "Nasze projekty i opinie rzeczoznawców są w 100% zgodne z najnowszymi wytycznymi prawnymi i wymaganiami bezpieczeństwa pożarowego."
-                      }
-                    ].map((item, idx) => {
-                      const isOpen = activeAccordion === idx;
-                      return (
-                        <div 
-                          key={idx} 
-                          className={`border rounded-2xl transition-all duration-300 ${
-                            isOpen 
-                              ? 'bg-white border-orange-200 shadow-[0px_8px_20px_rgba(249,115,22,0.04)]' 
-                              : 'bg-white/40 border-stone-200 hover:border-stone-300'
-                          }`}
-                        >
-                          <button
-                            onClick={() => setActiveAccordion(isOpen ? -1 : idx)}
-                            className="w-full flex items-center justify-between p-5 text-left font-bold text-stone-900 hover:text-orange-600 transition-colors"
-                          >
-                            <span className="text-base sm:text-lg tracking-tight uppercase">{item.title}</span>
-                            <div className={`w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center transition-all ${
-                              isOpen ? 'bg-orange-500 text-white rotate-180' : 'text-stone-500'
-                            }`}>
-                              <ChevronDown size={16} />
-                            </div>
-                          </button>
-                          
-                          <motion.div
-                            initial={false}
-                            animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-5 pb-5 pt-1 text-sm text-stone-600 leading-relaxed border-t border-stone-100">
-                              {item.desc}
-                            </div>
-                          </motion.div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Right column: Image */}
-                <div className="lg:col-span-5">
-                  <div className="relative rounded-[2.5rem] overflow-hidden border border-stone-200/60 shadow-2xl aspect-[4/5] lg:aspect-square bg-stone-100">
-                    <img 
-                      src="/assets/engineering_background.webp" 
-                      alt="Projekt inżynieryjny PV" 
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
@@ -755,8 +565,8 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-[9px] font-black uppercase tracking-widest text-white/70 mb-0.5">E-mail</p>
-                    <a href="mailto:ziezio2@gmail.com" className="text-base font-bold hover:text-orange-200 transition-colors">
-                      ziezio2@gmail.com
+                    <a href="mailto:biuro.projektpv@gmail.com" className="text-base font-bold hover:text-orange-200 transition-colors">
+                      biuro.projektpv@gmail.com
                     </a>
                   </div>
                 </div>
@@ -775,11 +585,11 @@ export default function Home() {
 
                 <div className="flex gap-4 items-start">
                   <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0">
-                    <Clock size={18} />
+                    <MapPin size={18} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-black uppercase tracking-widest text-white/70 mb-0.5">Godziny otwarcia</p>
-                    <p className="text-base font-bold">Pn - Pt: 07:00 - 19:00</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-white/70 mb-0.5">Obszar działania</p>
+                    <p className="text-base font-bold">Działamy na terenie całej Polski</p>
                   </div>
                 </div>
               </div>
@@ -803,8 +613,7 @@ export default function Home() {
                         name: (target[0] as HTMLInputElement).value,
                         phone: (target[1] as HTMLInputElement).value,
                         email: (target[2] as HTMLInputElement).value,
-                        service: (target[3] as HTMLSelectElement).value,
-                        message: (target[4] as HTMLTextAreaElement).value,
+                        message: (target[3] as HTMLTextAreaElement).value,
                       };
 
                       try {
@@ -840,12 +649,7 @@ export default function Home() {
                       <label htmlFor="home-email" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Adres E-mail</label>
                       <input id="home-email" type="email" required placeholder="twoj@email.pl" className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all" />
                     </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="home-service" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">O której usłudze chcesz porozmawiać?</label>
-                      <select id="home-service" className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all cursor-pointer">
-                        {displayServices.map((s: any) => <option key={s.id} value={s.id}>{s.title}</option>)}
-                      </select>
-                    </div>
+
                     <div className="flex flex-col gap-1.5">
                       <label htmlFor="home-message" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Twoja wiadomość</label>
                       <textarea id="home-message" rows={3} required placeholder="Opisz krótko swój projekt..." className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all min-h-[85px]"></textarea>

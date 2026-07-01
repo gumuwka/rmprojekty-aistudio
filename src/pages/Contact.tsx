@@ -42,7 +42,7 @@ export default function Contact() {
                 Kontakt
               </motion.h1>
               <p className="text-stone-500 text-lg leading-relaxed">
-                {data.description || "Jesteśmy do Twojej dyspozycji w dni robocze od 7:00 do 19:00. Wybierz dogodną formę kontaktu."}
+                {data.description || "Jesteśmy do Twojej dyspozycji. Wybierz dogodną formę kontaktu."}
               </p>
             </div>
 
@@ -65,8 +65,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">E-mail</p>
-                  <a href={`mailto:${data.email || 'ziezio2@gmail.com'}`} className="text-xl font-bold hover:text-orange-500 transition-colors">
-                    {data.email || 'ziezio2@gmail.com'}
+                  <a href={`mailto:${data.email || 'biuro.projektpv@gmail.com'}`} className="text-xl font-bold hover:text-orange-500 transition-colors">
+                    {data.email || 'biuro.projektpv@gmail.com'}
                   </a>
                   <p className="text-xs text-stone-500 mt-1 font-medium">Wnioski i zapytania ofertowe</p>
                 </div>
@@ -84,12 +84,11 @@ export default function Contact() {
 
               <div className="flex gap-6 items-start">
                 <div className="w-12 h-12 bg-stone-100 rounded-2xl flex items-center justify-center text-stone-900 shrink-0">
-                   <Clock size={24} />
+                   <MapPin size={24} />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Godziny otwarcia</p>
-                  <p className="text-base font-bold">Pn - Pt: 07:00 - 19:00</p>
-                  <p className="text-xs text-stone-500 font-medium">Oddzwonimy najszybciej jak to możliwe</p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Obszar działania</p>
+                  <p className="text-base font-bold">Działamy na terenie całej Polski</p>
                 </div>
               </div>
             </div>
@@ -127,8 +126,7 @@ export default function Contact() {
                           name: (target[0] as HTMLInputElement).value,
                           phone: (target[1] as HTMLInputElement).value,
                           email: (target[2] as HTMLInputElement).value,
-                          service: (target[3] as HTMLSelectElement).value,
-                          message: (target[4] as HTMLTextAreaElement).value,
+                          message: (target[3] as HTMLTextAreaElement).value,
                         };
 
                         try {
@@ -163,12 +161,7 @@ export default function Contact() {
                         <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Adres E-mail</label>
                         <input type="email" required placeholder="twoj@email.pl" className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all" />
                       </div>
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">O której usłudze chcesz porozmawiać?</label>
-                        <select className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all cursor-pointer">
-                          {services.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
-                        </select>
-                      </div>
+
                       <div className="flex flex-col gap-1.5">
                         <label className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Twoja wiadomość</label>
                         <textarea rows={3} required placeholder="Opisz krótko swój projekt..." className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all min-h-[85px]"></textarea>

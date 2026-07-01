@@ -34,7 +34,7 @@ export default function Footer() {
                 <Facebook size={20} />
               </a>
               <a 
-                href="mailto:ziezio2@gmail.com" 
+                href="mailto:biuro.projektpv@gmail.com" 
                 className="hover:text-orange-500 transition-colors"
                 aria-label="Wyślij e-mail"
               >
@@ -65,15 +65,11 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={18} className="text-orange-500 shrink-0" />
-                <a href="mailto:ziezio2@gmail.com" className="hover:text-white transition-colors">ziezio2@gmail.com</a>
+                <a href="mailto:biuro.projektpv@gmail.com" className="hover:text-white transition-colors">biuro.projektpv@gmail.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-orange-500 shrink-0" />
                 <span>Obszar całej Polski</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock size={18} className="text-orange-500 shrink-0" />
-                <span>Pn - Pt: 07:00 - 19:00</span>
               </li>
             </ul>
           </div>

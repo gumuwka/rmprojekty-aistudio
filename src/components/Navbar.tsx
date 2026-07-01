@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Phone, ArrowRight, Search, MapPin, Clock } from 'lucide-react';
+import { Menu, X, Phone, ArrowRight, Search, MapPin, Clock, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { services } from '../servicesData';
@@ -127,13 +127,22 @@ export default function Navbar() {
           </div>
 
           {/* Contact Info - Desktop */}
-          <div className="hidden lg:flex items-center">
+          <div className="hidden lg:flex items-center gap-6">
             <a
               href="tel:+48793376709"
               className="flex items-center gap-2 text-base font-bold text-stone-900 hover:text-orange-600 transition-colors"
             >
               <Phone size={16} className="text-orange-500" />
               +48 793 376 709
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61558031386658"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-stone-900 hover:text-orange-600 transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={20} className="text-orange-500" />
             </a>
           </div>
 
@@ -258,13 +267,24 @@ export default function Navbar() {
                   </div>
                   +48 793 376 709
                 </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61558031386658"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 bg-[#1877F2] text-white rounded-2xl font-bold text-lg shadow-xl shadow-blue-500/20"
+                >
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <Facebook size={20} />
+                  </div>
+                  Nasz Facebook
+                </a>
               </div>
             </div>
             
             <div className="p-6 border-t border-stone-100 bg-stone-50">
               <div className="flex items-center justify-center gap-4 text-stone-400">
-                <Clock size={16} />
-                <span className="text-xs font-bold italic">Pn-Pt: 7:00 - 19:00</span>
+                <MapPin size={16} />
+                <span className="text-xs font-bold italic">Działamy na terenie całej Polski</span>
               </div>
             </div>
           </motion.div>

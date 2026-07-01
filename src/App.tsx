@@ -13,7 +13,7 @@ const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const News = lazy(() => import('./pages/News'));
 const NewsDetail = lazy(() => import('./pages/NewsDetail'));
-const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const CMSPanel = lazy(() => import('./pages/CMSPanel'));
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'));
@@ -69,7 +69,7 @@ function LayoutWrapper() {
             <Route path="/kontakt" element={<Contact />} />
             <Route path="/oferta/:id" element={<ServiceDetail />} />
             <Route path="/realizacje" element={<Portfolio />} />
-            <Route path="/realizacje/:id" element={<ProjectDetail />} />
+
             <Route path="/aktualnosci" element={<News />} />
             <Route path="/aktualnosci/:id" element={<NewsDetail />} />
             <Route path="/faq" element={<FAQPage />} />

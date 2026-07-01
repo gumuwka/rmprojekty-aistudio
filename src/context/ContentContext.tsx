@@ -36,7 +36,7 @@ const defaultHomeContent = {
   },
   servicesIntro: {
     title: "W czym możemy Ci pomóc?",
-    desc: "Skorzystaj z naszej wiedzy i doświadczenia. Wybierz usługę, aby dowiedzieć się więcej o procesie współpracy."
+    desc: "Skorzystaj z naszej wiedzy i doświadczenia. Wybierz usługę, aby dowiedzieć się więcej."
   },
   aboutIntro: {
     label: "Nasza misja",

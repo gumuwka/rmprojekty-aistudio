@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, Mail, Facebook, Clock, Loader2, CheckCircle2, Send } from 'lucide-react';
+import { Phone, Mail, Facebook, MapPin, Loader2, CheckCircle2, Send } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import { services as defaultServices } from '../servicesData';
 
@@ -56,8 +56,8 @@ export default function ContactFormSection() {
                 </div>
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-widest text-white/70 mb-0.5">E-mail</p>
-                  <a href="mailto:ziezio2@gmail.com" className="text-base font-bold hover:text-orange-200 transition-colors">
-                    ziezio2@gmail.com
+                  <a href="mailto:biuro.projektpv@gmail.com" className="text-base font-bold hover:text-orange-200 transition-colors">
+                    biuro.projektpv@gmail.com
                   </a>
                 </div>
               </div>
@@ -76,11 +76,11 @@ export default function ContactFormSection() {
 
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0">
-                  <Clock size={18} />
+                  <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-white/70 mb-0.5">Godziny otwarcia</p>
-                  <p className="text-base font-bold">Pn - Pt: 07:00 - 19:00</p>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-white/70 mb-0.5">Obszar działania</p>
+                  <p className="text-base font-bold">Działamy na terenie całej Polski</p>
                 </div>
               </div>
             </div>
@@ -105,8 +105,7 @@ export default function ContactFormSection() {
                       name: (target[0] as HTMLInputElement).value,
                       phone: (target[1] as HTMLInputElement).value,
                       email: (target[2] as HTMLInputElement).value,
-                      service: (target[3] as HTMLSelectElement).value,
-                      message: (target[4] as HTMLTextAreaElement).value,
+                      message: (target[3] as HTMLTextAreaElement).value,
                     };
 
                     try {
@@ -142,12 +141,7 @@ export default function ContactFormSection() {
                     <label htmlFor="cfs-email" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Adres E-mail</label>
                     <input id="cfs-email" type="email" required placeholder="twoj@email.pl" className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all" />
                   </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="cfs-service" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">O której usłudze chcesz porozmawiać?</label>
-                    <select id="cfs-service" className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all cursor-pointer">
-                      {displayServices.map((s: any) => <option key={s.id} value={s.id}>{s.title}</option>)}
-                    </select>
-                  </div>
+
                   <div className="flex flex-col gap-1.5">
                     <label htmlFor="cfs-message" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Twoja wiadomość</label>
                     <textarea id="cfs-message" rows={3} required placeholder="Opisz krótko swój projekt..." className="bg-stone-50 border border-stone-200 p-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all min-h-[85px]"></textarea>

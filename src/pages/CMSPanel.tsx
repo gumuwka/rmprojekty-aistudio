@@ -410,7 +410,7 @@ function VisualHomePreview({ data, services, onEdit }: any) {
              <h2 className="text-3xl font-bold mb-4">{data?.servicesIntro?.title || 'W czym możemy Ci pomóc?'}</h2>
           </EditableWrapper>
           <EditableWrapper onEdit={() => onEdit(['home', 'servicesIntro', 'desc'], 'Opis Usług', true)}>
-             <p className="text-stone-500 max-w-xl mb-10">{data?.servicesIntro?.desc || 'Skorzystaj z naszej wiedzy i doświadczenia. Wybierz usługę, aby dowiedzieć się więcej o procesie współpracy.'}</p>
+             <p className="text-stone-500 max-w-xl mb-10">{data?.servicesIntro?.desc || 'Skorzystaj z naszej wiedzy i doświadczenia. Wybierz usługę, aby dowiedzieć się więcej.'}</p>
           </EditableWrapper>
           
           <div className="grid grid-cols-3 gap-4">

@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
-import { motion } from 'motion/react';
-import { ExternalLink, Zap, Target, MapPin } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ExternalLink, Zap, Target, MapPin, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useContent } from '../context/ContentContext';
 
 export default function Portfolio() {
   const { content, loading } = useContent();
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Nasze Realizacje - RAD MAR";
@@ -39,32 +40,10 @@ export default function Portfolio() {
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
                transition={{ duration: 0.5, delay: idx * 0.1 }}
-               className="group relative rounded-[2.5rem] overflow-hidden aspect-square shadow-xl shadow-stone-200/50"
+               className="group relative rounded-[2.5rem] overflow-hidden aspect-square shadow-xl shadow-stone-200/50 cursor-pointer"
+               onClick={() => setLightboxImage(project.image)}
             >
-               <Link to={`/realizacje/${project.id}`}>
-                <img src={project.image} alt={project.title} width={640} height={360} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                
-                <div className="absolute bottom-0 left-0 p-8 transform translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 w-full">
-                   <div className="flex items-center gap-2 text-orange-400 text-xs font-black uppercase tracking-widest mb-3">
-                      <Target size={14} /> {project.category}
-                   </div>
-                   <h3 className="text-white text-3xl font-bold mb-2 leading-tight">{project.title}</h3>
-                   <div className="flex items-center gap-2 text-stone-300 text-sm mb-6">
-                     <MapPin size={16} />
-                     <span>{project.location}</span>
-                   </div>
-                   <div className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-widest bg-white/10 backdrop-blur-md w-fit px-6 py-3 rounded-2xl border border-white/20 hover:bg-orange-500 transition-colors">
-                      Szczegóły realizacji <ExternalLink size={14} />
-                   </div>
-                </div>
-
-                <div className="absolute top-6 left-6 flex flex-col gap-2 group-hover:opacity-0 transition-opacity">
-                   <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
-                      {project.category}
-                   </span>
-                </div>
-               </Link>
+                <img src={project.image} alt={project.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             </motion.div>
           ))}
         </div>
@@ -88,6 +67,38 @@ export default function Portfolio() {
            <div className="absolute -right-24 -bottom-24 w-96 h-96 bg-orange-500/10 blur-[120px] rounded-full" />
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8"
+            onClick={() => setLightboxImage(null)}
+          >
+            <button 
+              className="absolute top-6 right-6 text-white/70 hover:text-white p-2 bg-black/50 rounded-full transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxImage(null);
+              }}
+            >
+              <X size={32} />
+            </button>
+            <motion.img 
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              src={lightboxImage} 
+              alt="Powiększone zdjęcie" 
+              className="max-w-full max-h-full rounded-2xl object-contain shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

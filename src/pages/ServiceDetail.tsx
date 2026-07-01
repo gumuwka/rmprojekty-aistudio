@@ -166,9 +166,9 @@ export default function ServiceDetail() {
                            <Phone size={20} className="text-orange-500" />
                            +48 793 376 709
                         </a>
-                        <a href="mailto:ziezio@gmail.com" className="flex items-center gap-4 p-4 bg-stone-50 rounded-2xl hover:bg-stone-100 transition-all font-bold">
+                        <a href="mailto:biuro.projektpv@gmail.com" className="flex items-center gap-4 p-4 bg-stone-50 rounded-2xl hover:bg-stone-100 transition-all font-bold">
                            <Mail size={20} className="text-orange-500" />
-                           ziezio2@gmail.com
+                           biuro.projektpv@gmail.com
                         </a>
                         <Link to="/kontakt" className="bg-black text-white text-center py-4 rounded-xl font-bold mt-2 hover:bg-orange-600 transition-colors">
                            Zapytaj o wycenę
@@ -312,32 +312,7 @@ export default function ServiceDetail() {
                         </div>
                       )}
 
-                      {service.steps && (
-                         <div className="mb-16">
-                            <h3 className="text-2xl font-bold mb-10 italic">Proces współpracy krok po kroku:</h3>
-                            <div className="space-y-8 relative">
-                               <div className="absolute left-[27px] top-[40px] bottom-[40px] w-0.5 bg-orange-100 hidden md:block" />
-                               
-                               {service.steps.map((step, i) => (
-                                 <motion.div 
-                                    key={i} 
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="flex flex-col md:flex-row gap-8 relative z-10"
-                                 >
-                                    <div className="w-14 h-14 bg-white border-2 border-orange-500 rounded-full flex items-center justify-center font-black text-xl text-orange-500 shrink-0 shadow-lg shadow-orange-500/10">
-                                       {i + 1}
-                                    </div>
-                                    <div className="bg-stone-50 p-8 rounded-3xl flex-grow">
-                                       <p className="text-stone-800 font-bold italic leading-relaxed">{step}</p>
-                                    </div>
-                                 </motion.div>
-                               ))}
-                            </div>
-                         </div>
-                      )}
+
 
                       {service.extraNote && (
                         <div className="mb-16 p-8 bg-yellow-50 border border-yellow-200 rounded-3xl">
