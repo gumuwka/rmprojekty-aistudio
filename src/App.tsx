@@ -36,6 +36,18 @@ function ScrollToHash() {
   return null;
 }
 
+import { ErrorBoundary } from 'react-error-boundary';
+
+function Fallback({ error, resetErrorBoundary }: any) {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-stone-50 text-center">
+      <h1 className="text-3xl font-bold text-red-600 mb-4">Wystąpił błąd!</h1>
+      <pre className="text-sm bg-white p-4 border border-stone-200 rounded-lg max-w-2xl overflow-auto text-left mb-6 text-red-500 whitespace-pre-wrap break-words">{error.message}</pre>
+      <button onClick={() => window.location.reload()} className="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-600">Odśwież stronę</button>
+    </div>
+  );
+}
+
 function LayoutWrapper() {
   const location = useLocation();
   
@@ -59,11 +71,12 @@ function LayoutWrapper() {
     <div className="min-h-screen bg-white font-sans text-stone-900 selection:bg-orange-100 selection:text-orange-900">
       {!isCMS && <Navbar />}
       <main>
-        <Suspense fallback={
-          <div className="min-h-[60vh] flex items-center justify-center bg-white">
-            <Loader2 className="w-10 h-10 text-orange-500 animate-spin" />
-          </div>
-        }>
+        <ErrorBoundary FallbackComponent={Fallback}>
+          <Suspense fallback={
+            <div className="min-h-[60vh] flex items-center justify-center bg-white">
+              <Loader2 className="w-10 h-10 text-orange-500 animate-spin" />
+            </div>
+          }>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/kontakt" element={<Contact />} />
@@ -78,6 +91,7 @@ function LayoutWrapper() {
             <Route path="/panel-cms" element={<CMSPanel />} />
           </Routes>
         </Suspense>
+        </ErrorBoundary>
       </main>
       {showContactForm && <ContactFormSection />}
       {showNewsletter && <Newsletter />}
