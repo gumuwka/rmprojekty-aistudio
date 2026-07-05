@@ -57,7 +57,9 @@ export default function ServiceDetail() {
   const { content, loading } = useContent();
 
   const displayServices = content?.services || [];
-  const service = displayServices.find((s: any) => s.id === id);
+  const cleanStr = (str: any) => typeof str === 'string' ? str.replace(/[\u200B-\u200D\uFEFF]/g, '') : str;
+  const cleanId = cleanStr(id);
+  const service = displayServices.find((s: any) => String(cleanStr(s.id)) === cleanId);
 
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -249,11 +251,11 @@ export default function ServiceDetail() {
                         <div className="mb-16">
                            <h3 className="text-2xl font-bold mb-8 italic">{service.requirementsTitle}</h3>
                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                              {service.requirementsGroups.map((group, i) => (
+                              {service.requirementsGroups.map((group: any, i: number) => (
                                 <div key={i} className="p-8 bg-stone-50 border border-stone-200 rounded-3xl">
                                    <h4 className="text-xl font-bold mb-6 text-orange-600 italic">{group.title}</h4>
                                    <ul className="space-y-4">
-                                      {group.items.map((item, j) => (
+                                      {group.items?.map((item: any, j: number) => (
                                         <li key={j} className="flex gap-3 items-start text-stone-700 italic">
                                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full shrink-0 mt-2" />
                                            <span>{item}</span>
@@ -393,7 +395,7 @@ export default function ServiceDetail() {
                          {displayServices.filter((s: any) => s.id !== id).slice(0, 5).map((s: any) => (
                            <Link 
                              key={s.id} 
-                             to={`/oferta/${s.id}`} 
+                             to={`/oferta/${typeof s.id === 'string' ? s.id.replace(/[\u200B-\u200D\uFEFF]/g, '') : s.id}`} 
                              className="flex items-center justify-between p-4 rounded-xl hover:bg-white/10 transition-colors group"
                            >
                               <span className="text-sm font-bold italic group-hover:text-orange-400 transition-colors">{s.title}</span>

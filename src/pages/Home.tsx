@@ -128,7 +128,12 @@ export default function Home() {
     { id: 'dofinansowania', name: 'Dofinansowania' }
   ];
 
-  const getServiceCategory = (s: any) => s.category || serviceCategories[s.id?.current || s.id] || 'projekty-i-ekspertyzy';
+  const getServiceCategory = (s: any) => {
+    const cleanStr = (str: any) => typeof str === 'string' ? str.replace(/[\u200B-\u200D\uFEFF]/g, '') : str;
+    const cat = cleanStr(s.category);
+    const id = cleanStr(s.id?.current || s.id);
+    return cat || serviceCategories[id] || 'projekty-i-ekspertyzy';
+  };
 
   const groups = [
     {
@@ -421,7 +426,7 @@ export default function Home() {
                         transition={{ ...fadeInUp.transition, delay: index * 0.05 }}
                       >
                         <Link
-                          to={`/oferta/${service.id}`}
+                          to={`/oferta/${typeof service.id === 'string' ? service.id.replace(/[\u200B-\u200D\uFEFF]/g, '') : service.id}`}
                           className="group relative flex flex-col aspect-video rounded-[2rem] overflow-hidden border border-stone-200 hover:border-orange-500 transition-all shadow-sm hover:shadow-2xl hover:shadow-orange-500/10"
                         >
                           <div className="absolute inset-0 z-0">

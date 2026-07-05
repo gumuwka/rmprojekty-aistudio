@@ -137,45 +137,56 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const fetchContent = async () => {
     try {
-      // Fetch local DB content (if any)
-      const res = await fetch('/api/content');
-      let data = await res.ok ? await res.json() : {};
+      let data: any = { ...initialContent };
       
-      // Fetch services & projects from Sanity
-      let sanityServices = [];
-      let sanityProjects = [];
       try {
         const { sanityClient } = await import('../sanityClient');
-        sanityServices = await sanityClient.fetch('*[_type == "service"]{..., "id": id.current, "image": image.asset->url, "gallery": gallery[].asset->url}');
-        sanityProjects = await sanityClient.fetch('*[_type == "project"]{..., "id": id.current, "image": image.asset->url, "gallery": gallery[].asset->url}');
+        const [
+          sanityServices,
+          sanityProjects,
+          sanityNews,
+          sanityHome,
+          sanityAbout,
+          sanitySettings
+        ] = await Promise.all([
+          sanityClient.fetch('*[_type == "service"]{..., "id": id.current, "image": image.asset->url, "gallery": gallery[].asset->url}'),
+          sanityClient.fetch('*[_type == "project"]{..., "id": id.current, "image": image.asset->url, "gallery": gallery[].asset->url}'),
+          sanityClient.fetch('*[_type == "news"]{..., "id": id.current, "image": image.asset->url}'),
+          sanityClient.fetch('*[_type == "homePage"][0]{..., "hero": {...hero, "bgImage": hero.bgImage.asset->url}, "mapSection": {...mapSection, "bgImage": mapSection.bgImage.asset->url}}'),
+          sanityClient.fetch('*[_type == "aboutPage"][0]{..., "image": image.asset->url}'),
+          sanityClient.fetch('*[_type == "siteSettings"][0]')
+        ]);
+
+        if (sanityServices) data.services = sanityServices;
+        if (sanityProjects) data.projects = sanityProjects;
+        if (sanityNews) data.news = sanityNews;
+        
+        if (sanityHome) data.home = sanityHome;
+        if (sanityAbout) data.about = sanityAbout;
+        if (sanitySettings) data.settings = sanitySettings;
+        
       } catch (err) {
         console.error("Failed to fetch from Sanity", err);
       }
 
       // Uzupełnienie brakujących danych domyślnymi wartościami
-      if (sanityServices && sanityServices.length > 0) {
-        data.services = sanityServices;
-      } else if (!data.services) {
-        data.services = [];
-      }
-
-      if (sanityProjects && sanityProjects.length > 0) {
-        data.projects = sanityProjects;
-      } else if (!data.projects || data.projects.length === 0) {
+      if (!data.projects || data.projects.length === 0) {
         data.projects = defaultProjects;
       }
       
-      if (!data.about) {
+      if (!data.about || Object.keys(data.about).length === 0) {
         data.about = defaultAboutContent;
       } else {
         for (const key in defaultAboutContent) {
-          if (!data.about[key]) {
+          if (data.about[key] === undefined || data.about[key] === null) {
             data.about[key] = (defaultAboutContent as any)[key];
           }
         }
       }
       
-      if (!data.home) data.home = {};
+      if (!data.home || Object.keys(data.home).length === 0) {
+        data.home = {};
+      }
       const sections = ['hero', 'mapSection', 'servicesIntro', 'aboutIntro', 'faq', 'finalCta'];
       for (const sec of sections) {
         if (!data.home[sec]) {
@@ -183,7 +194,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         } else if (typeof data.home[sec] === 'object' && !Array.isArray(data.home[sec])) {
           const defaultSec = (defaultHomeContent as any)[sec];
           for (const key in defaultSec) {
-            if (!data.home[sec][key]) {
+            if (data.home[sec][key] === undefined || data.home[sec][key] === null) {
               data.home[sec][key] = defaultSec[key];
             }
           }

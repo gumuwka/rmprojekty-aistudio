@@ -20,8 +20,34 @@ export default defineConfig({
         S.list()
           .title('Treści strony')
           .items([
+            S.listItem()
+              .title('Ustawienia Strony')
+              .id('siteSettings')
+              .child(
+                S.document()
+                  .schemaType('siteSettings')
+                  .documentId('siteSettings')
+              ),
+            S.listItem()
+              .title('Strona Główna')
+              .id('homePage')
+              .child(
+                S.document()
+                  .schemaType('homePage')
+                  .documentId('homePage')
+              ),
+            S.listItem()
+              .title('O Nas')
+              .id('aboutPage')
+              .child(
+                S.document()
+                  .schemaType('aboutPage')
+                  .documentId('aboutPage')
+              ),
+            S.divider(),
             S.documentTypeListItem('service').title('Usługi'),
             S.documentTypeListItem('project').title('Realizacje'),
+            S.documentTypeListItem('news').title('Aktualności'),
           ]),
     }),
     visionTool(),
