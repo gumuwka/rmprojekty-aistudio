@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, Mail, Facebook, MapPin, Loader2, CheckCircle2, Send } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
-import { services as defaultServices } from '../servicesData';
+
 
 export default function ContactFormSection() {
   const { content } = useContent();
@@ -13,7 +13,6 @@ export default function ContactFormSection() {
   const [gdprAccepted, setGdprAccepted] = useState(false);
 
   const data = content?.home || {};
-  const displayServices = content?.services || defaultServices;
 
   const handleVerify = () => {
     setIsVerifying(true);

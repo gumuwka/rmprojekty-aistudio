@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, ArrowRight, Search, MapPin, Clock, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
-import { services } from '../servicesData';
+import { useContent } from '../context/ContentContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +13,8 @@ export default function Navbar() {
   const searchRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const { content } = useContent();
+  const services = content?.services || [];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);

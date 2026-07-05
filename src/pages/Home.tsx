@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 
-import { services as defaultServices } from '../servicesData';
+
 import { cn } from '../lib/utils';
 import { 
   ArrowRight, 
@@ -118,6 +118,7 @@ export default function Home() {
   if (loading) return null;
 
   const data = content?.home || {};
+  const defaultServices = content?.services || [];
   const displayServices = content?.services || defaultServices;
 
   const categories = [
@@ -127,24 +128,26 @@ export default function Home() {
     { id: 'dofinansowania', name: 'Dofinansowania' }
   ];
 
+  const getServiceCategory = (s: any) => s.category || serviceCategories[s.id?.current || s.id] || 'projekty-i-ekspertyzy';
+
   const groups = [
     {
       id: 'projekty-i-ekspertyzy',
       name: 'Projekty i Ekspertyzy',
       tagline: 'Dokumentacja techniczna, analizy statyczne oraz projekty wykonawcze',
-      items: displayServices.filter((s: any) => serviceCategories[s.id] === 'projekty-i-ekspertyzy')
+      items: displayServices.filter((s: any) => getServiceCategory(s) === 'projekty-i-ekspertyzy')
     },
     {
       id: 'opinie-i-uzgodnienia',
       name: 'Opinie i Uzgodnienia',
       tagline: 'Weryfikacja bezpieczeństwa i formalności instalacyjnych',
-      items: displayServices.filter((s: any) => serviceCategories[s.id] === 'opinie-i-uzgodnienia')
+      items: displayServices.filter((s: any) => getServiceCategory(s) === 'opinie-i-uzgodnienia')
     },
     {
       id: 'dofinansowania',
       name: 'Dofinansowania',
       tagline: 'Dotacje, granty rządowe oraz wsparcie w programach ekologicznych',
-      items: displayServices.filter((s: any) => serviceCategories[s.id] === 'dofinansowania')
+      items: displayServices.filter((s: any) => getServiceCategory(s) === 'dofinansowania')
     }
   ];
 
@@ -443,7 +446,7 @@ export default function Home() {
                                 <IconComponent size={20} />
                               </div>
                               <span className="text-[9px] font-black uppercase tracking-wider bg-white/10 backdrop-blur-md text-white/90 px-2.5 py-1 rounded-full group-hover:bg-orange-500 group-hover:text-white transition-all">
-                                {categoryDisplayNames[serviceCategories[service.id]]}
+                                {categoryDisplayNames[getServiceCategory(service)]}
                               </span>
                             </div>
                             

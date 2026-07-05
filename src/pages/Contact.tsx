@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Phone, Mail, Facebook, Clock, MapPin, ArrowRight, CheckCircle2, Loader2, Send } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
-import { services } from '../servicesData';
 
 export default function Contact() {
   const { content, loading } = useContent();

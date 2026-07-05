@@ -88,6 +88,16 @@ function LayoutWrapper() {
 }
 
 export default function App() {
+  useEffect(() => {
+    let disable: () => void;
+    import('@sanity/visual-editing').then(({ enableVisualEditing }) => {
+      disable = enableVisualEditing();
+    });
+    return () => {
+      if (disable) disable();
+    };
+  }, []);
+
   return (
     <Router>
       <ScrollToHash />

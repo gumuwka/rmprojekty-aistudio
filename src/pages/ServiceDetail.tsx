@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { services as defaultServices } from '../servicesData';
+
 import { 
   ArrowLeft, 
   CheckCircle2, 
@@ -56,7 +56,7 @@ export default function ServiceDetail() {
   const navigate = useNavigate();
   const { content, loading } = useContent();
 
-  const displayServices = content?.services || defaultServices;
+  const displayServices = content?.services || [];
   const service = displayServices.find((s: any) => s.id === id);
 
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);

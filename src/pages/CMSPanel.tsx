@@ -3,7 +3,7 @@ import { useContent } from '../context/ContentContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { Save, Layout, FileText, Phone, CheckCircle2, ChevronRight, Loader2, Globe, Plus, Trash2, Image as ImageIcon, MapPin, Tag, Eye, Settings, Edit3, X, HelpCircle, Newspaper, Calendar, Zap, Facebook } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { services as defaultServices } from '../servicesData';
+
 
 export default function CMSPanel() {
   const { content, updateContent, loading } = useContent();
@@ -335,7 +335,7 @@ export default function CMSPanel() {
 
 // HELPERS (Subcomponents)
 function VisualHomePreview({ data, services, onEdit }: any) {
-  const displayServices = services || defaultServices;
+  const displayServices = services || [];
   return (
     <div className="w-full space-y-4 pb-20 bg-stone-50 rounded-[4rem]">
        {/* Hero */}

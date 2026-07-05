@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { services as defaultServices } from '../servicesData';
+
 
 interface ContentContextType {
   content: any;
@@ -128,7 +128,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const initialContent = {
     home: defaultHomeContent,
     about: defaultAboutContent,
-    services: defaultServices,
+    services: [],
     projects: defaultProjects,
   };
 
@@ -137,15 +137,31 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const fetchContent = async () => {
     try {
+      // Fetch local DB content (if any)
       const res = await fetch('/api/content');
-      let data = await res.json();
+      let data = await res.ok ? await res.json() : {};
       
-      // Uzupełnienie brakujących danych domyślnymi wartościami (tylko lokalnie, bez zapisu do API)
-      if (!data.services) {
-        data.services = defaultServices;
+      // Fetch services & projects from Sanity
+      let sanityServices = [];
+      let sanityProjects = [];
+      try {
+        const { sanityClient } = await import('../sanityClient');
+        sanityServices = await sanityClient.fetch('*[_type == "service"]{..., "id": id.current, "image": image.asset->url, "gallery": gallery[].asset->url}');
+        sanityProjects = await sanityClient.fetch('*[_type == "project"]{..., "id": id.current, "image": image.asset->url, "gallery": gallery[].asset->url}');
+      } catch (err) {
+        console.error("Failed to fetch from Sanity", err);
       }
 
-      if (!data.projects || data.projects.length === 0) {
+      // Uzupełnienie brakujących danych domyślnymi wartościami
+      if (sanityServices && sanityServices.length > 0) {
+        data.services = sanityServices;
+      } else if (!data.services) {
+        data.services = [];
+      }
+
+      if (sanityProjects && sanityProjects.length > 0) {
+        data.projects = sanityProjects;
+      } else if (!data.projects || data.projects.length === 0) {
         data.projects = defaultProjects;
       }
       
