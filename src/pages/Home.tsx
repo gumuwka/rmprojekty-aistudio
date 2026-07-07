@@ -66,7 +66,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' }
+  transition: { duration: 0.6, ease: 'easeOut' as const }
 };
 
 const serviceCategories: Record<string, string> = {
@@ -237,7 +237,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 0.7, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 1.5, ease: "easeOut" as const }}
           className="absolute top-[-20%] left-[-10%] w-[65%] h-[140%] rounded-full bg-white blur-[120px] pointer-events-none z-[1]"
         />
 
@@ -246,7 +246,7 @@ export default function Home() {
           initial={{ x: '-150%' }}
           whileInView={{ x: '150%' }}
           viewport={{ once: true }}
-          transition={{ duration: 2.2, ease: "easeInOut", delay: 0.2 }}
+          transition={{ duration: 2.2, ease: "easeInOut" as const, delay: 0.2 }}
           className="absolute top-0 bottom-0 w-[65%] bg-gradient-to-r from-transparent via-white/30 to-transparent blur-3xl skew-x-12 pointer-events-none z-[1]"
         />
 

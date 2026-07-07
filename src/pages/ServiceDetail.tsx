@@ -129,7 +129,7 @@ export default function ServiceDetail() {
     return (
       <div className="container mx-auto px-4 py-32 text-center">
         <h1 className="text-4xl font-bold mb-8 italic">Usługa nie znaleziona</h1>
-        <Link to="/oferta" className="bg-black text-white px-8 py-3 rounded-full font-bold">Wróć do oferty</Link>
+        <Link to="/#oferta" className="bg-black text-white px-8 py-3 rounded-full font-bold">Wróć do oferty</Link>
       </div>
     );
   }
@@ -141,7 +141,7 @@ export default function ServiceDetail() {
        {/* Hero/Header */}
        <section className="bg-stone-50 py-20 border-b border-stone-200">
           <div className="container mx-auto px-4 md:px-6">
-            <Link to="/oferta" className="inline-flex items-center gap-2 text-stone-500 hover:text-black transition-colors mb-12 font-semibold">
+            <Link to="/#oferta" className="inline-flex items-center gap-2 text-stone-500 hover:text-black transition-colors mb-12 font-semibold">
                <ArrowLeft size={18} /> Powrót do wszystkich usług
             </Link>
             
@@ -402,7 +402,7 @@ export default function ServiceDetail() {
                               <ChevronRight size={16} className="text-stone-600 group-hover:text-orange-400" />
                            </Link>
                          ))}
-                         <Link to="/oferta" className="mt-4 text-center py-4 border border-stone-700 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-stone-800 transition-colors">
+                         <Link to="/#oferta" className="mt-4 text-center py-4 border border-stone-700 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-stone-800 transition-colors">
                             Wszystkie usługi OZE
                          </Link>
                       </div>

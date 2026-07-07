@@ -15,7 +15,6 @@ const News = lazy(() => import('./pages/News'));
 const NewsDetail = lazy(() => import('./pages/NewsDetail'));
 
 const FAQPage = lazy(() => import('./pages/FAQPage'));
-const CMSPanel = lazy(() => import('./pages/CMSPanel'));
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'));
 
 
@@ -63,13 +62,12 @@ function LayoutWrapper() {
     canonical.setAttribute("href", `https://rmprojekty.vercel.app${path}`);
   }, [location.pathname]);
 
-  const isCMS = location.pathname === '/panel-cms';
-  const showNewsletter = !isCMS && location.pathname !== '/newsletter';
-  const showContactForm = !isCMS && location.pathname !== '/' && location.pathname !== '/kontakt' && location.pathname !== '/newsletter';
+  const showNewsletter = location.pathname !== '/newsletter';
+  const showContactForm = location.pathname !== '/' && location.pathname !== '/kontakt' && location.pathname !== '/newsletter';
 
   return (
     <div className="min-h-screen bg-white font-sans text-stone-900 selection:bg-orange-100 selection:text-orange-900">
-      {!isCMS && <Navbar />}
+      <Navbar />
       <main>
         <ErrorBoundary FallbackComponent={Fallback}>
           <Suspense fallback={
@@ -88,15 +86,14 @@ function LayoutWrapper() {
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/newsletter" element={<NewsletterPage />} />
 
-            <Route path="/panel-cms" element={<CMSPanel />} />
           </Routes>
         </Suspense>
         </ErrorBoundary>
       </main>
       {showContactForm && <ContactFormSection />}
       {showNewsletter && <Newsletter />}
-      {!isCMS && <Footer />}
-      {!isCMS && <FloatingCTA />}
+      <Footer />
+      <FloatingCTA />
     </div>
   );
 }

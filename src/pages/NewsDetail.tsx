@@ -9,7 +9,7 @@ export default function NewsDetail() {
   const { content, loading } = useContent();
 
   const newsItems = content?.news || [];
-  const news = newsItems.find((item: any) => item.id === Number(id));
+  const news = newsItems.find((item: any) => String(item.id) === String(id));
 
   useEffect(() => {
     if (news) {
@@ -86,9 +86,15 @@ export default function NewsDetail() {
                   <Share2 size={16} /> Udostępnij:
                 </span>
                 <div className="flex items-center gap-2">
-                  <button className="w-10 h-10 rounded-full bg-stone-50 flex items-center justify-center text-stone-600 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                  <a 
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-stone-50 flex items-center justify-center text-stone-600 hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                    title="Udostępnij na Facebooku"
+                  >
                     <Facebook size={18} />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

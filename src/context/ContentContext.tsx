@@ -225,7 +225,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   useEffect(() => {
-    fetchContent(); // Przywrócono pobieranie danych z Supabase
+    fetchContent();
   }, []);
 
   return (

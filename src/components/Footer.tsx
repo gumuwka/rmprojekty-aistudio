@@ -48,7 +48,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-xs">Nawigacja</h4>
             <ul className="flex flex-col gap-3 text-sm">
               <li><Link to="/" className="hover:text-orange-500 transition-colors">Strona Główna</Link></li>
-              <li><Link to="/oferta" className="hover:text-orange-500 transition-colors">Nasza Oferta</Link></li>
+              <li><Link to="/#oferta" className="hover:text-orange-500 transition-colors">Nasza Oferta</Link></li>
               <li><Link to="/realizacje" className="hover:text-orange-500 transition-colors">Realizacje</Link></li>
               <li><Link to="/faq" className="hover:text-orange-500 transition-colors">Najczęstsze pytania</Link></li>
               <li><Link to="/newsletter" className="hover:text-orange-500 transition-colors">Newsletter</Link></li>
