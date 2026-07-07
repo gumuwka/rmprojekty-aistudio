@@ -71,7 +71,7 @@ export default function NewsDetail() {
             </h1>
 
             {/* Article Content */}
-            <div className="prose prose-lg max-w-none text-stone-600 leading-relaxed space-y-6">
+            <div className="prose prose-lg max-w-none text-stone-600 leading-relaxed space-y-6 break-words">
               <p>{news.excerpt}</p>
               <p>Zapraszamy do kontaktu z naszymi doradcami, którzy odpowiedzą na wszystkie pytania i pomogą zaplanować inwestycję tak, aby uzyskać maksymalną wydajność i możliwe dofinansowania.</p>
             </div>

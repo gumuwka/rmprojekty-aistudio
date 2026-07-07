@@ -189,7 +189,7 @@ export default function ServiceDetail() {
                 <div className="lg:col-span-8">
                    <div className="prose prose-lg max-w-none prose-stone">
                       <h2 className="text-3xl font-bold mb-8">O usłudze</h2>
-                      <p className="text-xl text-stone-600 leading-relaxed mb-12 whitespace-pre-line text-justify">
+                      <p className="text-xl text-stone-600 leading-relaxed mb-12 whitespace-pre-line text-justify break-words">
                          {service.fullContent}
                       </p>
 
@@ -258,7 +258,7 @@ export default function ServiceDetail() {
                                       {group.items?.map((item: any, j: number) => (
                                         <li key={j} className="flex gap-3 items-start text-stone-700 italic">
                                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full shrink-0 mt-2" />
-                                           <span>{item}</span>
+                                           <span className="break-words">{item}</span>
                                         </li>
                                       ))}
                                    </ul>
@@ -279,7 +279,7 @@ export default function ServiceDetail() {
                                     <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center shrink-0 mt-1">
                                        <Check size={14} className="text-white" />
                                     </div>
-                                    <span className="font-semibold text-stone-800 italic whitespace-pre-line">{feature}</span>
+                                    <span className="font-semibold text-stone-800 italic whitespace-pre-line break-words">{feature}</span>
                                  </div>
                                ))}
                             </div>
@@ -293,7 +293,7 @@ export default function ServiceDetail() {
                               {service.serviceArea.map((area, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-stone-50 border border-stone-200 rounded-2xl items-start shadow-sm">
                                    <MapPin className="text-orange-500 shrink-0 mt-0.5" size={20} />
-                                   <p className="text-stone-700 font-medium italic leading-relaxed">{area}</p>
+                                   <p className="text-stone-700 font-medium italic leading-relaxed break-words">{area}</p>
                                 </div>
                               ))}
                            </div>
