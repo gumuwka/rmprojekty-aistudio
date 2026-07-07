@@ -11,7 +11,6 @@ export default function News() {
     document.title = "Aktualności i Poradnik OZE - RAD MAR";
   }, []);
 
-  if (loading) return null;
 
   const newsItems = content?.news || [];
 

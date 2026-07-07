@@ -17,8 +17,13 @@ export default function NewsDetail() {
     }
   }, [news]);
 
-  if (loading) return null;
-
+  if (loading) {
+    return (
+      <div className="pt-32 pb-24 min-h-[150vh] bg-stone-50 flex items-center justify-center">
+        <Loader2 className="w-10 h-10 text-orange-500 animate-spin" />
+      </div>
+    );
+  }
   if (!news) {
     return (
       <div className="pt-32 md:pt-48 pb-24 text-center">

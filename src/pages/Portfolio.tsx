@@ -12,7 +12,6 @@ export default function Portfolio() {
     document.title = "Nasze Realizacje - RAD MAR";
   }, []);
 
-  if (loading) return null;
 
   const projects = content?.projects || [];
 

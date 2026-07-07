@@ -15,7 +15,6 @@ export default function Contact() {
     document.title = "Kontakt - RAD MAR Biuro Projektowe";
   }, []);
 
-  if (loading) return null;
 
   const data = content?.contact || {};
 

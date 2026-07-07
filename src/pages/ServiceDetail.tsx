@@ -118,7 +118,7 @@ export default function ServiceDetail() {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-32 text-center flex flex-col items-center justify-center min-h-[50vh]">
+      <div className="container mx-auto px-4 py-32 text-center flex flex-col items-center justify-center min-h-[150vh]">
          <Loader2 className="animate-spin text-orange-500 mb-4" size={40} />
          <p className="text-stone-500 font-medium tracking-widest uppercase text-xs">Ładowanie usługi...</p>
       </div>
