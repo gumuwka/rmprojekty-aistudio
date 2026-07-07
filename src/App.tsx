@@ -7,16 +7,14 @@ import FloatingCTA from './components/FloatingCTA';
 import { useEffect, lazy, Suspense } from 'react';
 import { Loader2 } from 'lucide-react';
 
-const Home = lazy(() => import('./pages/Home'));
-const Contact = lazy(() => import('./pages/Contact'));
-const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
-const Portfolio = lazy(() => import('./pages/Portfolio'));
-const News = lazy(() => import('./pages/News'));
-const NewsDetail = lazy(() => import('./pages/NewsDetail'));
-
-const FAQPage = lazy(() => import('./pages/FAQPage'));
-const NewsletterPage = lazy(() => import('./pages/NewsletterPage'));
-
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import ServiceDetail from './pages/ServiceDetail';
+import Portfolio from './pages/Portfolio';
+import News from './pages/News';
+import NewsDetail from './pages/NewsDetail';
+import FAQPage from './pages/FAQPage';
+import NewsletterPage from './pages/NewsletterPage';
 
 import { useRef } from 'react';
 
@@ -87,11 +85,6 @@ function LayoutWrapper() {
       <Navbar />
       <main>
         <ErrorBoundary FallbackComponent={Fallback}>
-          <Suspense fallback={
-            <div className="min-h-[60vh] flex items-center justify-center bg-white">
-              <Loader2 className="w-10 h-10 text-orange-500 animate-spin" />
-            </div>
-          }>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/kontakt" element={<Contact />} />
@@ -104,7 +97,6 @@ function LayoutWrapper() {
             <Route path="/newsletter" element={<NewsletterPage />} />
 
           </Routes>
-        </Suspense>
         </ErrorBoundary>
       </main>
       {showContactForm && <ContactFormSection />}
