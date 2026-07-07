@@ -156,7 +156,7 @@ export default function ServiceDetail() {
                         {service.subtitle}
                      </p>
                    )}
-                  <p className="text-xl text-stone-600 leading-relaxed max-w-3xl text-justify">
+                  <p className="text-xl text-stone-600 leading-relaxed max-w-3xl text-justify break-words">
                      {service.shortDescription}
                   </p>
                </div>
@@ -258,7 +258,7 @@ export default function ServiceDetail() {
                                       {group.items?.map((item: any, j: number) => (
                                         <li key={j} className="flex gap-3 items-start text-stone-700 italic">
                                            <div className="w-1.5 h-1.5 bg-orange-400 rounded-full shrink-0 mt-2" />
-                                           <span className="break-words">{item}</span>
+                                           <span className="flex-1 min-w-0 break-words">{item}</span>
                                         </li>
                                       ))}
                                    </ul>
@@ -279,7 +279,23 @@ export default function ServiceDetail() {
                                     <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center shrink-0 mt-1">
                                        <Check size={14} className="text-white" />
                                     </div>
-                                    <span className="font-semibold text-stone-800 italic whitespace-pre-line break-words">{feature}</span>
+                                    <span className="flex-1 min-w-0 font-semibold text-stone-800 italic whitespace-pre-line break-words">{feature}</span>
+                                 </div>
+                               ))}
+                            </div>
+                         </div>
+                      )}
+
+                      {service.steps && service.steps.length > 0 && (
+                         <div className="mb-16">
+                            <h3 className="text-2xl font-bold mb-8 italic">Kroki procesu:</h3>
+                            <div className="space-y-4">
+                               {service.steps.map((step: string, i: number) => (
+                                 <div key={i} className="flex gap-5 p-6 bg-white border border-stone-100 shadow-sm rounded-2xl items-start relative overflow-hidden">
+                                    <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-white font-bold text-lg shadow-md relative z-10">
+                                       {i + 1}
+                                    </div>
+                                    <span className="flex-1 min-w-0 font-semibold text-stone-800 italic whitespace-pre-line text-lg pt-1 break-words relative z-10">{step}</span>
                                  </div>
                                ))}
                             </div>
@@ -293,7 +309,7 @@ export default function ServiceDetail() {
                               {service.serviceArea.map((area, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-stone-50 border border-stone-200 rounded-2xl items-start shadow-sm">
                                    <MapPin className="text-orange-500 shrink-0 mt-0.5" size={20} />
-                                   <p className="text-stone-700 font-medium italic leading-relaxed break-words">{area}</p>
+                                   <p className="flex-1 min-w-0 text-stone-700 font-medium italic leading-relaxed break-words">{area}</p>
                                 </div>
                               ))}
                            </div>
@@ -307,7 +323,7 @@ export default function ServiceDetail() {
                               {service.legalSafety.map((item, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-blue-50 border border-blue-100 rounded-2xl items-start shadow-sm">
                                    <ShieldCheck className="text-blue-600 shrink-0 mt-0.5" size={20} />
-                                   <p className="text-stone-700 font-medium italic leading-relaxed">{item}</p>
+                                   <p className="flex-1 min-w-0 text-stone-700 font-medium italic leading-relaxed break-words">{item}</p>
                                 </div>
                               ))}
                            </div>
@@ -320,7 +336,7 @@ export default function ServiceDetail() {
                         <div className="mb-16 p-8 bg-yellow-50 border border-yellow-200 rounded-3xl">
                            <div className="flex gap-4 items-start">
                               <AlertTriangle className="text-yellow-600 shrink-0 mt-1" size={24} />
-                              <p className="text-stone-700 italic leading-relaxed font-medium whitespace-pre-line">
+                              <p className="flex-1 min-w-0 text-stone-700 italic leading-relaxed font-medium whitespace-pre-line break-words">
                                  {service.extraNote}
                               </p>
                            </div>
@@ -334,7 +350,7 @@ export default function ServiceDetail() {
                               {service.usefulInfo.map((info, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-white border border-stone-200 rounded-2xl items-start shadow-sm">
                                    <div className="w-2 h-2 bg-orange-500 rounded-full shrink-0 mt-2.5" />
-                                   <p className="text-stone-700 font-medium italic leading-relaxed">{info}</p>
+                                   <p className="flex-1 min-w-0 text-stone-700 font-medium italic leading-relaxed break-words">{info}</p>
                                 </div>
                               ))}
                            </div>
@@ -348,7 +364,7 @@ export default function ServiceDetail() {
                               {service.requiredDocuments.map((doc, i) => (
                                 <div key={i} className="flex gap-4 p-6 bg-orange-50 border border-orange-100 rounded-2xl items-start shadow-sm">
                                    <FileCheck className="text-orange-500 shrink-0 mt-1" size={20} />
-                                   <p className="text-stone-700 font-medium italic leading-relaxed">{doc}</p>
+                                   <p className="flex-1 min-w-0 text-stone-700 font-medium italic leading-relaxed break-words">{doc}</p>
                                 </div>
                               ))}
                            </div>
@@ -360,7 +376,7 @@ export default function ServiceDetail() {
                            <h3 className="text-2xl font-bold mb-8 italic">Podstawa prawna:</h3>
                            <div className="bg-stone-900 text-stone-300 p-10 rounded-[2.5rem] relative overflow-hidden">
                               <Gavel className="absolute -top-4 -right-4 w-32 h-32 text-white/5" />
-                              <p className="relative z-10 text-sm leading-loose italic tracking-wide">
+                              <p className="relative z-10 text-sm leading-loose italic tracking-wide break-words">
                                 {service.legalBasis}
                               </p>
                            </div>
@@ -369,7 +385,7 @@ export default function ServiceDetail() {
 
                       {service.closingNote && (
                         <div className="mt-12 p-8 bg-orange-50 border border-orange-100 rounded-3xl">
-                           <p className="text-lg text-stone-700 italic leading-relaxed font-medium">
+                           <p className="text-lg text-stone-700 italic leading-relaxed font-medium break-words">
                               {service.closingNote}
                            </p>
                         </div>
@@ -378,9 +394,9 @@ export default function ServiceDetail() {
                       {service.priceInfo && (
                         <div className="p-8 bg-yellow-50 border border-yellow-200 rounded-3xl flex items-center gap-6">
                            <Calculator size={32} className="text-yellow-600 shrink-0" />
-                           <div>
+                           <div className="flex-1 min-w-0">
                               <h4 className="font-bold text-yellow-900 mb-1 italic">Informacja o cenie</h4>
-                              <p className="text-yellow-800 font-medium italic">{service.priceInfo}</p>
+                              <p className="text-yellow-800 font-medium italic break-words">{service.priceInfo}</p>
                            </div>
                         </div>
                       )}
