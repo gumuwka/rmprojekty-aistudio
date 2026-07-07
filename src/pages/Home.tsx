@@ -115,7 +115,7 @@ export default function Home() {
   }, [isAutoPlaying]);
 
 
-  if (loading) return null;
+
 
   const data = content?.home || {};
   const defaultServices = content?.services || [];
@@ -182,14 +182,16 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-[95vh] flex items-center pt-32 md:pt-48 overflow-hidden group/hero">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={data?.hero?.bgImage || "/assets/hero_bg_premium.webp"} 
-            alt="Zespół Biura Projektowego" 
-            className="w-full h-full object-cover" 
-            fetchPriority="high"
-            width={1920}
-            height={1080}
-          />
+          {data?.hero?.bgImage && (
+            <img 
+              src={data.hero.bgImage} 
+              alt="Zespół Biura Projektowego" 
+              className="w-full h-full object-cover" 
+              fetchPriority="high"
+              width={1920}
+              height={1080}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/50 md:bg-gradient-to-r md:from-white/95 md:from-20% md:via-white/80 md:via-45% md:to-transparent z-10" />
         </div>
 
@@ -255,14 +257,16 @@ export default function Home() {
 
         {/* Photo in the background (desktop only, stretches to the right edge of the screen) */}
         <div className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-[2] overflow-hidden pointer-events-none bg-white">
-          <img 
-            src="/assets/realizations_full_bg.webp" 
-            alt="Kompleksowa obsługa projektów" 
-            className="w-full h-full object-cover"
-            loading="lazy"
-            width={1920}
-            height={400}
-          />
+          {data?.mapSection?.bgImage && (
+            <img 
+              src={data.mapSection.bgImage} 
+              alt="Kompleksowa obsługa projektów" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+              width={1920}
+              height={400}
+            />
+          )}
           {/* Gentle white wash/overlay */}
           <div className="absolute inset-0 bg-white/30 pointer-events-none" />
           {/* Left fade blending the photo into the background */}
@@ -359,14 +363,16 @@ export default function Home() {
           <div className="w-full lg:h-[400px]">
             {/* Mobile-only Photo Card */}
             <div className="block lg:hidden relative w-full h-[320px] md:h-[400px] overflow-hidden rounded-[2rem] shadow-2xl border border-stone-200/50 bg-white">
-              <img 
-                src="/assets/realizations_full_bg.webp" 
-                alt="Kompleksowa obsługa projektów" 
-                className="w-full h-full object-cover"
-                loading="lazy"
-                width={1920}
-                height={400}
-              />
+              {data?.mapSection?.bgImage && (
+                <img 
+                  src={data.mapSection.bgImage} 
+                  alt="Kompleksowa obsługa projektów" 
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  width={1920}
+                  height={400}
+                />
+              )}
               <div className="absolute inset-0 bg-white/30 pointer-events-none" />
             </div>
             {/* Desktop empty spacer to keep the grid layout */}

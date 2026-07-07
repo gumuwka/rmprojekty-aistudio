@@ -14,13 +14,11 @@ const defaultHomeContent = {
   hero: {
     title: "Rad-mar\nBiuro Projektowe",
     subtitle: "Projekty instalacji elektrycznych i fotowoltaicznych, ekspertyzy techniczne, opinie pożarowe oraz wsparcie w dotacjach – kompleksowe wsparcie dla firm i klientów indywidualnych",
-    cta: "ŚLEDŹ NAS NA FACEBOOKU",
-    bgImage: "/assets/hero_bg_premium.webp"
+    cta: "ŚLEDŹ NAS NA FACEBOOKU"
   },
   mapSection: {
     title: "Kompleksowe wsparcie dla branży OZE",
     subtitle: "Precyzyjne wsparcie inżynieryjne i doradcze, które przyspieszy realizację Twoich projektów fotowoltaicznych od koncepcji po przyłączenie do sieci.",
-    bgImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuC_jsKiAigiyGBENZDSU8N3LB4eEvnWP-F1iuPzuBYe2n-rIVXBWWM_ppHKGFJvE2wUbJzj34gRjzrjDfs3a0JFVtJWyxaLROI14Djvn-X3PyKpoBPII2XRAuPlHnIv-lrFA_IS_75o90dsdFw5YKWLn0IuuNUAszsKeLg5CVHNBn2ywdIHZReYxae-ZYIotKvLVEKLDhoqIhJdPUZF_yHd3BfRo1ShFg37caP1S0Vrkz7QEbR_JC4pIWHMwvyDwF1JY7_WwLM0-As",
     tile1: {
       title: "Projektowanie PV",
       desc: "Precyzyjne projekty architektoniczne i elektryczne dla instalacji komercyjnych i przemysłowych, gwarantujące maksymalne uzyski i trwałość konstrukcji."
@@ -133,7 +131,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const [content, setContent] = useState<any>(initialContent);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchContent = async () => {
     try {

@@ -18,9 +18,26 @@ const FAQPage = lazy(() => import('./pages/FAQPage'));
 const NewsletterPage = lazy(() => import('./pages/NewsletterPage'));
 
 
+import { useRef } from 'react';
+
 function ScrollToHash() {
-  const { hash, key } = useLocation();
+  const { hash, pathname } = useLocation();
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      if (hash) {
+        setTimeout(() => {
+          const element = document.getElementById(hash.replace('#', ''));
+          if (element) {
+            element.scrollIntoView();
+          }
+        }, 100);
+      }
+      return;
+    }
+
     if (hash) {
       const element = document.getElementById(hash.replace('#', ''));
       if (element) {
@@ -31,7 +48,7 @@ function ScrollToHash() {
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [hash, key]);
+  }, [hash, pathname]);
   return null;
 }
 
