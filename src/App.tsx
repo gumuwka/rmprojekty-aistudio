@@ -110,9 +110,12 @@ function LayoutWrapper() {
 export default function App() {
   useEffect(() => {
     let disable: () => void;
-    import('@sanity/visual-editing').then(({ enableVisualEditing }) => {
-      disable = enableVisualEditing();
-    });
+    // Enable visual editing only in development or if inside an iframe (Sanity Presentation tool)
+    if (import.meta.env.DEV || window.self !== window.top) {
+      import('@sanity/visual-editing').then(({ enableVisualEditing }) => {
+        disable = enableVisualEditing();
+      });
+    }
     return () => {
       if (disable) disable();
     };
